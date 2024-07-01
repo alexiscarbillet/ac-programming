@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Comparison Temporal Graphs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Comparison of data visualization for time series">
+    <meta name="keywords" content="alexis carbillet, carbillet, data visualization, python, comparison temporal graph">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Comparison of data visualization for time series" />
+    <meta property="og:description" content="Comparison of data visualization for time series" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/Viz/Temporal/comparison.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#advanced">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Comparison Temporal Graphs</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Let's go through the pros and cons of each type of chart for time series data:</p>
+		  <p>1. <B>Line Graph</B>:</p>
+		  <p><u>Pros</u>:</p>
+		  <p>- Clear and straightforward representation of trends over time.</p>
+		  <p>- Effective in showing continuous data and identifying patterns and changes.</p>
+		  <p>- Easy to interpret and understand for most audiences.</p>
+		  <p>- Suitable for comparing multiple time series on the same plot.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- Lacks the ability to show the distribution of data or variability around the trend.</p>
+      <p>- Might not be suitable for displaying large amounts of data points.</p>
+		  <p>2. <B>Area Graph</B>:</p>
+		  <p><u>Pros</u>:</p>
+		  <p>- Similar benefits to line graphs, but with the added advantage of showing the magnitude of the data between the line and the axis, making it useful for visualizing the overall contribution of different series.</p>
+		  <p>- Useful when you want to emphasize cumulative totals or compare the total values of multiple time series.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- The area between the lines can make it difficult to compare specific values accurately.</p>
+		  <p>- Not ideal for displaying negative values, as the area below the axis might create confusion.</p>
+		  <p>3. <B>Candlestick Chart</B>:</p>
+      <p><u>Pros</u>:</p>
+		  <p>- Widely used in financial and stock market analysis.</p>
+		  <p>- Provides information about the opening, closing, high, and low prices within a specific time period.</p>
+		  <p>- Clearly displays the price volatility and price range.</p>
+		  <p>- Useful for identifying trends and patterns in financial data.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- Primarily suited for financial data and might not be as applicable to other time series datasets.</p>
+		  <p>- Can be overwhelming for people unfamiliar with financial charting.</p>
+		  <p>4. <B>Gantt Chart</B>:</p>
+      <p><u>Pros</u>:</p>
+		  <p>- Excellent for visualizing project schedules, tasks, and timelines.</p>
+		  <p>- Clearly shows the start and end dates of each task in a project.</p>
+		  <p>- Helps in resource planning and workload distribution.</p>
+      <p>- Enables easy identification of dependencies and critical paths.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- Limited use for displaying continuous data trends or large-scale time series.</p>
+		  <p>- Can become cluttered and challenging to read if there are many tasks or a long timeline.</p>
+      <p>5. <B>Heatmap (Time Series)</B>:</p>
+		  <p><u>Pros</u>:</p>
+		  <p>- Great for displaying large datasets with multiple variables and time points.</p>
+		  <p>- Easily identifies patterns, correlations, and anomalies.</p>
+      <p>- Facilitates spotting trends and seasonality in time series data.</p>
+		  <p>- Effective for visualizing how variables change over time.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- Might be overwhelming when dealing with too many variables or time points.</p>
+      <p>- Less intuitive for presenting detailed information about specific data points.</p>
+		  <p>In conclusion, the choice of the best chart depends on the specific data and the insights you want to communicate. Line graphs and area graphs are good for simple trends, while candlestick charts are more suitable for financial data. Gantt charts work well for project timelines, and heatmaps are excellent for identifying patterns and correlations in large time series datasets. Consider the context and the audience when selecting the most appropriate chart type for your data visualization.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

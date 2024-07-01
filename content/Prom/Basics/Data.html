@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Prometheus Data Type</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="What kind of data can be found in prometheus?">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, Prometheus Data Type">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="What kind of data can be found in prometheus?" />
+    <meta property="og:description" content="What kind of data can be found in prometheus?" />
+    <meta property='og:url' content="https://www.ac-programming.com/Prom/Basics/Data.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Prometheus Data Type</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Prometheus, an open-source monitoring and alerting toolkit, primarily uses a single data type called "metric" to represent and store data. The metric data type in Prometheus is a time series data structure consisting of a unique name, a set of key-value pairs known as labels, and a timestamped value.</p>
+		  <p>Prometheus supports four main types of metrics:</p>
+		  <p>1. <B>Counter</B>: A counter is a monotonically increasing value that represents a cumulative count or a rate of events. Counters can only increase and are typically used for tracking the number of occurrences of a specific event.</p>
+		  <p>2. <B>Gauge</B>: A gauge represents a value that can both increase and decrease over time. It is used for capturing instantaneous values such as the current system CPU usage or memory consumption.</p>
+		  <p>3. <B>Histogram</B>: A histogram samples observations (usually durations or values) and counts them in configurable buckets. It provides statistical information about the distribution of values, such as the average, quantiles, and sum of observed values.</p>
+		  <p>4. <B>Summary</B>: A summary is similar to a histogram but calculates quantiles on the fly. It provides a sliding time window for calculating the quantiles, making it more suitable for long-term monitoring.</p>
+		  <p>These metric types allow Prometheus to collect and store different kinds of data, enabling monitoring and analysis of various aspects of systems and applications.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Examples</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+      <p>1. <B>Counter</B>:</p>
+			<pre><code>http_requests_total{method="GET", status="200"} 1024 </code></pre>
+			<p>This example represents a counter named http_requests_total, with labels method and status. It tracks the total count of HTTP GET requests with a status code of 200, which is currently at 1024.</p>
+			<p>2. <B>Gauge</B>:</p>
+      <pre><code> cpu_usage{instance="webserver1"} 0.75 </code></pre>
+			<p>Here, cpu_usage is a gauge metric that measures the CPU usage of the webserver1 instance. The value 0.75 represents the current CPU usage, which could be a percentage between 0 and 1 or a normalized value.</p>
+			<p>3. <B>Histogram</B>:</p>
+      <pre><code> http_request_duration_seconds_bucket{method="POST", status="200", le="0.1"} 1500 </code></pre>
+      <p>This histogram metric, `http_request_duration_seconds_bucket`, tracks the number of HTTP POST requests with a status code of 200 that fall into the bucket of duration less than or equal to 0.1 seconds. In this case, the bucket has recorded 1500 occurrences.</p>
+			<p>4. <B>Summary</B>:</p>
+      <pre><code> http_request_latency_seconds{quantile="0.95"} 0.037 </code></pre>
+      <p>A summary metric named http_request_latency_seconds calculates quantiles on the fly. This example represents the 95th percentile latency of HTTP requests, which is currently at 0.037 seconds.</p>
+			<p>These examples demonstrate how metrics are structured in Prometheus, with metric names, labels, and corresponding values to represent different aspects of system monitoring and analysis.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Prometheus records</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="What are prometheus records?">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, prometheus records">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="What are prometheus records?" />
+    <meta property="og:description" content="What are prometheus records?" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/Prom/Records.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Prometheus records</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Recording rules in Prometheus are used to precompute and store new time series based on existing ones. They are a way to create new metrics by applying functions or expressions to the existing metrics, making complex queries more efficient and enabling the creation of aggregated or transformed metrics that can be used for visualization, alerting, and analysis.</p>
+		  <p>Recording rules are defined in the Prometheus configuration file (prometheus.yml) using the recording_rules section. Here's an example of how recording rules are defined:</p>
+		  <pre><code>rule_files:
+    - 'recording_rules.yml'</code></pre>
+		  <p>In the recording_rules.yml file, you define the recording rules using PromQL (Prometheus Query Language). Each rule consists of a name, an expression, and an optional labels section. Here's an example:</p>
+		  <pre><code>groups:
+    - name: my_recording_rules
+        rules:
+        - record: http_requests_total_sum
+            expr: sum(http_requests_total) by (job)</code></pre>
+		  <p>In this example, a new metric named http_requests_total_sum is created by summing the http_requests_total metric grouped by the job label. This can be useful for visualizing the total number of HTTP requests per job.</p>
+		  <p>Recording rules are especially beneficial in scenarios where certain queries or aggregations are computationally expensive and frequently used. By precomputing these aggregations, you can reduce the load on the Prometheus server and make querying more efficient.</p>
+		  <p>When defining recording rules, keep the following considerations in mind:</p>
+		  <p>1. <B>Efficiency</B>: Recording rules should be used for aggregations or calculations that are frequently used in queries. This helps improve query performance.</p>
+          <p>2. <B>Cardinality</B>: Be cautious when creating recording rules that can generate a high cardinality of time series, as it can impact Prometheus' memory usage.</p>
+		  <p>3. <B>Maintenance</B>: Regularly review and update your recording rules to ensure they remain relevant to your monitoring needs.</p>
+		  <p>4. <B>Testing</B>: Before deploying new recording rules, test them in a non-production environment to ensure they behave as expected.</p>
+		  <p>5. <B>Documentation</B>: Maintain clear documentation for your recording rules to ensure other team members understand their purpose and usage.</p>
+		  <p>Recording rules are a powerful feature of Prometheus that allow you to customize and optimize your monitoring setup to better suit your organization's specific requirements.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

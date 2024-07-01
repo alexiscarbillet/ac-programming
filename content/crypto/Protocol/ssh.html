@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>SSH</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Unveiling the Power of SSH: Secure Communication Made Simple">
+    <meta name="keywords" content="alexis carbillet, carbillet, cryptography, ssh">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="SSH" />
+    <meta property="og:description" content="Unveiling the Power of SSH: Secure Communication Made Simple" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/crypto/Protocol/ssh.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#crypto">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Unveiling the Power of SSH: Secure Communication Made Simple</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>In the realm of secure communication protocols, SSH stands tall as a trusted guardian of data integrity and confidentiality. From remote server administration to secure file transfers, SSH (Secure Shell) has become a cornerstone of modern computing. Let's unravel the intricacies of SSH: what it is, why it's indispensable, and how it operates.</p>
+      <h5>Understanding SSH Protocol:</h5>
+		  <p>SSH, short for Secure Shell, is a cryptographic network protocol that facilitates secure communication between two computers over an insecure network. Originally developed as a replacement for insecure protocols like Telnet and FTP, SSH provides a secure channel for accessing, managing, and transferring data between devices.</p>
+      <h5>Use Cases and Benefits:</h5>
+		  <p>The versatility and robust security features of SSH make it indispensable in various scenarios:</p>
+      <ul>
+        <li><b>Remote Server Administration</b>: System administrators use SSH to remotely access and manage servers and networking devices. Through an encrypted connection, administrators can execute commands, configure settings, and troubleshoot issues without compromising security.</li>
+        <li><b>Secure File Transfer</b>: SSH's secure file transfer capabilities, particularly through tools like SCP (Secure Copy Protocol) and SFTP (SSH File Transfer Protocol), enable users to transfer files between systems securely. Whether it's backing up important data or sharing sensitive files, SSH ensures confidentiality and integrity during transmission.</li>
+        <li><b>Tunneling and Port Forwarding</b>: SSH supports tunneling and port forwarding, allowing users to securely access services and resources hosted on remote networks. This feature is invaluable for accessing internal resources from outside networks or bypassing network restrictions securely.</li>
+        <li><b>Automated Processes</b>: SSH's ability to authenticate users through key-based authentication makes it ideal for automated processes and scripting. Tasks such as scheduled backups, automated deployments, and batch processing can be securely executed using SSH.</li>
+      </ul>
+      <h5>How SSH Works:</h5>
+		  <p>SSH employs a combination of asymmetric and symmetric encryption techniques to establish a secure connection between a client and a server. Here's a simplified overview of the SSH process:</p>
+      <ul>
+        <li><b>Key Exchange</b>: The SSH connection begins with a key exchange phase, where the client and server negotiate cryptographic parameters and exchange keys. This key exchange process ensures secure communication and prevents eavesdropping or tampering.</li>
+        <li><b>User Authentication</b>: Once the key exchange is complete, the client authenticates itself to the server using various methods, including password authentication, public key authentication, or multi-factor authentication. Public key authentication, considered the most secure method, relies on cryptographic key pairs.</li>
+        <li><b>Encryption and Data Exchange</b>: With authentication successful, SSH establishes a secure channel for data exchange between the client and server. All data transmitted over this channel is encrypted using symmetric encryption algorithms, ensuring confidentiality and integrity.</li>
+        <li><b>Session Management</b>: Throughout the SSH session, the client and server maintain a secure connection, allowing for interactive shell sessions, file transfers, or execution of remote commands. The session remains encrypted and protected from interception or manipulation.</li>
+      </ul>
+		  <p>SSH's ability to provide secure, encrypted communication over insecure networks has made it a cornerstone of modern computing. From remote server administration to secure file transfers, SSH empowers users with the confidence that their data remains protected from prying eyes and malicious actors. As cyber threats continue to evolve, SSH remains a trusted ally in the quest for secure communication and data integrity.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

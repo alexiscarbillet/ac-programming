@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Project 3: Complex requests with node-exporter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Examples of requests with node-exporter">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, node-exporter">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Examples of requests with node-exporter" />
+    <meta property="og:description" content="Examples of requests with node-exporter" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Prom/Project3/Project3.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Complex requests with node-exporter</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Node-exporter is a popular tool used to collect various system-level metrics from a Linux/Unix server and expose them via HTTP for monitoring and analysis. Below are five complex requests you can make on node-exporter metrics:</p>
+		  <p>1. Calculate average CPU utilization over the last hour for a specific node:</p>
+		  <p><pre><code>avg_over_time(node_cpu_seconds_total{job="node-exporter", mode="idle"}[1h])</code></pre></p>
+		  <p>2. Monitor and alert on unusual disk I/O patterns:</p>
+		  <p><pre><code>absent(rate(node_disk_read_bytes_total{job="node-exporter", device="sda"}[5m])) 
+OR absent(rate(node_disk_written_bytes_total{job="node-exporter", device="sda"}[5m]))</code></pre></p>
+		  <p>This query checks if there's no disk I/O activity (reads or writes) on the sda disk for the last 5 minutes. If no data is available, it might indicate an issue, and an alert can be triggered.</p>
+		  <p>3. Identify the top memory-consuming processes on a node:</p>
+		  <p><pre><code>topk(5, 100 - (node_memory_MemFree_bytes{job="node-exporter"} / node_memory_MemTotal_bytes{job="node-exporter"}) * 100)</code></pre></p>
+		  <p>This query calculates the memory usage percentage for each process by dividing used memory ("MemTotal - MemFree") by total memory ("MemTotal"). Then, it selects the top 5 processes with the highest memory usage.</p>
+      <p>4. Calculate network bandwidth utilization over a specific period for a network interface:</p>
+		  <p><pre><code>irate(node_network_receive_bytes_total{job="node-exporter", device="eth0"}[1h])</code></pre></p>
+		  <p>This query calculates the incoming network bandwidth rate (bytes per second) for the "eth0" interface over the last hour using the "irate" function.</p>
+		  <p><pre><code>irate(node_network_transmit_bytes_total{job="node-exporter", device="eth0"}[1h])</code></pre></p>
+		  <p>This query calculates the outgoing network bandwidth rate (bytes per second) for the "eth0" interface over the last hour using the "irate" function.</p>
+		  <p>5. Monitor and visualize system load and resource utilization trends:</p>
+      <p><pre><code>node_load1{job="node-exporter"}</code></pre></p>
+		  <p>This query retrieves the 1-minute load average for the node, which represents the average number of processes in the run queue or waiting for CPU time over the last minute.</p>
+		  <p><pre><code>100 - (avg by (instance) (irate(node_cpu_seconds_total{job="node-exporter", mode="idle"}[5m])) * 100)</code></pre></p>
+      <p>This query calculates the CPU utilization percentage for each node by subtracting the average idle CPU time from 100%.</p>
+		  <p><pre><code>node_memory_MemTotal_bytes{job="node-exporter"} 
+- node_memory_MemFree_bytes{job="node-exporter"} 
+- node_memory_Buffers_bytes{job="node-exporter"} 
+- node_memory_Cached_bytes{job="node-exporter"}</code></pre></p>
+		  <p>This query calculates the used memory by subtracting free memory, buffers, and cached memory from the total memory.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

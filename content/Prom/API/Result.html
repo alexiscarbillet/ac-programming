@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Prometheus API Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="What result expect from the prometheus API?">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, Prometheus API Results">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="What result expect from the prometheus API?" />
+    <meta property="og:description" content="What result expect from the prometheus API?" />
+    <meta property='og:url' content="https://www.ac-programming.com/Prom/API/Result.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Prometheus API Results</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>The Prometheus API provides various features and functionalities to interact with the Prometheus server. Here are some key features of the Prometheus API:</p>
+		  <p>1. <B>Querying Metrics</B>: The Prometheus API allows you to query metrics data stored in the Prometheus time-series database. You can specify metric names, labels, time ranges, and other parameters to retrieve specific metrics or aggregate data.</p>
+		  <p>2. <B>Retrieving Metrics Metadata</B>: You can retrieve metadata information about metrics, such as their names, labels, and descriptions. This feature is helpful for discovering available metrics and understanding their meanings.</p>
+		  <p>3. <B>Data Range Queries</B>: Prometheus API enables you to query metrics data within a specific time range. You can specify start and end timestamps or use relative time expressions to retrieve metrics data for a specific period.</p>
+		  <p>4. <B>Aggregation and Filtering</B>: The API supports various functions for aggregating and filtering metric data. You can apply functions like sum, average, minimum, maximum, and others to calculate aggregated values or filter data based on specific conditions.</p>
+		  <p>5. <B>Alerting Rules</B>: Prometheus has a built-in alerting system that can generate alerts based on predefined rules. The API allows you to manage alerting rules, retrieve their status, and manage silences (temporary suppression of alerts).</p>
+		  <p>6. <B>Service Discovery</B>: Prometheus supports service discovery mechanisms to dynamically discover and monitor targets (such as servers or containers) in an automated manner. The API provides endpoints to manage service discovery configurations.</p>
+		  <p>7. <B>Runtime Configuration</B>: You can dynamically configure Prometheus through the API. This includes modifying scrape intervals, retention periods, storage configurations, and other runtime settings.</p>
+		  <p>8. <B>Exporting and Importing Data</B>: Prometheus API supports data export and import in various formats, including Prometheus' own text-based exposition format. This allows you to transfer metrics data between different Prometheus instances or integrate with other monitoring systems.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Examples</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+      <p>Here are examples of the results you might obtain when using the Prometheus API for different features:</p>
+      <p>1. Querying Metrics:</p>
+      <p>- Example query:</p>
+			<pre><code>http://prometheus-server/api/v1/query?query=up</code></pre>
+      <p>- Result: Returns a list of instances that are currently up or running.</p>
+      <p>2. <B>Retrieving Metrics Metadata</B>:</p>
+			<p>- Example query:</p>
+			<pre><code>http://prometheus-server/api/v1/metadata</code></pre>
+      <p>- Result: Returns metadata information about available metrics, such as their names, labels, and descriptions.</p>
+      <p>3. <B>Data Range Queries</B>:</p>
+      <p>- Example query:</p>
+			<pre><code>http://prometheus-server/api/v1/query_range?query=cpu_usage&start=1625086800&end=1625090400&step=60</code></pre>
+      <p>- Result: Returns CPU usage data for a specific time range (from 1625086800 to 1625090400) with a step of 60 seconds.</p>
+      <p>4. <B>4. Aggregation and Filtering:</B></p>
+      <p>- Example query:</p>
+			<pre><code>http://prometheus-server/api/v1/alerts</code></pre>
+      <p>- Result: Returns the current status of all active alerts generated by Prometheus based on predefined rules.</p>
+      <p>6. <B>Service Discovery</B>:</p>
+      <p>- Example query:</p>
+			<pre><code>http://prometheus-server/api/v1/service-discovery/targets</code></pre>
+      <p>- Result: Returns a list of discovered targets (e.g., servers or containers) that Prometheus is monitoring.</p>
+      <p>7. <B>Runtime Configuration</B>:</p>
+      <p>- Example query:</p>
+			<pre><code>http://prometheus-server/api/v1/admin/runtime-config</code></pre>
+      <p>- Result: Returns the current runtime configuration settings of the Prometheus server, such as scrape intervals and retention periods.</p>
+      <p>8. <B>Exporting and Importing Data</B>:</p>
+      <p>- Example query:</p>
+			<pre><code>http://prometheus-server/api/v1/export</code></pre>
+      <p>- Result: Returns the metrics data in Prometheus' text-based exposition format, which can be exported and used for data transfer or integration purposes.</p>
+      <p>Please note that the examples provided are based on a hypothetical Prometheus server and may not represent the actual API endpoints or query parameters. It's important to consult the Prometheus documentation or your specific Prometheus setup for accurate endpoint details and query syntax.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

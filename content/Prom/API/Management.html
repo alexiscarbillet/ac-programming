@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Management API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="What is the prometheus management API?">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, management API">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="What is the prometheus management API?" />
+    <meta property="og:description" content="What is the prometheus management API?" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/Prom/API/Management.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Management API</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Prometheus provides a set of management APIs that allow you to interact with and manage various aspects of the Prometheus server and its components. These APIs are useful for tasks such as querying metrics, retrieving configuration information, and managing runtime behavior. Here are some key management APIs provided by Prometheus:</p>
+		  <p>1. <B>Query API</B> (/api/v1/query):</p>
+          <ul>
+            <li>This API allows you to execute instant queries to retrieve metric data.</li>
+            <li>You can specify the metric name, labels, and time range to retrieve specific data points.</li>
+            <li>It returns a JSON response containing the query results.</li>
+          </ul>
+		  <p>2. <B>Range Query API</B> (/api/v1/query_range):</p>
+          <ul>
+            <li>Similar to the Query API, but used for range queries over a time interval.</li>
+            <li>Useful for retrieving time series data for graphing or analysis.</li>
+            <li>Returns a JSON response with time series data points within the specified range.</li>
+          </ul>
+		  <p>3. <B>Label Values API</B> (/api/v1/label/your_label_name/values):</p>
+          <ul>
+            <li>Allows you to retrieve the distinct values for a given label name.</li>
+            <li>Useful for dynamic label-based selection when querying metrics.</li>
+          </ul>
+		  <p>4. <B>Targets API</B> (/api/v1/targets):</p>
+          <ul>
+            <li>Provides information about the targets that Prometheus is configured to scrape.</li>
+            <li>Includes details such as target's address, labels, last scrape timestamp, etc.</li>
+          </ul>
+		  <p>5. <B>Alertmanager API</B> (/api/v1/alerts):</p>
+          <ul>
+            <li>Retrieves a list of active alerts along with their labels and annotations.</li>
+            <li>Useful for monitoring the current state of your alerting rules.</li>
+          </ul>
+		  <p>6. <B>Configuration API</B> (/api/v1/status/config):</p>
+          <ul>
+            <li>Allows you to retrieve the effective runtime configuration of Prometheus.</li>
+            <li>Useful for validating or inspecting your Prometheus configuration.</li>
+          </ul>
+		  <p>7. <B>Runtime Configuration Reload</B> (/-/reload):</p>
+          <ul>
+            <li>This API endpoint triggers a reload of the Prometheus configuration.</li>
+            <li>Changes made to the configuration file take effect after invoking this endpoint.</li>
+          </ul>
+		  <p>8. <B>Metrics API</B> (/metrics):</p>
+          <ul>
+            <li>Prometheus itself exposes various internal metrics about its performance and behavior through this API.</li>
+            <li>These metrics can be scraped by another Prometheus instance or monitoring system to monitor the health of your Prometheus server.</li>
+          </ul>
+          <p>It's important to note that these APIs are typically accessed using HTTP GET requests to the specified endpoints. Responses are usually in JSON format, making them easily consumable by scripts and applications.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Examples</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+			<p>Here are examples of HTTP requests for each of the Prometheus management APIs mentioned earlier. Keep in mind that you'll need to replace placeholders (such as label_name, target_id, etc.) with actual values relevant to your setup.</p>
+			<p>1. <B>Query API</B> (/api/v1/query):</p>
+			<p>Retrieve instant metric value for a specific metric and label combination.</p>
+            <pre><code>GET /api/v1/query?query=your_metric_name{your_label_name="your_label_value"}</code></pre>
+			<p>2. <B>Range Query API</B> (/api/v1/query_range):</p>
+			<p>Retrieve time series data for a specific metric and label combination within a time range.</p>
+            <pre><code>GET /api/v1/query_range?query=your_metric_name{your_label_name="your_label_value"}&start=your_start_timestamp&end=your_end_timestamp&step=your_sampling_interval</code></pre>
+            <p>3. <B>Label Values API</B> (/api/v1/label/your_label_name/values):</p>
+			<p>Retrieve distinct values for a specific label.</p>
+            <pre><code>GET /api/v1/label/your_label_name/values</code></pre>
+			<p>4. <B>Targets API</B> (/api/v1/targets):</p>
+			<p>Retrieve information about configured scrape targets.</p>
+            <pre><code>GET /api/v1/targets</code></pre>
+			<p>5. <B>Alertmanager API</B> (/api/v1/alerts):</p>
+			<p>Retrieve a list of active alerts.</p>
+            <pre><code>GET /api/v1/alerts</code></pre>
+            <p>6. <B>Configuration API</B> (/api/v1/status/config):</p>
+			<p>Retrieve the effective runtime configuration of Prometheus.</p>
+            <pre><code>GET /api/v1/status/config</code></pre>
+			<p>7. <B>Runtime Configuration Reload</B> (/-/reload):</p>
+			<p>Trigger a reload of the Prometheus configuration.</p>
+            <pre><code>POST /-/reload</code></pre>
+			<p>8. <B>Metrics API</B> (/metrics):</p>
+			<p>Retrieve internal metrics exposed by Prometheus itself.</p>
+            <pre><code>GET /metrics</code></pre>
+            <p>Please note that for many of these requests, you will need to replace placeholders like your_metric_name, your_label_name, your_label_value, your_start_timestamp, your_end_timestamp, your_sampling_interval, and so on with actual values.</p>
+			<p>Also, remember to access these APIs on the appropriate base URL where your Prometheus server is running. The examples shown here assume a generic base URL, so you will need to adjust them according to your Prometheus server's configuration and deployment.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

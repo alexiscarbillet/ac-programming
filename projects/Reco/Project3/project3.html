@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Music recommender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How can I create a music recommender in python?">
+    <meta name="keywords" content="alexis carbillet, carbillet, recommendation system, python">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Music recommender" />
+    <meta property="og:description" content="How can I create a music recommender in python?" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Reco/Project3/project3.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#rs">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Music recommender</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Million Song Dataset (MSD) is a freely available dataset that contains detailed information about a million songs, including metadata (title, artist, release year), audio features (e.g., tempo, key, loudness), and user listening history (such as play counts and user IDs). It's a valuable resource for music recommendation and analysis.</p>
+		  <p>Creating a full-fledged music recommendation system based on the Million Song Dataset (MSD) requires several steps, including data preprocessing, feature engineering, model training, and serving recommendations. Below is a simplified example of how you can download a portion of the MSD and build a basic content-based recommendation system using Python.</p>
+		  <p>Please note that this code provides a starting point and is not a comprehensive recommendation system. Developing a production-ready recommendation system typically involves more complex techniques and scalability considerations.</p>
+		  <pre><code>import pandas as pd
+import numpy as np
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics.pairwise import linear_kernel
+
+# Download a subset of the Million Song Dataset (MSD)
+# You can download the data from the MSD website: http://millionsongdataset.com/pages/getting-dataset/#subset
+# This code assumes you have a CSV file with song metadata, e.g., 'subset_msd_summary.csv'
+msd_data = pd.read_csv('subset_msd_summary.csv')
+
+# Select relevant features for content-based recommendation
+selected_features = ['artist_name', 'title', 'release', 'year']
+
+# Fill missing values with empty strings
+msd_data[selected_features] = msd_data[selected_features].fillna('')
+
+# Create a new feature 'content' by combining selected features
+msd_data['content'] = msd_data['artist_name'] + ' ' + msd_data['title'] + ' ' + msd_data['release'] + ' ' + msd_data['year'].astype(str)
+
+# Create a TF-IDF vectorizer to convert 'content' into numerical vectors
+tfidf_vectorizer = TfidfVectorizer(stop_words='english')
+tfidf_matrix = tfidf_vectorizer.fit_transform(msd_data['content'])
+
+# Compute cosine similarities between songs based on TF-IDF vectors
+cosine_similarities = linear_kernel(tfidf_matrix, tfidf_matrix)
+
+# Create a mapping of song titles to their corresponding indices
+indices = pd.Series(msd_data.index, index=msd_data['title']).drop_duplicates()
+
+# Function to get song recommendations based on input song title
+def get_recommendations(title, cosine_sim=cosine_similarities):
+    idx = indices[title]
+    sim_scores = list(enumerate(cosine_sim[idx]))
+    sim_scores = sorted(sim_scores, key=lambda x: x[1], reverse=True)
+    sim_scores = sim_scores[1:11]  # Get the top 10 most similar songs (excluding itself)
+    song_indices = [i[0] for i in sim_scores]
+    return msd_data['title'].iloc[song_indices]
+
+# Example usage:
+input_song = "Bohemian Rhapsody"  # Replace with the song title of your choice
+recommendations = get_recommendations(input_song)
+print("Recommended songs for:", input_song)
+print(recommendations)</code></pre>
+      <p>What does this code do?</p>
+      <ul>
+        <li>We load a subset of the Million Song Dataset (MSD) from a CSV file containing song metadata.</li>
+        <li>We select relevant features for content-based recommendation (artist name, title, release, and year) and create a new feature 'content' by combining them.</li>
+        <li>We use TF-IDF vectorization to convert the 'content' text data into numerical vectors.</li>
+        <li>We compute cosine similarities between songs based on their TF-IDF vectors.</li>
+        <li>The "get_recommendations" function takes a song title as input and returns a list of recommended songs based on cosine similarities.</li>
+      </ul>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

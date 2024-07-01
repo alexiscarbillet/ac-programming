@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Prometheus Storage</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How to store prometheus metrics?">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus ptorage">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="How to store prometheus metrics?" />
+    <meta property="og:description" content="How to store prometheus metrics?" />
+    <meta property='og:url' content="https://www.ac-programming.com/" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Prometheus Storage</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>1. <B>Prometheus Server Configuration</B>:</p>
+          <ul>
+            <li>Configure Prometheus to scrape targets and collect metrics. This is typically done through the prometheus.yml configuration file.</li>
+            <li>Define the scrape_configs section to specify the targets to scrape.</li>
+            <li>Set up any additional configuration options, like alerting rules, service discovery, and retention policies.</li>
+          </ul>
+		  <p>2. <B>Metrics Collection and Storage</B>:</p>
+		  <ul>
+            <li>Prometheus scrapes metrics from configured targets at regular intervals.</li>
+            <li>It stores these metrics locally in its time-series database.</li>
+            <li>Prometheus uses its own storage format optimized for fast querying and efficient storage.</li>
+          </ul>
+		  <p>3. <B>Data Retention and Pruning</B>:</p>
+          <ul>
+            <li>Configure the data retention period in the Prometheus configuration (storage.retention option).</li>
+            <li>This setting determines how long the data is retained in the storage.</li>
+            <li>Older data is automatically pruned based on the configured retention period.</li>
+          </ul>
+		  <p>4. <B>Querying Metrics</B>:</p>
+          <ul>
+            <li>Prometheus provides APIs (such as the Query API and Range Query API) to query and retrieve metrics.</li>
+            <li>You can use PromQL (Prometheus Query Language) to express complex queries to fetch the required data.</li>
+          </ul>
+		  <p>5. <B>Visualization and Alerting</B>:</p>
+          <ul>
+            <li>Prometheus can be used with visualization tools like Grafana to create dashboards and visualize the collected metrics.</li>
+            <li>You can also configure alerting rules in Prometheus to trigger alerts based on metric conditions.</li>
+          </ul>
+		  <p>Prometheus' internal storage system is well-optimized for its use case of monitoring and alerting. However, there are also options to use remote storage integrations if you have specific requirements. For instance:</p>
+          <ul>
+            <li><B>Remote Storage</B>: Prometheus supports remote read and write APIs, allowing you to use other storage systems for long-term retention. You can configure Prometheus to offload data to remote storage systems like Thanos, Cortex, or any other system that supports the Prometheus remote read/write API.</li>
+            <li><B>Prometheus Remote Write</B>: This feature allows you to send metrics to remote storage systems in real-time. You can configure Prometheus to send metrics to various backends, including cloud-based storage solutions or other monitoring platforms.</li>
+          </ul>
+		  <p>When choosing a storage strategy, consider factors like data retention requirements, query performance, scalability, and integration with existing monitoring infrastructure.</p>
+		  <p>For most use cases, using Prometheus' built-in storage is a straightforward and effective approach. However, if you need extended retention or more advanced features, you might explore integrations with remote storage solutions.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Asymetric cryptography</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="What is asymetric cryptography?">
+    <meta name="keywords" content="alexis carbillet, carbillet, cryptography, asymetric cryptography">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Alexis Carbillet" />
+    <meta property="og:description" content="What is asymetric cryptography?" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/crypto/Kind/asymetric.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#go">Go example</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#crypto">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Asymetric cryptography</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Asymmetric cryptography, also known as public-key cryptography, is a cryptographic system that uses pairs of keys: a public key and a private key. Unlike symmetric cryptography, where the same key is used for both encryption and decryption, asymmetric cryptography uses different keys for these operations.</p>
+		  <ul>
+        <li><b>Explanation of Asymmetric Encryption</b>:</li>
+        <p>In asymmetric encryption, each party has a pair of keys: a public key and a private key. The public key is made freely available to anyone who wants to send an encrypted message to the owner of that key. The private key, on the other hand, is kept secret and is only known to the owner.</p>
+        <p>When Alice wants to send a message to Bob using asymmetric encryption:</p>
+        <ul>
+          <li>Alice obtains Bob's public key.</li>
+          <li>Alice encrypts the message using Bob's public key.</li>
+          <li>Alice sends the encrypted message to Bob.</li>
+          <li>Bob decrypts the message using his private key.</li>
+        </ul>
+        <p>This process ensures that only Bob, the holder of the private key, can decrypt the message, even though the encryption was performed using his public key.</p>
+        <li><b>Examples of Asymmetric Encryption Algorithms</b>:</li>
+        <ul>
+          <li><u>RSA</u> (Rivest-Shamir-Adleman): RSA is one of the most widely used asymmetric encryption algorithms. It relies on the difficulty of factoring large integers into their prime factors. RSA is widely used for secure data transmission, digital signatures, and key exchange protocols.</li>
+          <li><u>ECC</u> (Elliptic Curve Cryptography): ECC is an alternative to RSA and is based on the algebraic structure of elliptic curves over finite fields. ECC offers the same level of security as RSA but with smaller key sizes, making it more efficient in terms of computational resources. It is often used in environments where resource constraints are a concern, such as mobile devices and IoT devices.</li>
+        </ul>
+        <li><b>Key Exchange Mechanisms</b>:</li>
+        <p>Asymmetric cryptography is often used in key exchange mechanisms to establish secure communication channels between parties. Here are two common key exchange mechanisms:</p>
+        <ul>
+          <li><u>Diffie-Hellman Key Exchange</u> (DH): Diffie-Hellman allows two parties to establish a shared secret over an insecure channel without exchanging any private keys. Instead, they exchange public keys and use them, along with their private keys, to compute a shared secret. This shared secret can then be used to derive symmetric encryption keys for secure communication.</li>
+          <li><u>Elliptic Curve Diffie-Hellman</u> (ECDH): ECDH is a variant of Diffie-Hellman that uses elliptic curve cryptography. It provides the same functionality as DH but with smaller key sizes and faster computations, making it more suitable for resource-constrained environments.</li>
+        </ul>
+        <p>These key exchange mechanisms enable secure communication between parties by allowing them to establish shared secrets without the risk of interception or eavesdropping.</p>
+      </ul>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== GO SECTION ============================ -->
+
+	<section class="bg-light" id="go">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Go example</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+      <p>Here's an example of RSA encryption and decryption in Go:</p>
+			<pre><code>package main
+
+import (
+  "crypto/rand"
+  "crypto/rsa"
+  "crypto/x509"
+  "encoding/pem"
+  "fmt"
+)
+
+func main() {
+  // Generate RSA key pair
+  privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
+  if err != nil {
+    fmt.Println("Error generating RSA private key:", err)
+    return
+  }
+
+  // Public key
+  publicKey := &privateKey.PublicKey
+
+  // Original message
+  message := []byte("Hello, RSA!")
+
+  // Encrypt the message using the public key
+  ciphertext, err := rsa.EncryptPKCS1v15(rand.Reader, publicKey, message)
+  if err != nil {
+    fmt.Println("Error encrypting message:", err)
+    return
+  }
+  fmt.Printf("Encrypted message: %x\n", ciphertext)
+
+  // Decrypt the message using the private key
+  plaintext, err := rsa.DecryptPKCS1v15(rand.Reader, privateKey, ciphertext)
+  if err != nil {
+    fmt.Println("Error decrypting message:", err)
+    return
+  }
+  fmt.Println("Decrypted message:", string(plaintext))
+}</code></pre>
+			<p>Results you should obtain:</p>
+      <code><pre>Encrypted message: 8e1b2ed11de5101064f1ff3b4...
+Decrypted message: Hello, RSA!</pre></code>
+        <p>In this code:</p>
+        <ul>
+          <li>We generate an RSA key pair with a 2048-bit private key.</li>
+          <li>We extract the public key from the generated private key.</li>
+          <li>We define a message to be encrypted.</li>
+          <li>We encrypt the message using the RSA public key.</li>
+          <li>We decrypt the ciphertext using the RSA private key.</li>
+        </ul>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

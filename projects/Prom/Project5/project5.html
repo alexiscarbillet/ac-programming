@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Prometheus Good practices</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="What are the good practices with prometheus?">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, good practices">
+    <meta name="author" content="Alexis Carbillet">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="What are the good practices with prometheus?" />
+    <meta property="og:description" content="What are the good practices with prometheus?" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Project4/project4.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#blog">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Project</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+        <p>Prometheus is a powerful monitoring and alerting tool widely used in the IT industry. To make the most of Prometheus and ensure a robust and effective monitoring system, here are some good practices to follow:</p>
+        <p>1. <B>Define clear monitoring objectives</B>: Clearly define what you want to monitor and set specific goals for your monitoring system. This will help you focus on collecting relevant metrics and avoid unnecessary overhead.</p>
+        <p>2. <B>Instrument your code</B>: Instrument your applications and services with Prometheus client libraries to expose relevant metrics. This involves adding code snippets to your applications that expose metrics like HTTP request counts, latencies, error rates, etc.</p>
+        <p>3. <B>Choose appropriate metric types</B>: Prometheus supports various metric types, such as counters, gauges, histograms, and summaries. Understand the differences between them and choose the most appropriate type for each metric you expose.</p>
+        <p>4. <B>Use labels effectively</B>: Labels in Prometheus allow you to add dimensions to your metrics, enabling better slicing and dicing of data. Use labels wisely to capture additional information about your metrics, such as instance, job, environment, etc.</p>
+        <p>5. <B>Set up alerting rules</B>: Define alerting rules in Prometheus to notify you when certain conditions are met. This helps you proactively respond to potential issues before they become critical.</p>
+        <p>6. <B>Use Grafana for visualization</B>: Grafana is a popular companion tool for Prometheus that provides rich visualization capabilities. Use Grafana to create meaningful dashboards and gain insights from your monitoring data.</p>
+        <p>7. <B>Monitor Prometheus itself</B>: Set up monitoring for the Prometheus server and other components to ensure that your monitoring system is running smoothly. This includes monitoring resource usage, retention, and the overall health of the Prometheus server.</p>
+        <p>8. <B>Ensure data retention and storage</B>: Carefully configure data retention and storage options to strike a balance between keeping historical data and managing storage requirements.</p>
+        <p>9. <B>Use exporters for third-party integrations</B>: Prometheus exporters are specific tools that expose metrics from various systems and applications. Utilize existing exporters or create custom ones to monitor third-party components in your infrastructure.</p>
+        <p>10. <B>Scraping best practices</B>: When configuring scraping jobs, ensure you set appropriate scraping intervals based on the data's volatility and the server's resource capacity. Avoid scraping unnecessary endpoints and implement proper authentication mechanisms if required.</p>
+        <p>11. <B>Backup and restore</B>: Regularly back up your Prometheus data and configurations to prevent data loss in case of failures or accidents.</p>
+        <p>12. <B>Monitor for cardinality explosion</B>: Keep an eye on the number of unique label combinations (cardinality) in your metrics. High cardinality can lead to increased storage and query costs, so it's essential to manage it effectively.</p>
+        <p>13. <B>Upgrade Prometheus regularly</B>: Stay up-to-date with the latest releases of Prometheus to benefit from bug fixes, improvements, and new features.</p>
+        <p>14. <B>Document your monitoring setup</B>: Document your Prometheus configuration, alerting rules, and any custom exporters or integrations you have set up. This documentation will be valuable for onboarding new team members and troubleshooting.</p>
+        <p>By following these good practices, you can build a reliable and efficient monitoring system with Prometheus, enabling you to gain valuable insights into your infrastructure's performance and health.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

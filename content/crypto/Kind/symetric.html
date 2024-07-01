@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Symmetric Cryptography</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="What is symetric encryption?">
+    <meta name="keywords" content="alexis carbillet, carbillet, cryptography, Symmetric Cryptograph">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Alexis Carbillet" />
+    <meta property="og:description" content="What is symetric encryption?" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/crypto/Kind/symetric.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#go">Go Example</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#crypto">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Symmetric Cryptography</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Symmetric encryption is a method of encryption where the same key is used for both encryption and decryption of the data. In other words, the sender and the receiver must both have access to the same secret key. This key is used to transform plaintext into ciphertext (encryption) and back again (decryption). Symmetric encryption algorithms are generally faster and more efficient than asymmetric encryption algorithms, making them suitable for encrypting large amounts of data.</p>
+		  <ul>
+        <li><b>Examples of Symmetric Encryption Algorithms</b></li>
+        <ul>
+          <li><u>AES</u> (Advanced Encryption Standard): AES is one of the most widely used symmetric encryption algorithms. It uses keys of 128, 192, or 256 bits and operates on blocks of data.</li>
+          <li><u>DES</u> (Data Encryption Standard): DES was one of the earliest symmetric encryption algorithms but is now considered obsolete due to its small key size (56 bits) and vulnerability to brute force attacks. It's been superseded by Triple DES (3DES), which applies the DES encryption algorithm three times to each data block.</li>
+        </ul>
+        <li><b>Use Cases</b>:</li>
+        <ul>
+          <li><u>Data Encryption</u>: It's used to encrypt sensitive data stored on computers, servers, or transmitted over networks, ensuring confidentiality.</li>
+          <li><u>Secure Communication</u>: Symmetric encryption is employed in secure communication protocols like SSL/TLS to establish secure connections between clients and servers.</li>
+          <li><u>File Encryption</u>: It's used to encrypt files and folders to prevent unauthorized access.</li>
+          <li><u>Disk Encryption</u>: Symmetric encryption is used to encrypt entire disks or partitions, protecting the data stored on them from unauthorized access if the device is lost or stolen.</li>
+        </ul>
+        <li><b>Limitations</b>:</li>
+        <ul>
+          <li><u>Key Distribution</u>: One of the main challenges with symmetric encryption is securely distributing the secret key to all parties involved. If an attacker intercepts the key during transmission, they can decrypt the data.</li>
+          <li><u>Key Management</u>: As the number of users and devices increases, managing and securely storing keys becomes more complex.</li>
+          <li><u>Lack of Authentication</u>: Symmetric encryption alone does not provide authentication, meaning there's no assurance that the sender or receiver of the data is who they claim to be. Additional mechanisms like digital signatures are needed for authentication.</li>
+          <li><u>Key Exchange Overhead</u>: In scenarios where secure key exchange is necessary, the overhead of securely exchanging symmetric keys can be significant, especially in large-scale systems.</li>
+        </ul>
+      </ul>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Go Example</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+			<pre><code>package main
+
+import (
+  "bytes"
+  "crypto/aes"
+  "crypto/cipher"
+  "crypto/des"
+  "crypto/rand"
+  "errors"
+  "fmt"
+  "io"
+)
+
+func main() {
+  // AES Encryption and Decryption Example
+  aesKey := []byte("AES256Key-32Characters1234567890")
+  plaintext := []byte("Hello, AES!")
+
+  // Encrypt using AES
+  aesCipherText, err := encryptAES(plaintext, aesKey)
+  if err != nil {
+    fmt.Println("Error encrypting with AES:", err)
+    return
+  }
+
+  // Decrypt using AES
+  aesDecryptedText, err := decryptAES(aesCipherText, aesKey)
+  if err != nil {
+    fmt.Println("Error decrypting with AES:", err)
+    return
+  }
+  fmt.Println("AES Decrypted text:", string(aesDecryptedText))
+
+  // DES Encryption and Decryption Example
+  desKey := []byte("DESCrypt")
+  plaintext = []byte("Hello, DES!")
+
+  // Encrypt using DES
+  desCipherText, err := encryptDES(plaintext, desKey)
+  if err != nil {
+    fmt.Println("Error encrypting with DES:", err)
+    return
+  }
+
+  // Decrypt using DES
+  desDecryptedText, err := decryptDES(desCipherText, desKey)
+  if err != nil {
+    fmt.Println("Error decrypting with DES:", err)
+    return
+  }
+  fmt.Println("DES Decrypted text:", string(desDecryptedText))
+}
+
+func padPKCS7(src []byte, blockSize int) []byte {
+  padLen := blockSize - len(src)%blockSize
+  padding := bytes.Repeat([]byte{byte(padLen)}, padLen)
+  return append(src, padding...)
+}
+
+func unpadPKCS7(src []byte) ([]byte, error) {
+  length := len(src)
+  unpadding := int(src[length-1])
+  if unpadding > length {
+    return nil, errors.New("invalid padding")
+  }
+  return src[:length-unpadding], nil
+}
+
+func encryptAES(plaintext, key []byte) ([]byte, error) {
+  block, err := aes.NewCipher(key)
+  if err != nil {
+    return nil, err
+  }
+  plaintext = padPKCS7(plaintext, aes.BlockSize)
+  ciphertext := make([]byte, aes.BlockSize+len(plaintext))
+  iv := ciphertext[:aes.BlockSize]
+  if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+    return nil, err
+  }
+  mode := cipher.NewCBCEncrypter(block, iv)
+  mode.CryptBlocks(ciphertext[aes.BlockSize:], plaintext)
+  return ciphertext, nil
+}
+
+func decryptAES(ciphertext, key []byte) ([]byte, error) {
+  block, err := aes.NewCipher(key)
+  if err != nil {
+    return nil, err
+  }
+  if len(ciphertext) < aes.BlockSize {
+    return nil, fmt.Errorf("ciphertext too short")
+  }
+  iv := ciphertext[:aes.BlockSize]
+  ciphertext = ciphertext[aes.BlockSize:]
+  mode := cipher.NewCBCDecrypter(block, iv)
+  mode.CryptBlocks(ciphertext, ciphertext)
+  return unpadPKCS7(ciphertext)
+}
+
+func padPKCS5(src []byte, blockSize int) []byte {
+  padLen := blockSize - len(src)%blockSize
+  padding := bytes.Repeat([]byte{byte(padLen)}, padLen)
+  return append(src, padding...)
+}
+
+func unpadPKCS5(src []byte) ([]byte, error) {
+  length := len(src)
+  unpadding := int(src[length-1])
+  if unpadding > length {
+    return nil, errors.New("invalid padding")
+  }
+  return src[:length-unpadding], nil
+}
+
+func encryptDES(plaintext, key []byte) ([]byte, error) {
+  block, err := des.NewCipher(key)
+  if err != nil {
+    return nil, err
+  }
+  plaintext = padPKCS5(plaintext, des.BlockSize)
+  ciphertext := make([]byte, des.BlockSize+len(plaintext))
+  iv := ciphertext[:des.BlockSize]
+  if _, err := io.ReadFull(rand.Reader, iv); err != nil {
+    return nil, err
+  }
+  mode := cipher.NewCBCEncrypter(block, iv)
+  mode.CryptBlocks(ciphertext[des.BlockSize:], plaintext)
+  return ciphertext, nil
+}
+
+func decryptDES(ciphertext, key []byte) ([]byte, error) {
+  block, err := des.NewCipher(key)
+  if err != nil {
+    return nil, err
+  }
+  if len(ciphertext) < des.BlockSize {
+    return nil, fmt.Errorf("ciphertext too short")
+  }
+  iv := ciphertext[:des.BlockSize]
+  ciphertext = ciphertext[des.BlockSize:]
+  mode := cipher.NewCBCDecrypter(block, iv)
+  mode.CryptBlocks(ciphertext, ciphertext)
+  return unpadPKCS5(ciphertext)
+}</code></pre>
+      <p>The result you obtain should be:</p>
+      <code><pre>AES Decrypted text: Hello, AES!
+DES Decrypted text: Hello, DES!</pre></code>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

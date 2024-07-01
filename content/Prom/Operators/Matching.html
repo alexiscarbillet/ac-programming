@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Prometheus Matching Operators</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Matching operators in prometheus">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, Prometheus Matching Operators, matching">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Matching operators in prometheus" />
+    <meta property="og:description" content="Matching operators in prometheus" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/Prom/Operators/Matching.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Prometheus Matching Operators</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Prometheus, an open-source monitoring and alerting system, provides several matching operators to filter and aggregate time series data. These operators are used in Prometheus's query language, PromQL (Prometheus Query Language), to define the selection criteria for metrics. Here are the commonly used matching operators in Prometheus:</p>
+		  <p>1. <B>Equality</B> (=): Matches time series with labels that have the exact specified value.</p>
+		  <p>2. <B>Inequality</B> (!=): Matches time series with labels that do not have the specified value.</p>
+		  <p>3. <B>Regular expression</B> (=~): Matches time series with labels that match the specified regular expression.</p>
+		  <p>4. <B>Negated regular expression</B> (!~): Matches time series with labels that do not match the specified regular expression.</p>
+		  <p>5. <B>Set membership</B> ({labelname}): Matches time series that have a specific label name, regardless of its value.</p>
+		  <p>6. <B>Range matching</B> ({labelname="value1"-"value2"}): Matches time series with labels that have values falling within the specified range.</p>
+		  <p>7. <B>Aggregation</B> (sum, avg, min, max, etc.): Allows aggregating multiple time series into a single result using various aggregation functions.</p>
+		  <p>These operators can be combined to create complex queries for selecting, filtering, and aggregating time series data in Prometheus. They provide flexibility in defining the desired metrics and conditions to monitor and analyze your system.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Examples</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+      <p>Here are examples for each of the matching operators in Prometheus:</p>
+      <p>1. <B>Equality</B> (=):</p>
+			<p><pre><code>http_requests_total{method="GET"}</code></pre>It matches the time series with the label "method" having the value "GET". This example selects all the time series representing HTTP GET requests.</p>
+			<p>2. <B>Inequality</B> (!=):</p>
+      <p><pre><code>http_requests_total{status!="200"}</code></pre>It matches the time series with the label "status" not equal to "200". This example selects all the time series representing HTTP requests with a status other than 200.</p>
+			<p>3. <B>Regular expression</B> (=~):</p>
+      <p><pre><code>http_requests_total{path=~"/api/v[0-9]+/.*"}</code></pre>It matches the time series with the label "path" matching the regular expression "/api/v[0-9]+/.*". This example selects all the time series representing HTTP requests with paths starting with "/api/v" followed by a version number.</p>
+			<p>4. <B>Negated regular expression</B> (!~):</p>
+      <p><pre><code>http_requests_total{path!~"/admin/.*"}</code></pre>It matches the time series with the label "path" not matching the regular expression "/admin/.*". This example selects all the time series representing HTTP requests excluding those with paths starting with "/admin/".</p>
+			<p>5. <B>Set membership</B> ({labelname}):</p>
+      <p><pre><code>{job="prometheus",instance="localhost:9090"}</code></pre>It matches the time series with the labels "job" and "instance" having the specified values. This example selects all the time series belonging to the Prometheus server running on localhost:9090.</p>
+			<p>6. <B>Range matching</B> ({labelname="value1"-"value2"}):</p>
+      <p><pre><code>http_requests_total{response_time="0.1-1.0"}</code></pre>It matches the time series with the label "response_time" falling within the range from 0.1 to 1.0. This example selects all the time series representing HTTP requests with response times between 0.1 and 1.0 seconds.</p>
+			<p>7. <B>Aggregation</B> (sum, avg, min, max, etc.):</p>
+      <p><pre><code>sum(http_requests_total) by (job)</code></pre>It aggregates all the time series representing HTTP requests, summing them up based on the "job" label. This example calculates the total number of HTTP requests per job.</p>
+			<p>These examples illustrate how each matching operator can be used in PromQL queries to filter and aggregate time series data in Prometheus.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

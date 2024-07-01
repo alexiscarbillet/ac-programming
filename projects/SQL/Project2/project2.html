@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Create SQL database</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How to create a SQL database?">
+    <meta name="keywords" content="alexis carbillet, carbillet, database, sql">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Alexis Carbillet" />
+    <meta property="og:description" content="Website of Alexis Carbillet" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/SQL/project2.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#sql">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Project</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Creating an SQL database involves defining its structure, including tables, columns, and constraints. Below is an example of creating a simple SQL database using SQL syntax for a fictional library management system.</p>
+		  <pre><code>-- Create a new database named "LibraryDB"
+CREATE DATABASE LibraryDB;
+
+-- Use the newly created database
+USE LibraryDB;
+
+-- Create a table for storing information about books
+CREATE TABLE Books (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    Author VARCHAR(100),
+    PublicationYear INT,
+    ISBN VARCHAR(13) UNIQUE
+);
+
+-- Create a table for storing information about library members
+CREATE TABLE Members (
+    MemberID INT PRIMARY KEY,
+    FirstName VARCHAR(50) NOT NULL,
+    LastName VARCHAR(50) NOT NULL,
+    Email VARCHAR(100) UNIQUE
+);
+
+-- Create a table for tracking book loans
+CREATE TABLE BookLoans (
+    LoanID INT PRIMARY KEY,
+    BookID INT,
+    MemberID INT,
+    LoanDate DATE,
+    DueDate DATE,
+    ReturnDate DATE,
+    FOREIGN KEY (BookID) REFERENCES Books(BookID),
+    FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
+);
+
+-- Create an index on the BookLoans table for better performance when searching by BookID or MemberID
+CREATE INDEX IDX_BookLoans_BookID ON BookLoans(BookID);
+CREATE INDEX IDX_BookLoans_MemberID ON BookLoans(MemberID);</code></pre>
+      <p>In this example:</p>
+      <ul>
+        <li>We create a new database named "LibraryDB" using the "CREATE DATABASE" statement.</li>
+        <li>We use the "USE" statement to switch to the newly created database.</li>
+        <li>We define three tables: "Books," "Members," and "BookLoans" with their respective columns and constraints.</li>
+        <li>The "Books" table stores information about books, including a primary key on "BookID" and a unique constraint on "ISBN."</li>
+        <li>The "Members" table stores information about library members, with a primary key on "MemberID" and a unique constraint on "Email."</li>
+        <li>The "BookLoans" table tracks book loans, with foreign key constraints referencing the "Books" and "Members" tables.</li>
+        <li>We create indexes on the "BookLoans" table to improve query performance when searching by "BookID" or "MemberID".</li>
+      </ul>
+		  <p>Filling a database with data involves inserting records into the tables you've created. You can do this using SQL's "INSERT" statement. Here's how you can insert data into the tables in the "LibraryDB" database from the previous example:</p>
+		  <ul>
+        <li>Inserting Data into the "Books" Table:</li>
+        <pre><code>-- Insert a book record
+INSERT INTO Books (BookID, Title, Author, PublicationYear, ISBN)
+VALUES (1, 'To Kill a Mockingbird', 'Harper Lee', 1960, '978-0061120084');
+
+-- Insert another book record
+INSERT INTO Books (BookID, Title, Author, PublicationYear, ISBN)
+VALUES (2, '1984', 'George Orwell', 1949, '978-0451524935');</code></pre>
+          <li>Inserting Data into the "Members" Table:</li>
+          <pre><code>-- Insert a member record
+INSERT INTO Members (MemberID, FirstName, LastName, Email)
+VALUES (1, 'John', 'Doe', 'johndoe@example.com');
+
+-- Insert another member record
+INSERT INTO Members (MemberID, FirstName, LastName, Email)
+VALUES (2, 'Jane', 'Smith', 'janesmith@example.com');</code></pre>
+        <li>Inserting Data into the "BookLoans" Table (Assuming a book has been loaned to a member):</li>
+        <pre><code>-- Insert a book loan record
+INSERT INTO BookLoans (LoanID, BookID, MemberID, LoanDate, DueDate, ReturnDate)
+VALUES (1, 1, 1, '2023-09-21', '2023-10-21', NULL);
+
+-- Insert another book loan record
+INSERT INTO BookLoans (LoanID, BookID, MemberID, Loa</code></pre>
+      </ul>
+		  <p>In these SQL statements:</p>
+      <ul>
+        <li>We use the "INSERT INTO" statement followed by the table name (e.g., "Books", "Members", "BookLoans").</li>
+        <li>Inside the "VALUES" clause, we specify the data to be inserted for each column in the same order as the columns were defined in the table.</li>
+        <li>If a column has a "NOT NULL" constraint (like "Title" and "ISBN" in the "Books" table), you must provide a value for that column.</li>
+        <li>For columns that allow NULL values (like "ReturnDate" in the "BookLoans" table), you can insert NULL or provide a value.</li>
+      </ul>
+		  <p>You can execute these SQL "INSERT" statements using a SQL client, a database management tool, or by running SQL scripts. Make sure to adapt the data you insert to match your specific use case and requirements. You can also use SQL scripts or data import/export tools to insert larger datasets into your database.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Movie recommender</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Example in python of a movie recommender">
+    <meta name="keywords" content="alexis carbillet, carbillet, recommendation system, python, movie recommendation">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Example in python of a movie recommender" />
+    <meta property="og:description" content="Example in python of a movie recommender" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Reco/Project1/project1.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#rs">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Movie recommender</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+      <p>This movie recommender system is based on this <a href="https://www.kaggle.com/rounakbanik/the-movies-dataset#ratings.csv">dataset</a>. This project works offline, you will need to have a Python IDE in order to run it. It contains also a script used in order to download the images of each movie. This one can be very long because of the large amount of data. You can find the code <a href="interface.py">here</a></p>
+		  <p>The recommender used depends on the input. There are 3 variables: the last movie watched, the user ID and the genres (20 different categories). According to the combination of those paramaters, a different recommender is used. You can find here which recommender is used according to the input:</p>
+      <table class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+        <tr><th>Variables</th><th>Recommender</th></tr>
+        <tr><th>Last movie watched</th><th>metadata recommender</th></tr>
+        <tr><th>User ID</th><th>SVD</th></tr> 
+        <tr><th>genres</th><th>metadata recommender</th></tr>
+        <tr><th>Last movie watched & genres</th><th>metadata recommender</th></tr>
+        <tr><th>Last movie watched & User ID</th><th>SVD</th></tr>
+        <tr><th>User ID & genres</th><th>None</th></tr>
+        <tr><th>Last movie watched & User ID & genres</th><th>SVD</th></tr>
+      </table>
+      <p style="padding-top: 5%;">Here is the interface before any research. As you can see, many checkboxes are present, one per genre. The movies recommended are displayed with their image, their title, their year, their rating, their genres and their description. Only the top 5 movies are displayed.</p>
+      <div style="text-align: center;"><img src="img/gui/empty.PNG" alt="" width="70%"></div>
+		  <p>Let's see now an example with only the last movie watched. In this example, it is the movie Iron Man:</p>
+      <div style="text-align: center;"><img src="img/gui/movie.PNG" alt="" width="70%"></div>
+		  <p>Let's see now an example with only the last movie watched and a genre. In this example, the movie Iron Man and the genre Comedy are selected:</p>
+      <div style="text-align: center;"><img src="img/gui/movie_cat.PNG" alt="" width="70%"></div>
+		  <p>As you can see, only one of the 5 top movies were a comedy. It was Deadpool. So now, this movie is first. The others are after. Now let's study if only a cateogry is selected:</p>
+      <div style="text-align: center;"><img src="img/gui/cat.PNG" alt="" width="70%"></div>
+		  <p>In our case, the genre Action was selected. The top 5 action movies have been selected. They have the best mean rating and also are among the most popular. What is user id? In the dataset used, the ratings have been realized by some users, which have an ID. So it is possible to recommand movies knowing what they watched and what they liked. This is why a SVD is used. For example, for the user 1:</p>
+      <div style="text-align: center;"><img src="img/gui/id.PNG" alt="" width="70%"></div>
+		  <p>Those recommendation can be combined with the last movie they watched. If user 1 watched Iron Man then the result is:</p>
+      <div style="text-align: center;"><img src="img/gui/movie_id.PNG" alt="" width="70%"></div>
+		  <p>If user 1 watched Iron Man and what to watch a comedy movie, here are the recommendations:</p>
+      <div style="text-align: center;"><img src="img/gui/movie_cat_id.PNG" alt="" width="70%"></div>
+		  <p>As you can see, 2 comedies have been recommended. Then the recommendations are completed with movies similar to Iron Man which the User 1 should like.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Deploy kubernetes cluster</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How to deploy a kubernetes cluster with kubeadm?">
+    <meta name="keywords" content="alexis carbillet, carbillet, Kubernetes">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Alexis Carbillet" />
+    <meta property="og:description" content="How to deploy a kubernetes cluster with kubeadm?" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Kube/Project2/project2.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#sys">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Deploy kubernetes cluster with kubeadm</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+        <p>Deploying a Kubernetes cluster with kubeadm involves a series of steps to configure both the control plane and worker node. Here’s a step-by-step guide to help you set up your cluster:</p>
+      <h5>Prerequisites</h5>
+      <ul>
+        <li><b>Two Instances</b>: You need two instances (VMs or physical machines) running a compatible version of Linux.</li>
+        <li><b>Network Connectivity</b>: Both instances should be able to communicate with each other.</li>
+        <li><b>Root Access</b>: Ensure you have root access or sudo privileges on both instances.</li>
+        <li><b>Disable Swap</b>: Kubernetes requires that swap be disabled on both instances.</li>
+      </ul>
+      <h5>Step 1: Set Up Your Environment</h5>
+      <ul>
+        <li>Disable Swap:</li>
+        <pre><code>sudo swapoff -a
+sudo sed -i '/ swap / s/^/#/' /etc/fstab</code></pre>
+        <li>Update Packages:</li>
+        <pre><code>sudo apt-get update</code></pre>
+        <li>Install Docker:</li>
+        <pre><code>sudo apt-get install -y docker.io
+sudo systemctl enable docker
+sudo systemctl start docker</code></pre>
+        <li>Install kubeadm, kubelet, and kubectl:</li>
+        <pre><code>sudo apt-get update && sudo apt-get install -y apt-transport-https ca-certificates curl
+sudo curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+sudo add-apt-repository "deb https://apt.kubernetes.io/ kubernetes-xenial main"
+sudo apt-get update
+sudo apt-get install -y kubelet kubeadm kubectl
+sudo apt-mark hold kubelet kubeadm kubectl</code></pre>
+      </ul>
+      <h5>Step 2: Initialize the Control Plane</h5>
+      <ul>
+        <li>On the Control Plane Node:</li>
+        <pre><code>sudo kubeadm init --pod-network-cidr=192.168.0.0/16</code></pre>
+        <li>Set Up kubectl for Your User:</li>
+        <pre><code>mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config</code></pre>
+        <li>Install a Pod Network Add-On:</li>
+        <p>For example, using Calico:</p>
+        <pre><code>kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml</code></pre>
+      </ul>
+      <h5>Step 3: Join the Worker Node to the Cluster</h5>
+      <ul>
+        <li>On the Control Plane Node, Get the Join Command:</li>
+        <pre><code>kubeadm token create --print-join-command</code></pre>
+        <li>On the Worker Node, Run the Join Command:</li>
+        <p>Use the command you obtained from the control plane node. It will look something like this:</p>
+        <pre><code>sudo kubeadm join "control-plane-ip":6443 --token "token" --discovery-token-ca-cert-hash sha256:"hash"</hash></code></pre>
+      </ul>
+      <h5>Step 4: Verify the Cluster</h5>
+      <ul>
+        <li>On the Control Plane Node:</li>
+        <pre><code>kubectl get nodes</code></pre>
+        <p>You should see both the control plane node and the worker node listed.</p>
+      </ul>
+      <h5>Step 5: Deploy an Application to Verify the Cluster</h5>
+      <ul>
+        <li>Deploy a Simple Application:</li>
+        <pre><code>kubectl create deployment nginx --image=nginx</code></pre>
+        <li>Expose the Deployment:</li>
+        <pre><code>kubectl expose deployment nginx --port=80 --type=NodePort</code></pre>
+        <li>Verify the Application is Running:</li>
+        <pre><code>kubectl get pods
+kubectl get svc</code></pre>
+      </ul>
+      <p>This should give you a basic working Kubernetes cluster with one control plane node and one worker node. You can now scale your cluster by adding more worker nodes as needed using the kubeadm join command.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

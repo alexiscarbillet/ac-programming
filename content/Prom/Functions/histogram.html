@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Prometheus Histogram Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Some functions about histograms in prometheus">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, Prometheus Histogram Functions, histogram">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Some functions about histograms in prometheus" />
+    <meta property="og:description" content="Some functions about histograms in prometheus" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/Prom/Functions/histogram.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Prometheus Histogram Functions</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>In Prometheus, histograms are a type of metric used to track the distribution of values over a given range. Histograms are often used to measure the latency or response time of an operation and provide insights into the distribution of those values. PromQL provides several histogram-specific functions that can be used to analyze and manipulate histogram metrics. Here's an explanation of each histogram function:</p>
+		  <p>1. <B>histogram_quantile(φ, histogram_vector)</B>: This function calculates the φ-quantile (where φ is a value between 0 and 1) of the given histogram vector. It returns the value below which the given fraction of observations in the histogram falls. For example, "histogram_quantile(0.95, my_histogram)" will calculate the 95th percentile value of the histogram.</p>
+		  <p>2. histogram_metric<B>_bucket</B>: When you define a histogram metric in Prometheus, it automatically generates multiple time series, each representing a specific bucket or range of values. The generated time series have the suffix _bucket. You can query these time series to access the count of observations falling into specific value ranges.</p>
+		  <p>3. histogram_metric<B>_sum</B>: This function returns the sum of all observed values in a histogram metric. It provides the total sum of the values across all buckets.</p>
+		  <p>4. histogram_metric<B>_count</B>: This function returns the total count of observations in a histogram metric. It represents the number of values that have been recorded across all buckets.</p>
+		  <p>5. histogram_metric<B>_bucket(le)</B>: This function returns the count of observations in a histogram metric that are less than or equal to the given value le. It is useful for querying the count of values falling into specific buckets or value ranges.</p>
+		  <p>These functions allow you to perform various calculations and analysis on histogram metrics in Prometheus. You can retrieve specific quantiles, access individual buckets, obtain the sum and count of observations, and perform other operations to gain insights into the distribution of values captured by the histogram.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Examples</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+      <p>These examples demonstrate how you can use each histogram function in Prometheus to query and analyze histogram metrics:</p>
+			<p>1. <B>histogram_quantile(φ, histogram_vector)</B>:
+      <pre><code>histogram_quantile(0.95, my_histogram)</code></pre>
+      This example calculates the 95th percentile value of the my_histogram metric.
+      </p>
+			<p>2. histogram_metric<B>_bucket</B>:
+      <pre><code>my_histogram_bucket{le="0.1"}</code></pre>
+      This example retrieves the count of observations falling into the bucket with an upper bound of 0.1 in the "my_histogram" metric.
+      </p>
+      <p>3. histogram_metric<B>_sum</B>:
+      <pre><code>my_histogram_sum</code></pre>
+      This example returns the sum of all observed values in the "my_histogram" metric
+      </p>
+      <p>4. histogram_metric<B>_count</B>:
+      <pre><code>my_histogram_count</code></pre>
+      This example returns the total count of observations in the "my_histogram" metric.
+      </p>
+      <p>5. histogram_metric<B>_bucket("le")</B>:
+      <pre><code>my_histogram_bucket{le="0.5"}</code></pre>
+      This example retrieves the count of observations falling into the bucket with an upper bound of 0.5 in the my_histogram metric.
+      </p>
+      </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

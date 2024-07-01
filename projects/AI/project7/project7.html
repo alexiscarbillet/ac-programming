@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Project 7: Tweets Analysis</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How to analyse tweets with machine learning?">
+    <meta name="keywords" content="alexis carbillet, carbillet, artificial intelligence, python">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="How to analyse tweets with machine learning?" />
+    <meta property="og:description" content="How to analyse tweets with machine learning?" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/AI/project7/project7.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Results</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#blog">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Tweets Analysis</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>The goals are to predict if the tweets are positives, neutrals or negatives and to determine what are the topic of the tweet (Google, Tweeter, Apple or Microsoft). Two csv were given. The first one was for training and the other one for testing. Each csv contains 4 columns: sentiment, topic, date and tweet.</p>
+		  <p>First of all, the tweets were in many languages: arabic, spanish, portuguese, english and japanese. So differents libraries of stopwords have been used during the data cleaning. Moreover, the dates and the tweets needed to be converted in numbers in order to be used during the machine learning part. SVD has been used to convert the tweet. Then, 10 machine learning techniques have been compared for the prediction of sentiment and of topic. Two studies have been done, with and without the taking into account the date of the tweets.</p>
+      <div class="row" style="padding-top: 5%">
+					
+        <div class="col-lg-12 text-center">
+        <svg width="75%" height="100">
+          <line x1="0" y1="50" x2="1000" y2="50" style="stroke:black; stroke-width:1.5" />
+
+          <circle cx="150" cy="50" r="10" stroke="#5e4da5" stroke-width="6" fill="black" />
+          <text font-size="13" text-anchor="middle" x="70" y="30" fill="black">Data processing</text>
+          <text style="font-style: italic" font-size="13" text-anchor="middle" x="70" y="80" fill="black">Languages, cleaning</text>
+
+          <circle cx="450" cy="50" r="10" stroke="#5e4da5" stroke-width="6" fill="black" />
+          <text font-size="13" text-anchor="middle" x="300" y="30" fill="black">Data conversion</text>
+          <text style="font-style: italic" font-size="13" text-anchor="middle" x="300" y="80" fill="black">Convert data in number (SVD)</text>
+          
+          <circle cx="650" cy="50" r="10" stroke="#5e4da5" stroke-width="6" fill="black" />
+          <text font-size="13" text-anchor="middle" x="550" y="30" fill="black">Machine Learning</text>
+          <text style="font-style: italic" font-size="13" text-anchor="middle" x="550" y="80" fill="black">10 methods compared</text>
+
+          <text font-size="13" text-anchor="middle" x="750" y="30" fill="black">Data visualization</text>
+          <text style="font-style: italic" font-size="13" text-anchor="middle" x="750" y="80" fill="black">With/without tweets' date</text>
+        </svg>
+        </div>
+      </div>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Results</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+			<p>Let's take a look without taking into account the date of the tweets:</p>
+      <div style="text-align: center;"><img src="img/results/3.png" alt="" width="40%"><img src="img/results/4.png" alt="" width="40%"></div>
+      <p>For the sentiment prediction, the best model is the kNN 7 neighbors with a F1 score of 0.459 without the time column in input. About the topic prediction, the best classifier is the tree but with a F1 score of 0.317. What is the difference with the results taking into account the date?</p>
+      <div style="text-align: center;"><img src="img/results/1.png" alt="" width="40%"><img src="img/results/2.png" alt="" width="40%"></div>
+      <p>The best classifier for the sentiment prediction is the kNN 3 neighbors with a F1 score of 0.466 and for topic prediction, the best classifier is the tree with a F1 score of 0.99. <br> The results can be find into the tables below: </p>
+
+      <p>First table is without taking into account the date of tweets: </p>
+      <table class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+        <tr><th>Model</th><th>Accuracy sentiment</th><th>F1_score sentiment</th><th>Accuracy topic</th><th>F1_score topic</th></tr>
+        <tr><th>Bayes</th><th>0.455</th><th>0.285</th><th>0.310</th><th>0.147</th></tr>
+        <tr><th>Percepton</th><th>0.314</th><th>0.288</th><th>0.310</th><th>0.186</th></tr>
+        <tr><th>Multi-layer Perceptron</th><th>0.442</th><th>0.370</th><th>0.310</th><th>0.147</th></tr>
+        <tr><th>Tree</th><th>0.346</th><th>0.344</th><th>0.320</th><th>0.317</th></tr>
+        <tr><th>logistic Regression</th><th>0.455</th><th>0.285</th><th>0.412</th><th>0.294</th></tr>
+        <tr><th>kNN 3 neighbors</th><th>0.382</th><th>0.376</th><th>0.320</th><th>0.293</th></tr>
+        <tr><th>kNN 7 neighbors</th><th>0.469</th><th>0.459</th><th>0.290</th><th>0.267</th></tr>
+        <tr><th>kNN 15 neighbors</th><th>0.469</th><th>0.453</th><th>0.320</th><th>0.297</th></tr>
+        <tr><th>SVC</th><th>0.455</th><th>0.404</th><th>0.383</th><th>0.273</th></tr>
+        <tr><th>Random Forest</th><th>0.462</th><th>0.367</th><th>0.379</th><th>0.271</th></tr>
+      </table>
+
+      <p>The second one take into account the date of tweets: </p>
+      <table class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+        <tr><th>Model</th><th>Accuracy sentiment</th><th>F1_score sentiment</th><th>Accuracy topic</th><th>F1_score topic</th></tr>
+        <tr><th>Bayes</th><th>0.459</th><th>0.297</th><th>0.409</th><th>0.292</th></tr>
+        <tr><th>Percepton</th><th>0.455</th><th>0.285</th><th>0.244</th><th>0.096</th></tr>
+        <tr><th>Multi-layer Perceptron</th><th>0.287</th><th>0.128</th><th>0.221</th><th>0.080</th></tr>
+        <tr><th>Tree</th><th>0.426</th><th>0.435</th><th>0.990</th><th>0.990</th></tr>
+        <tr><th>logistic Regression</th><th>0.455</th><th>0.285</th><th>0.310</th><th>0.147</th></tr>
+        <tr><th>kNN 3 neighbors</th><th>0.475</th><th>0.466</th><th>0.983</th><th>0.983</th></tr>
+        <tr><th>kNN 7 neighbors</th><th>0.452</th><th>0.439</th><th>0.983</th><th>0.983</th></tr>
+        <tr><th>kNN 15 neighbors</th><th>0.442</th><th>0.419</th><th>0.977</th><th>0.977</th></tr>
+        <tr><th>SVC</th><th>0.469</th><th>0.341</th><th>0.363</th><th>0.251</th></tr>
+        <tr><th>Random Forest</th><th>0.469</th><th>0.372</th><th>0.792</th><th>0.791</th></tr>
+      </table>
+			<p>As you can see, the time column is very important for the topic prediction. In fact, most tweets about the same topic have been collected in short amount of time. This explains the important influence of this column on the topic prediction. The graphic below shows this phenomenon:</p>
+		  </div>
+		</div>
+    <div class="row">
+      <div class="col-lg-2"></div>
+      <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+        <img src="img/results/time.png" alt="">
+        <p>Blue: Apple, Green: Google, Yellow: Microsoft, Purple: Twitter</p>
+      </div>
+    </div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

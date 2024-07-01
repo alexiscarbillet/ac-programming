@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Evaluation metrics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Which metrics can I use to evaluate a recommendation system?">
+    <meta name="keywords" content="alexis carbillet, carbillet, python, recommendation system">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Which metrics can I use to evaluate a recommendation system?" />
+    <meta property="og:description" content="Which metrics can I use to evaluate a recommendation system?" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/Reco/Metrics/evaluation.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#rs">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Evaluation metrics</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Evaluating the performance of recommendation systems is essential to ensure their effectiveness and provide insights for optimization. Various evaluation metrics are employed to assess how well a recommendation system is performing in terms of accuracy, diversity, and user satisfaction. Let's delve into some common evaluation metrics used in the realm of recommendation systems:</p>
+		  <p>1. <B>Precision and Recall</B>:</p>
+		  <p>Precision measures the proportion of relevant items among the recommended items. It helps us understand the accuracy of the recommendations. Recall, on the other hand, calculates the proportion of relevant items that were successfully recommended. A good recommendation system strikes a balance between high precision and high recall.</p>
+		  <p>2. <B>Mean Average Precision (MAP)</B>:</p>
+		  <p>MAP takes into account the precision at various levels of recall and computes the average precision across all levels. It is particularly useful when dealing with scenarios where the number of recommended items may vary.</p>
+		  <p>3. <B>Normalized Discounted Cumulative Gain (NDCG)</B>:</p>
+		  <p>NDCG assesses the quality of recommendations by considering the relevance of items and their positions in the recommendation list. It assigns higher scores to items that are not only relevant but also appear higher in the list.</p>
+		  <p>4. <B>Hit Rate</B>:</p>
+		  <p>The hit rate metric measures the percentage of times a recommended item is relevant to the user. It provides insights into how often the system is making relevant suggestions.</p>
+      <p>5. <B>Coverage</B>:</p>
+		  <p>Coverage evaluates the diversity of recommendations. It measures the proportion of items in the catalog that are recommended to at least one user. A high coverage indicates that the system is suggesting a wide range of items.</p>
+		  <p>6. <B>Diversity and Novelty</B>:</p>
+		  <p>These metrics focus on the variety and uniqueness of recommended items. Diversity ensures that the system suggests a mix of items from different categories, while novelty assesses how often new or unexpected items are recommended.</p>
+		  <p>7. <B>Serendipity</B>:</p>
+      <p>Serendipity measures the system's ability to surprise users with unexpected but enjoyable recommendations. It enhances user engagement by presenting items that users might not have discovered on their own.</p>
+		  <p>8. <B>User Engagement Metrics</B>:</p>
+		  <p>These metrics gauge user interactions with recommended items, such as click-through rates, dwell time, and conversion rates. They provide insights into how effectively the recommendations drive user engagement and actions.</p>
+		  <p>9. <B>Offline vs. Online Evaluation</B>:</p>
+		  <p>It's important to note that many evaluation metrics can be computed offline using historical data. However, online evaluation through A/B testing or live user studies provides a more realistic assessment of a recommendation system's impact on user behavior and satisfaction.</p>
+      <p><B>Challenges and Considerations</B>:</p>
+		  <p>While these metrics provide valuable insights, they don't always capture the full user experience. Addressing the "long tail" problem (ensuring recommendations for less popular items) and avoiding filter bubbles (recommending only items similar to users' past preferences) are ongoing challenges in recommendation system evaluation.</p>
+		  <p>In conclusion, a robust evaluation process involves a combination of these metrics, tailored to the specific goals and characteristics of your recommendation system. Balancing accuracy, diversity, novelty, and user engagement is crucial to building recommendation systems that truly enhance user experiences.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Examples</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+			<p>Let's demonstrate how to calculate precision and recall, two common evaluation metrics, using Python. We'll assume you have two lists: one containing the recommended items (retrieved) and another with the ground truth (actual) relevant items.</p>
+      <pre><code># Recommended items
+recommended_items = [1, 3, 5, 7, 9]
+
+# Actual relevant items (ground truth)
+relevant_items = [1, 2, 5, 8]
+
+# Calculate precision
+def precision(recommended, relevant):
+    # Calculate the intersection of recommended and relevant items
+    intersection = len(set(recommended) & set(relevant))
+    
+    # Calculate precision
+    precision = intersection / len(recommended)
+    return precision
+
+# Calculate recall
+def recall(recommended, relevant):
+    # Calculate the intersection of recommended and relevant items
+    intersection = len(set(recommended) & set(relevant))
+    
+    # Calculate recall
+    recall = intersection / len(relevant)
+    return recall
+
+# Calculate and print precision and recall
+precision_value = precision(recommended_items, relevant_items)
+recall_value = recall(recommended_items, relevant_items)
+
+print(f'Precision: {precision_value:.2f}')
+print(f'Recall: {recall_value:.2f}')</code></pre>
+			<p>Results:</p>
+      <pre><code>Precision: 0.40
+Recall: 0.50</code></pre>
+			<p>In this example, we have a list of recommended items (recommended_items) and a list of actual relevant items (relevant_items). The precision function calculates precision, which is the ratio of the number of relevant items found in the recommended list to the total number of recommended items. The recall function calculates recall, which is the ratio of the number of relevant items found in the recommended list to the total number of relevant items.</p>
+			<p>When you run this code, you'll get the precision and recall values for the given lists of recommended and relevant items. You can replace recommended_items and relevant_items with your own data to evaluate your recommendation system.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

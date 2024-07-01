@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Prometheus Literals</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Which literals can be used in prometheus?">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, Prometheus Literals">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Which literals can be used in prometheus?" />
+    <meta property="og:description" content="Which literals can be used in prometheus?" />
+    <meta property='og:url' content="https://www.ac-programming.com/Prom/Basics/Literals.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Prometheus Literals</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>In Prometheus, literals refer to the constant values that can be used in queries and alerting rules. Here are some common literals used in Prometheus:</p>
+		  <p>1. <B>Numeric Literals</B>: These include integers and floating-point numbers. For example:</p>
+		  <p>- 42: An integer literal.</p>
+		  <p>- 3.14: A floating-point literal.</p>
+		  <p>2. <B>String Literals</B>: These are enclosed in double quotes ("). For example:</p>
+		  <p>- "hello": A string literal containing the text "hello".</p>
+		  <p>3. <B>Boolean Literals</B>: These represent the truth values of true and false.</p>
+		  <p>4. <B>Duration Literals</B>: These represent time durations. They can be expressed using a combination of numbers and units. For example:</p>
+		  <p>- 5s: A duration of 5 seconds.</p>
+      <p>- 2h30m: A duration of 2 hours and 30 minutes.</p>
+      <p>5. <B>Time Literals</B>: These represent specific points in time and are formatted using the ISO 8601 standard. For example:</p>
+      <p>- 2023-07-02T12:34:56Z: A time literal representing July 2, 2023, at 12:34:56 UTC.</p>
+      <p>6. <B>Regular Expression Literals</B>: These are enclosed in slashes (`/`). They are used for pattern matching in regular expression-based queries and alerting rules. For example:</p>
+      <p>- /^http/: A regular expression literal that matches strings starting with "http".</p>
+      <p>7. <B>Range Vector Selector Literals</B>: These are used to select a range of time series data. They use the square bracket notation. For example:</p>
+      <p>- my_metric[5m]: A range vector selector literal that selects data for the metric "my_metric" over the past 5 minutes.</p>
+      <p>These are some of the common literals used in Prometheus. They provide the necessary flexibility to construct queries and alerting rules based on different types of data and time periods.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Examples</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+      <p>Here are examples of Prometheus queries for each type of literal:</p>
+      <p>1. <B>Numeric Literal</B>:</p>
+      <p>- Query: <pre><code>http_requests_total > 100</code></pre></p>
+      <p>- Description: This query checks if the metric http_requests_total is greater than 100.</p>
+			<p>2. <B>String Literal</B>:</p>
+			<p>- Query: <pre><code>http_response_code{code="200"}</code></pre></p>
+			<p>- Description: This query selects time series where the http_response_code metric has the label code with a value of "200".</p>
+			<p>3. <B>Boolean Literal</B>:</p>
+			<p>- Query: <pre><code>up == 1</code></pre></p>
+			<p>- Description: This query selects time series where the up metric has a value of 1, indicating that the target is up and running.</p>
+      <p>4. <B>Duration Literal</B>:</p>
+      <p>- Query: <pre><code>rate(my_metric[5m])</code></pre></p>
+      <p>- Description: This query calculates the per-second rate of the metric my_metric over the past 5 minutes.</p>
+      <p>5. <B>Time Literal</B>:</p>
+      <p>- Query: <pre><code>http_requests_total{instance="webserver1"}[1h]</code></pre></p>
+      <p>- Description: This query selects the time series for http_requests_total from the instance labeled "webserver1" over the past 1 hour.</p>
+      <p>6. <B>Regular Expression Literal</B>:</p>
+      <p>- Query: <pre><code>count(count by (status) (http_response_code =~ /^5\d{2}$/))</code></pre></p>
+      <p>- Description: This query counts the occurrences of HTTP response codes starting with "5" (e.g., 500, 503, etc.).</p>
+      <p>7. <B>Range Vector Selector Literal</B>:</p>
+      <p>- Query: <pre><code>avg_over_time(http_requests_total[5m])</code></pre></p>
+      <p>- Description: This query calculates the average value of http_requests_total over the past 5 minutes for each time series.</p>
+      <p>These examples demonstrate how literals are used within Prometheus queries to filter, aggregate, and perform calculations on metrics data.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

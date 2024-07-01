@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>SQL good practices</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="What are the good practices in SQL?">
+    <meta name="keywords" content="alexis carbillet, carbillet, database, sql">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Alexis Carbillet" />
+    <meta property="og:description" content="What are the good practices in SQL?" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/SQL/Project1/project1.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#sql">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Best Practices</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>SQL best practices are guidelines and recommendations that help ensure efficient, maintainable, and secure database operations. Following these practices can lead to improved performance, readability, and security of your SQL code. Here are some common SQL best practices:</p>
+		  <ul>
+        <li>Use Clear and Descriptive Naming Conventions:</li>
+        <ul>
+          <li>Give meaningful names to tables, columns, and indexes.</li>
+          <li>Avoid using reserved words or special characters in names.</li>
+          <li>Use consistent naming conventions (e.g., snake_case or CamelCase) for consistency.</li>
+        </ul>
+        <li>Use Proper Indentation and Formatting:</li>
+        <ul>
+          <li>Indent SQL statements for readability.</li>
+          <li>Use consistent formatting and whitespace to make your code more readable.</li>
+        </ul>
+        <li>Comment Your Code:</li>
+        <ul>
+          <li>Add comments to explain complex queries, purpose, and usage.</li>
+          <li>Include comments that document assumptions or decisions.</li>
+        </ul>
+        <li>Avoid SELECT *:</li>
+        <ul>
+          <li>Specify only the columns you need in your SELECT statements rather than using SELECT *.</li>
+          <li>Reducing the number of columns retrieved can improve query performance.</li>
+        </ul>
+        <li>Use Joins Appropriately:</li>
+        <ul>
+          <li>Choose the appropriate join type (INNER, LEFT, RIGHT, FULL) based on your data requirements.</li>
+          <li>Ensure that join conditions are accurate to avoid incorrect results.</li>
+        </ul>
+        <li>Use Indexes Wisely:</li>
+        <ul>
+          <li>Create indexes on columns frequently used in WHERE clauses for performance optimization.</li>
+          <li>Be cautious about creating too many indexes, as they can impact insert and update performance.</li>
+        </ul>
+        <li>Avoid Using Cursors When Possible:</li>
+        <ul>
+          <li>Cursors can be slow and resource-intensive; try to use set-based operations instead.</li>
+        </ul>
+        <li>Use Transactions:</li>
+        <ul>
+          <li>Wrap multiple SQL statements in a transaction when necessary to ensure data consistency.</li>
+          <li>Be mindful of transaction isolation levels to balance concurrency and data integrity.</li>
+        </ul>
+        <li>Protect Against SQL Injection:</li>
+        <ul>
+          <li>Use parameterized queries or prepared statements to prevent SQL injection attacks.</li>
+          <li>Avoid concatenating user input directly into SQL queries.</li>
+        </ul>
+        <li>Test Queries Before Applying Them:</li>
+        <ul>
+          <li>Test complex or critical SQL statements in a safe environment before executing them in production.</li>
+          <li>Verify that the query returns the expected results and performs well.</li>
+        </ul>
+        <li>Monitor and Optimize Performance:</li>
+        <ul>
+          <li>Use database performance monitoring tools to identify and address slow-running queries.</li>
+          <li>Profile your queries and consider query optimization techniques like indexing and query rewriting.</li>
+        </ul>
+        <li>Backup and Disaster Recovery:</li>
+        <ul>
+          <li>Regularly back up your database to prevent data loss.</li>
+          <li>Implement a disaster recovery plan to ensure business continuity.</li>
+        </ul>
+        <li>Regularly Maintain the Database:</li>
+        <ul>
+          <li>Schedule routine database maintenance tasks such as index rebuilding, updating statistics, and cleaning up old data.</li>
+        </ul>
+        <li>Follow Database-Specific Best Practices:</li>
+        <ul>
+          <li>Familiarize yourself with the specific best practices recommended for the database system you are using (e.g., MySQL, PostgreSQL, SQL Server).</li>
+        </ul>
+        <li>Keep Security in Mind:</li>
+        <ul>
+          <li>Restrict access to the database to authorized users and applications.</li>
+          <li>Regularly update and patch your database management system to address security vulnerabilities.</li>
+        </ul>
+        <li>Document Schemas and Data Models:</li>
+        <ul>
+          <li>Maintain up-to-date documentation of your database schema and data models to aid in understanding and future development.</li>
+        </ul>
+        <li>Consider Scalability:</li>
+        <ul>
+          <li>Design your database schema and queries with scalability in mind to accommodate future growth.</li>
+        </ul>
+      </ul>
+      <p>Remember that SQL best practices can vary depending on the specific database system you are using and the requirements of your application. It's essential to stay up-to-date with the latest best practices and continuously improve your SQL skills to write efficient and secure database code.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Prometheus Selectors</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Which selectors can be used in prometheus?">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, Prometheus Selectors">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Which selectors can be used in prometheus?" />
+    <meta property="og:description" content="Which selectors can be used in prometheus?" />
+    <meta property='og:url' content="https://www.ac-programming.com/Prom/Basics/Selectors.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Prometheus Selectors</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Prometheus, an open-source monitoring and alerting toolkit, provides various time series selectors for querying and retrieving metrics data. Here are some of the commonly used time series selectors in Prometheus:</p>
+		  <p>1. <B>Metric name selector</B>: You can select time series data based on the metric name. For example, "up" selects all time series with the metric name "up".</p>
+		  <p>2. <B>Label matching selector</B>: Prometheus uses labels to identify and filter time series data. You can use label matching selectors to specify conditions for label values. The commonly used label matching operators are "=", "!=", "=~" (regex match), and "!~" (regex non-match). For example, job="node" selects all time series with the label "job" having the value "node".</p>
+		  <p>3. <B>Regular expression selector</B>: You can use regular expressions to match metric names or label values. For example, {__name__=~"http_.*_requests_total"} selects all time series with metric names starting with "http_" and ending with "_requests_total".</p>
+		  <p>4. <B>Aggregation selector</B>: Prometheus allows aggregation of time series using functions such as sum, avg, min, max, etc. Aggregation selectors enable you to perform calculations on multiple time series and retrieve a single result. For example, sum(http_requests_total) calculates the sum of all time series with the metric name http_requests_total.</p>
+		  <p>5. <B>Offset modifier</B>: You can apply the offset modifier to a selector to shift the time range for retrieving time series data. It allows you to select time series data from a specific time window relative to the current evaluation time. For example, "http_requests_total offset 5m" selects all time series with the metric name http_requests_total from the past 5 minutes.</p>
+		  <p>6. <B>Range vector selector</B>: Prometheus supports range vectors, which allow you to select a range of time series data over a specified time interval. Range vector selectors are used in combination with functions like rate, increase, delta, etc., to calculate rates or changes over time. For example, "rate(http_requests_total[5m])" calculates the per-second rate of increase of the http_requests_total metric over the past 5 minutes.</p>
+		  <p>These are some of the common time series selectors in Prometheus. They provide flexibility in querying and analyzing metrics data to gain insights and create alerts based on specific criteria.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Examples</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+      <p>Here are examples for each of the time series selectors in Prometheus:</p>
+      <p>1. <B>Metric name selector</B>:</p>
+			<p>- Query: <pre><code>up</code></pre></p>
+			<p>- Description: Selects all time series with the metric name "up".</p>
+			<p>2. <B>Label matching selector</B>:</p>
+			<p>- Query: <pre><code>up{job="node"}</code></pre></p>
+			<p>- Description: Selects all time series with the label "job" having the value "node".</p>
+			<p>3. <B>Regular expression selector</B>:</p>
+			<p>- Query: <pre><code>{__name__=~"http_.*_requests_total"}</code></pre></p>
+      <p>- Description: Selects all time series with metric names starting with http_ and ending with _requests_total.</p>
+			<p>4. <B>Aggregation selector</B>:</p>
+      <p>- Query: <pre><code>sum(http_requests_total)</code></pre></p>
+			<p>- Description: Calculates the sum of all time series with the metric name http_requests_total.</p>
+      <p>5. <B>Offset modifier</B>:</p>
+			<p>- Query: <pre><code>http_requests_total offset 5m</code></pre></p>
+      <p>- Description: Selects all time series with the metric name http_requests_total from the past 5 minutes.</p>
+			<p>6. <B>Range vector selector</B>:</p>
+      <p>- Query: <pre><code>rate(http_requests_total[5m])</code></pre></p>
+      <p>- Description: Calculates the per-second rate of increase of the http_requests_total metric over the past 5 minutes.</p>
+      <p>These examples demonstrate the usage of each time series selector in Prometheus. Please note that the queries provided are for illustrative purposes and may need to be adapted to your specific use case and metric names in your Prometheus setup.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

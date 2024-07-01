@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Comparison Correlation Graphs</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Comparison of data visualization for correlation in data">
+    <meta name="keywords" content="alexis carbillet, carbillet, data visualization, python, comparison correlation graphs">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Comparison of data visualization for correlation in data" />
+    <meta property="og:description" content="Comparison of data visualization for correlation in data" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/Viz/Correlation/comparison.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#advanced">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Comparison Correlation Graphs</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>1. <B>Scatter plots</B>:</p>
+		  <p><u>Pros</u>:</p>
+		  <p>- Visualizes the relationship between two continuous variables, helping identify patterns, trends, and correlations.</p>
+		  <p>- Useful for identifying outliers or clusters in data.</p>
+		  <p>- Easy to understand and interpret, suitable for presenting simple comparisons.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- Limited to displaying two variables at a time, making it unsuitable for datasets with more dimensions.</p>
+		  <p>- Not ideal for categorical or ordinal data.</p>
+		  <p>2. <B>Correlation matrices</B>:</p>
+      <p><u>Pros</u>:</p>
+		  <p>- Provides an overview of the correlation between multiple variables in a single visual display.</p>
+		  <p>- Helps identify strong positive and negative correlations between variables.</p>
+		  <p>- Useful for identifying multicollinearity in regression analysis.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- Limited to visualizing pairwise correlations and may become cluttered with a large number of variables.</p>
+		  <p>- Doesn't provide information on the direction of the relationship or causality.</p>
+		  <p>3. <B>Sankey diagrams</B>:</p>
+		  <p><u>Pros</u>:</p>
+      <p>- Ideal for displaying the flow of data or quantities between multiple categories or stages.</p>
+		  <p>- Makes it easy to track changes over time or across different groups.</p>
+		  <p>- Visually appealing and intuitive for showing proportions and comparisons.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- More suitable for qualitative data visualization and flow representation than numerical data.</p>
+		  <p>- May become complex and difficult to interpret when dealing with multiple categories or stages.</p>
+		  <p>4. <B>Parallel coordinate plots</B>:</p>
+		  <p><u>Pros</u>:</p>
+		  <p>- Allows the visualization of relationships among multiple variables simultaneously.</p>
+      <p>- Helpful in identifying patterns and clusters in high-dimensional data.</p>
+		  <p>- Useful for comparing different instances or groups within a dataset.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- Can become cluttered and hard to interpret with a large number of variables.</p>
+		  <p>- Not suitable for categorical data or datasets with a small number of observations.</p>
+		  <p>5. <B>Force-directed graphs</B>:</p>
+		  <p><u>Pros</u>:</p>
+		  <p>- Useful for visualizing networks and relationships between interconnected entities.</p>
+		  <p>- Provides insights into the structure and connectivity of complex systems.</p>
+      <p>- Helps identify central nodes and communities within a network.</p>
+		  <p><u>Cons</u>:</p>
+		  <p>- Can become visually overwhelming and difficult to interpret for large and dense networks.</p>
+      <p>- May not be as effective for datasets with a limited number of connections.</p>
+		  <p>Ultimately, the choice of visualization technique depends on the specific data you are working with and the insights you want to communicate. A combination of different visualization methods might be necessary to gain a comprehensive understanding of your data.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

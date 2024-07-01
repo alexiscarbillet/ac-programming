@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Python dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How to do a dashboard in python?">
+    <meta name="keywords" content="alexis carbillet, carbillet, data visualization, python, dashboard">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Python dashboard" />
+    <meta property="og:description" content="How to do a dashboard in python?" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Viz/Project5/project5.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#reco">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Project</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Creating a dashboard based on the Iris dataset is a great way to visualize and explore the data. In this example, I'll provide you with a simple Python-based dashboard using the Dash library, which is built on top of Flask and Plotly. To run this code, make sure you have Dash and Plotly installed.</p>
+		  <pre><code>import dash
+import dash_core_components as dcc
+import dash_html_components as html
+from dash.dependencies import Input, Output
+import pandas as pd
+import plotly.express as px
+from sklearn.datasets import load_iris
+
+# Load the Iris dataset
+iris = load_iris()
+iris_df = pd.DataFrame(data=iris.data, columns=iris.feature_names)
+iris_df['target'] = iris.target
+species_names = iris.target_names
+
+# Initialize the Dash app
+app = dash.Dash(__name__)
+
+# Define the layout of the dashboard
+app.layout = html.Div([
+    html.H1("Iris Dataset Dashboard"),
+    
+    html.Div([
+        html.Label("Select a feature:"),
+        dcc.Dropdown(
+            id='feature-dropdown',
+            options=[
+                {'label': feature, 'value': feature}
+                for feature in iris_df.columns[:-1]  # Exclude the target column
+            ],
+            value=iris_df.columns[0]  # Default feature
+        ),
+    ]),
+    
+    dcc.Graph(id='scatter-plot'),
+    
+    dcc.Graph(id='histogram-plot')
+])
+
+# Define callback to update scatter plot
+@app.callback(
+    Output('scatter-plot', 'figure'),
+    Input('feature-dropdown', 'value')
+)
+def update_scatter_plot(selected_feature):
+    scatter_fig = px.scatter(
+        iris_df, 
+        x=selected_feature, 
+        y='target', 
+        color='target',
+        labels={'target': 'Species'},
+        title=f'Scatter Plot of {selected_feature} vs. Species'
+    )
+    scatter_fig.update_xaxes(title=selected_feature)
+    return scatter_fig
+
+# Define callback to update histogram plot
+@app.callback(
+    Output('histogram-plot', 'figure'),
+    Input('feature-dropdown', 'value')
+)
+def update_histogram_plot(selected_feature):
+    histogram_fig = px.histogram(
+        iris_df, 
+        x=selected_feature, 
+        color='target', 
+        barmode='overlay',
+        labels={'target': 'Species'},
+        title=f'Histogram of {selected_feature} by Species'
+    )
+    histogram_fig.update_xaxes(title=selected_feature)
+    return histogram_fig
+
+# Run the Dash app
+if __name__ == '__main__':
+    app.run_server(debug=True)</code></pre>
+      <p>This code defines a simple Dash dashboard that allows you to select a feature from the Iris dataset and displays both a scatter plot and a histogram based on the selected feature. You can run this code, and it will open a web application on your local machine where you can interact with the data.</p>
+      <p>Results:</p>
+        <img src="1.png" alt="Dashboard python view 1" style="width: 80%;">
+        <img src="2.png" alt="Dashboard python view 2" style="width: 80%;">
+		  <p>Make sure to adjust the styling and layout as needed to fit your preferences. You can also enhance this dashboard by adding more features, filters, or additional visualizations.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

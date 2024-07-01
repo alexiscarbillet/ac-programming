@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Querying Prometheus API</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How to query the prometheus API?">
+    <meta name="keywords" content="alexis carbillet, carbillet, prom, prometheus, Querying Prometheus API">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="How to query the prometheus API?" />
+    <meta property="og:description" content="How to query the prometheus API?" />
+    <meta property='og:url' content="https://www.ac-programming.com/Prom/API/Querying.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#python">Examples</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Querying Prometheus API</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>Querying the Prometheus API allows you to retrieve and analyze time series data collected by Prometheus, a popular open-source monitoring and alerting system. The Prometheus API provides several features for querying and retrieving data. Here are some of the key features:</p>
+		  <p>1. <B>Data retrieval</B>: The Prometheus API allows you to retrieve time series data based on specific metrics, labels, and time ranges. You can query for instantaneous values or range-based data over a specified duration.</p>
+		  <p>2. <B>Metrics and labels</B>: Prometheus organizes data using a key-value pair structure called labels. With the API, you can query data based on specific metric names and filter results using labels. This allows you to narrow down your queries and fetch specific subsets of data.</p>
+		  <p>3. <B>PromQL</B>: The Prometheus Query Language (PromQL) is a powerful query language used to express complex queries against the time series data. It supports a wide range of functions, operators, and aggregations, allowing you to perform calculations, filtering, and transformations on the data.</p>
+		  <p>4. <B>Range queries</B>: The API supports range queries, allowing you to fetch data over a specified time range. You can specify the start and end time of the range, as well as the step size to control the resolution of the returned data.</p>
+		  <p>5. <B>Aggregation</B>: Prometheus provides various aggregation functions that can be applied to the queried data. These include functions like sum, average, min, max, and more. Aggregation enables you to perform calculations on multiple time series or reduce the resolution of the data.</p>
+		  <p>6. <B>Sorting and ordering</B>: The API allows you to sort and order the returned data based on specific criteria. You can specify the order in which the time series or data points are returned, making it easier to analyze and visualize the data.</p>
+		  <p>7. <B>Metadata and service discovery</B>: In addition to time series data, the Prometheus API provides access to metadata about the metrics and labels available in the system. This includes information about metric names, label names, and their values. You can also use the API for service discovery to fetch information about the available Prometheus instances.</p>
+		  <p>These are some of the essential features offered by the Prometheus API for querying and retrieving time series data. The exact details and capabilities may vary depending on the specific version of Prometheus you are using. It's recommended to consult the Prometheus API documentation or relevant resources for more detailed information.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== PYTHON SECTION ============================ -->
+
+	<section class="bg-light" id="python">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Examples</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+      <p>Here are examples illustrating each of the features mentioned:</p>
+      <p>1. <B>Data retrieval</B>:</p>
+      <p>- Query for the instantaneous value of a metric:</p>
+			<pre><code>/api/v1/query?query=metric_name</code></pre>
+			<p>- Query for a range of data over a specific time range:</p>
+      <pre><code>/api/v1/query_range?query=metric_name&start=start_time&end=end_time&step=step_size</code></pre>
+			<p>2. <B>Metrics and labels</B></p>
+			<p>- Query for a specific metric with a label filter:</p>
+      <pre><code>/api/v1/query?query=metric_name{label_name="label_value"}</code></pre>
+			<p>3. <B>PromQL</B></p>
+			<p>- Query for the average value of a metric over a time range:</p>
+      <pre><code>/api/v1/query_range?query=avg(metric_name)&start=start_time&end=end_time&step=step_size</code></pre>
+      <p>4. <B>Range queries</B></p>
+			<p>- Fetch data for the last 5 minutes:</p>
+      <pre><code>/api/v1/query_range?query=metric_name&start=current_time-5m&end=current_time&step=step_size</code></pre>
+      <p>5. <B>Aggregation</B></p>
+			<p>- Calculate the maximum value of a metric over a time range:</p>
+      <pre><code>/api/v1/query_range?query=max(metric_name)&start=start_time&end=end_time&step=step_size</code></pre>
+      <p>6. <B>Sorting and ordering</B></p>
+			<p>- Sort the returned time series by their metric values in descending order:</p>
+      <pre><code>/api/v1/query_range?query=metric_name&start=start_time&end=end_time&step=step_size&sort=-value</code></pre>
+      <p>7. <B>Metadata and service discovery</B></p>
+			<p>- Fetch all available metrics:</p>
+      <pre><code>/api/v1/label/__name__/values</code></pre>
+      <p>- Discover Prometheus instances:</p>
+      <pre><code>/api/v1/targets</code></pre>
+			<p>Note that these examples provide a general idea of how the queries might look like. The actual queries may require additional parameters or formatting based on the specific Prometheus API version and configuration. It's essential to consult the Prometheus API documentation for the exact syntax and options available in your environment.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

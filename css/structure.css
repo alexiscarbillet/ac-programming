@@ -108,6 +108,46 @@ section li.section-subheading {
   text-shadow: none;
 }
 
+#advanced ::-moz-selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
+#advanced ::selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
+#coding ::-moz-selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
+#coding ::selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
+#android ::-moz-selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
+#android ::selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
+#contact ::-moz-selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
+#contact ::selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
 img::selection {
   background: transparent;
 }

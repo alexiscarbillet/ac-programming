@@ -56,7 +56,7 @@ function Lien() {
 	parent.location.href = url;
 }
 
-function showSection(sectionId) {
+function showSection(sectionId, button) {
   // Hide all sections
   document.getElementById('section1').style.display = 'none';
   document.getElementById('section2').style.display = 'none';
@@ -65,9 +65,16 @@ function showSection(sectionId) {
 
   // Show the selected section
   document.getElementById(sectionId).style.display = 'block';
+
+    // Remove 'selected' class from all buttons
+    const buttons = document.querySelectorAll('.btn-perso');
+    buttons.forEach(btn => btn.classList.remove('selected'));
+  
+    // Add 'selected' class to the clicked button
+    button.classList.add('selected');
 }
 
-function showSection2(sectionId) {
+function showSection2(sectionId, button) {
   // Hide all sections
   document.getElementById('section3').style.display = 'none';
   document.getElementById('section4').style.display = 'none';
@@ -75,9 +82,16 @@ function showSection2(sectionId) {
 
   // Show the selected section
   document.getElementById(sectionId).style.display = 'block';
+
+    // Remove 'selected' class from all buttons
+    const buttons = document.querySelectorAll('.btn-perso');
+    buttons.forEach(btn => btn.classList.remove('selected'));
+  
+    // Add 'selected' class to the clicked button
+    button.classList.add('selected');
 }
 
-function showSection3(sectionId) {
+function showSection3(sectionId, button) {
   // Hide all sections
   document.getElementById('section6').style.display = 'none';
   document.getElementById('section7').style.display = 'none';
@@ -86,9 +100,16 @@ function showSection3(sectionId) {
 
   // Show the selected section
   document.getElementById(sectionId).style.display = 'block';
+
+  // Remove 'selected' class from all buttons
+  const buttons = document.querySelectorAll('.btn-perso');
+  buttons.forEach(btn => btn.classList.remove('selected'));
+
+  // Add 'selected' class to the clicked button
+  button.classList.add('selected');
 }
 
-function showSection4(sectionId) {
+function showSection4(sectionId, button) {
   // Hide all sections
   document.getElementById('section12').style.display = 'none';
   document.getElementById('section9').style.display = 'none';
@@ -97,4 +118,11 @@ function showSection4(sectionId) {
 
   // Show the selected section
   document.getElementById(sectionId).style.display = 'block';
+
+    // Remove 'selected' class from all buttons
+    const buttons = document.querySelectorAll('.btn-perso');
+    buttons.forEach(btn => btn.classList.remove('selected'));
+  
+    // Add 'selected' class to the clicked button
+    button.classList.add('selected');
 }

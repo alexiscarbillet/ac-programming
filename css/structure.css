@@ -375,6 +375,10 @@ section#sys .btn-perso {
   background-color: #69b3a2;
 }
 
+.btn-perso.selected {
+  border: 2px solid rgb(182, 19, 19); /* Adjust the thickness and color as needed */
+}
+
 section#contact .section-heading {
   color: #fff;
 }

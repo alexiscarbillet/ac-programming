@@ -496,6 +496,56 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   background-color: #5e4da5;
 }
 
+/* Ensure that the list items are aligned properly */
+.centered-list, 
+.sub-centered-list, 
+.sub-sub-centered-list, 
+.sub-sub-sub-centered-list {
+  list-style-type: none; /* Remove default list bullets */
+  padding-left: 0; /* Remove default padding */
+  margin: 0; /* Remove default margin */
+}
+
+/* Ensure that nested lists are indented */
+.sub-centered-list, 
+.sub-sub-centered-list, 
+.sub-sub-sub-centered-list {
+  padding-left: 20px; /* Adjust indentation for nested lists */
+}
+
+/* Basic styling for list items */
+.centered-list-item, 
+.sub-centered-list-item, 
+.sub-sub-centered-list-item, 
+.sub-sub-sub-centered-list-item, 
+.sub-sub-sub-sub-centered-list-item {
+  cursor: pointer; /* Pointer cursor on clickable items */
+  user-select: none; /* Prevent text selection */
+}
+
+/* Hide nested lists initially */
+.hidden {
+  display: none;
+}
+
+/* Optionally, add some visual styling to indicate clickable items */
+.centered-list-item:hover, 
+.sub-centered-list-item:hover, 
+.sub-sub-centered-list-item:hover, 
+.sub-sub-sub-centered-list-item:hover, 
+.sub-sub-sub-sub-centered-list-item:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+/* Optional: Add some spacing between items */
+.centered-list-item, 
+.sub-centered-list-item, 
+.sub-sub-centered-list-item, 
+.sub-sub-sub-centered-list-item, 
+.sub-sub-sub-sub-centered-list-item {
+  margin-bottom: 5px; /* Space between items */
+}
+
 .centered-list-container {
   display: flex;
   justify-content: center;
@@ -513,5 +563,10 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   margin-bottom: 5px; /* Adjust spacing between items as needed */
 }
 
+/* Style for list items */
+.sub-centered-list-item {
+  text-align: left; /* Change to "right" for right-aligned items or "center" for center-aligned items */
+  margin-bottom: 5px; /* Adjust spacing between items as needed */
+}
 
 /* ------------------------------------------------------------------------------------------------------------------- */

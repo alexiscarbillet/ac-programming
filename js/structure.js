@@ -56,6 +56,14 @@ function Lien() {
 	parent.location.href = url;
 }
 
+function toggleVisibility(listId) {
+  const list = document.getElementById(listId);
+  if (list) {
+      // Toggle the 'hidden' class
+      list.classList.toggle('hidden');
+  }
+}
+
 function showSection(sectionId, button) {
   // Hide all sections
   document.getElementById('section1').style.display = 'none';

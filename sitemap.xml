@@ -9,1242 +9,1342 @@
 
 <url>
   <loc>https://ac-programming.com/</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>1.00</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/index.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/basics/variables.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/basics/operation.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/basics/data-type.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/basics/list.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/basics/string.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/control/conditions.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/control/loop.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/control/indentation.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/control/blocks.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/functions/intro.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/functions/variable.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/functions/lambda.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/functions/decorator.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/structure/list_and_loop.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/structure/string_methods.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/structure/fstring.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/structure/dico.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/structure/set.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/files/file.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/files/errors.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/files/exceptions.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/oop/fundamentals.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/oop/class_and_object.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/oop/module_and_statement.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/oop/libraries.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/practices/tips.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/practices/pep8.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Python/practices/syntax_errors.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Python/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Python/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Python/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Python/Project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Python/Project5/project5.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Python/Project6/project6.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Python/Project7/project7.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Python/Project8/project8.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Python/Project9/project9.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/HTML/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/HTML/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/HTML/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/HTML/Project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/HTML/Project5/project5.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/HTML/Project7/project7.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Bash/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Bash/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Bash/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Bash/Project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/GO/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/GO/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/GO/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/GO/Project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Basics/Introduction.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Basics/Data.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Basics/Configuration.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Basics/Literals.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Basics/Selectors.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Basics/Promtool.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Basics/Records.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Basics/Storage.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Basics/Gotchas.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Operators/Aggregation.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Operators/Binary.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Operators/Matching.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Operators/Precedence.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Functions/alert.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Functions/histogram.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Functions/label.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Functions/range.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/Functions/time.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/API/Querying.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/API/Result.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/API/ServiceDiscovery.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Prom/API/Management.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Prom/Project1/Project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Prom/Project2/Project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Prom/Project3/Project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Prom/Project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Prom/Project5/project5.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/SQL/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/SQL/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/SQL/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/SQL/Project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/SQL/Project5/project5.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Mongo/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Mongo/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Mongo/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Mongo/Project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/DP/audio.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/DP/csv.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/DP/image.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/DP/json.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/DP/time.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/DP/text.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/DP/video.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/introduction.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/activation.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/attention.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/loss.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/metrics.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/optimizers.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/overfitting.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/regularization.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/update.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/autoencoder.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/aae.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/cnn.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/gan.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/lle.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/lstm.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/mlp.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/NN/rnn.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SSML/introduction.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SSML/co.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SSML/exp.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SSML/lab.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SSML/mean.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SSML/self.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SSML/vat.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/introduction.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/cross-decomposition.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/decision-tree.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/ensemble-methods.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/gaussian-process.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/linear.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/naive.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/perceptron.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/ridge.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/sgd.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/SML/svm.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/UML/introduction.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/UML/biclustering.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/UML/clustering.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/UML/gm.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/UML/isolation.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/UML/manifold.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/AI/UML/pca.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/AI/project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/AI/project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/AI/project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/AI/project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/AI/project5/project5.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/AI/project6/project6.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/AI/project7/project7.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Hierarchical/sc.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Hierarchical/tree.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Hierarchical/treemaps.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Hierarchical/oc.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Hierarchical/cd.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Hierarchical/comparison.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Temporal/line.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Temporal/area.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Temporal/candle.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Temporal/gantt.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Temporal/heat.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Temporal/comparison.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Distribution/violin.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Distribution/density.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Distribution/histogram.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Distribution/boxplot.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Distribution/ridgeline.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Distribution/comparison.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Ranking/bar.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Ranking/lollipop.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Ranking/wordcloud.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Ranking/radar.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Ranking/comparison.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Spatial/choropleth.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Spatial/bubble.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Spatial/heatmap.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Spatial/flow.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Spatial/comparison.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Correlation/sp.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Correlation/matrice.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Correlation/para.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Correlation/sankey.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
-  <priority>0.80</priority>
-</url>
-<url>
-  <loc>https://ac-programming.com/content/Viz/Correlation/fd.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Viz/Correlation/comparison.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Viz/Project1/Project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Viz/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Viz/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Viz/Project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Viz/Project5/project5.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Viz/Project6/project6.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Viz/Project7/project7.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Viz/Project8/project8.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Intro/definition.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Intro/importance.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Key/data.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Key/user-item.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Key/metric.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Algos/collaborative.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Algos/content_based.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Algos/hybrid.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Advanced/matrix.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Advanced/deep.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Advanced/cold.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Metrics/evaluation.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Metrics/testing.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Application/e-commerce.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Reco/Application/music-movie.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Reco/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Reco/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Reco/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Reco/Project4/project4.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Spark/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Spark/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Spark/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/introduction/containerization.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/introduction/container_vs_vms.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/introduction/docker.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/architecture/docker_client.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/architecture/docker_engine.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/architecture/overall.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/image/definition.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/image/examples.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/image/docker_hub.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/containers/introduction.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/containers/to_go_further.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/volume/introduction.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/volume/use_cases.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/volume/examples.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/networking/introduction.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/networking/kind_of_networks.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/networking/examples.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/compose/introduction.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/compose/examples.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/compose/management.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/advanced/security.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/advanced/optimization.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/content/Docker/advanced/multi-staged.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Kube/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Kube/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Puppet/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Puppet/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Puppet/Project3/project3.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Linux/Project1/project1.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/projects/Linux/Project2/project2.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/apps/unit-converter/app.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/apps/canadian-birds/app.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/apps/tic-tac-toe/app.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/spansheets/app.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/html-colors/app.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/fun-with-capitals/app.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/fun-with-flags/app.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/training-citizenship/app.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Overview/history.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Overview/applications.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Overview/basics.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Kind/symetric.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Kind/asymetric.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Kind/hash.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Protocol/ssl.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Protocol/ssh.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Protocol/ipsec.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Application/signature.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/content/crypto/Application/communication.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/privacy.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/contact.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/copyright.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.80</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/apps/unit-converter/privacy.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/apps/canadian-birds/privacy.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 <url>
   <loc>https://ac-programming.com/apps/tic-tac-toe/privacy.html</loc>
-  <lastmod>2024-07-01T12:23:32+00:00</lastmod>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/spansheets/privacy.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/html-colors/privacy.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/fun-with-capitals/privacy.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/fun-with-flags/privacy.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://ac-programming.com/apps/training-citizenship/privacy.html</loc>
+  <lastmod>2025-03-09T18:08:31+00:00</lastmod>
   <priority>0.64</priority>
 </url>
 

@@ -70,6 +70,7 @@ function showSection(sectionId, button) {
   document.getElementById('section2').style.display = 'none';
   document.getElementById('section13').style.display = 'none';
   document.getElementById('section14').style.display = 'none';
+  document.getElementById('section16').style.display = 'none';
 
   // Show the selected section
   document.getElementById(sectionId).style.display = 'block';

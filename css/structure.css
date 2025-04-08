@@ -569,4 +569,21 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   margin-bottom: 5px; /* Adjust spacing between items as needed */
 }
 
+table {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 900px;
+}
+th, td {
+  border: 1px solid #ccc;
+  padding: 12px;
+  text-align: left;
+}
+th {
+  background-color: #f4f4f4;
+}
+tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
 /* ------------------------------------------------------------------------------------------------------------------- */

@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Deploy a Containerized App on OVHcloud Managed Kubernetes</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Deploy a Containerized App on OVHcloud Managed Kubernetes">
+    <meta name="keywords" content="alexis carbillet, carbillet, OVHcloud, Kubernetes">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Deploy a Containerized App on OVHcloud Managed Kubernetes" />
+    <meta property="og:description" content="Deploy a Containerized App on OVHcloud Managed Kubernetes" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/OVHcloud/project1.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cloud">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+<section id="article">
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Deploy a Containerized App on OVHcloud Managed Kubernetes</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+            <h6>What You'll Learn</h6>
+            <ul>
+                <li>Containerize a simple web app</li>
+                <li>Push it to a container registry</li>
+                <li>Deploy it to OVHcloud Managed Kubernetes</li>
+                <li>Expose it to the internet</li>
+            </ul>
+            <h6>Prerequisites</h6>
+            <ul>
+                <li>An OVHcloud account with access to the Public Cloud</li>
+                <li>kubectl and helm installed</li>
+                <li>Docker installed</li>
+                <li>A container registry account (Docker Hub, GitHub Container Registry, or GitLab)</li>
+                <li>Basic knowledge of Docker and Kubernetes</li>
+            </ul>
+            <h6>Create a Simple Web App (e.g., Python Flask)</h6>
+            <pre><code># app.py
+from flask import Flask
+app = Flask(__name__)
+
+@app.route("/")
+def home():
+    return "Hello from OVHcloud Kubernetes!"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)</code></pre>
+            <p>Dockerize the App</p>
+            <pre><code># Dockerfile
+FROM python:3.11-slim
+WORKDIR /app
+COPY app.py .
+RUN pip install flask
+CMD ["python", "app.py"]</code></pre>
+            <p>Then build and push:</p>
+            <pre><code>docker build -t yourusername/ovhcloud-k8s-demo:latest .
+docker push yourusername/ovhcloud-k8s-demo:latest</code></pre>
+            <h6>Create a Kubernetes Cluster on OVHcloud</h6>
+            <ul>
+                <li>Go to your OVHcloud control panel</li>
+                <li>Navigate to “Public Cloud” → “Managed Kubernetes”</li>
+                <li>Create a new cluster with at least one node</li>
+                <li>Download the kubeconfig file and set it up:</li>
+            </ul>
+            <pre><code>export KUBECONFIG=~/Downloads/your-kubeconfig.yaml
+kubectl get nodes</code></pre>
+            <h6>Create Kubernetes Deployment and Service</h6>
+            <pre><code># deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: flask-app
+spec:
+    replicas: 2
+    selector:
+    matchLabels:
+        app: flask-app
+    template:
+    metadata:
+        labels:
+        app: flask-app
+    spec:
+        containers:
+        - name: flask-app
+        image: yourusername/ovhcloud-k8s-demo:latest
+        ports:
+        - containerPort: 5000
+---
+# service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+    name: flask-service
+spec:
+    selector:
+    app: flask-app
+    ports:
+    - protocol: TCP
+        port: 80
+        targetPort: 5000
+    type: LoadBalancer</code></pre>
+            <p>Apply it:</p>
+            <pre><code>kubectl apply -f deployment.yaml
+kubectl apply -f service.yaml</code></pre>
+            <h6>Access Your App</h6>
+            <p>Run:</p>
+            <pre><code>kubectl get svc</code></pre>
+            <p>Wait for the external IP to appear (LoadBalancer provisioning).</p>
+            <p>Visit http://your-external-ip and you should see: "Hello from OVHcloud Kubernetes!"</p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

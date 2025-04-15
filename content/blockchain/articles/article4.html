@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Consensus Algorithms: Why Nodes Trust Each Other</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Consensus Algorithms: Why Nodes Trust Each Other">
+    <meta name="keywords" content="alexis carbillet, carbillet, blockchain, go">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Alexis Carbillet" />
+    <meta property="og:description" content="Consensus Algorithms: Why Nodes Trust Each Other" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/blockchain/articles/article4.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#go">Go Example</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cyber">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Consensus Algorithms: Why Nodes Trust Each Other</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>In a decentralized system, there’s no central server telling nodes what’s true. So how do nodes agree on the same version of the blockchain?</p>
+		  <p>That’s where consensus algorithms come in. They ensure that every participant in a blockchain network agrees on a single, valid history — even if some nodes go offline or act maliciously.</p>
+		  <p>In this article, we’ll break down how consensus works, compare common algorithms, and simulate a simple consensus mechanism in Go to see it in action.</p>
+		  <h6>Why Do We Need Consensus?</h6>
+      <p>In a blockchain:</p>
+      <ul>
+        <li>Anyone can propose a new block.</li>
+        <li>Only valid blocks should be added.</li>
+        <li>Every node should agree on the same chain.</li>
+      </ul>
+		  <p>Without consensus, you'd get:</p>
+      <ul>
+        <li>Forks everywhere</li>
+        <li>Conflicting transactions</li>
+        <li>No trust in the system</li>
+      </ul>
+		  <p>Consensus = coordination in a trustless world.</p>
+      <h6>Popular Consensus Algorithms (At a Glance)</h6>
+      <table>
+        <thead>
+          <tr>
+            <th>Algorithm</th>
+            <th>Used By</th>
+            <th>Key Idea</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Proof of Work</td>
+            <td>Bitcoin</td>
+            <td>Nodes compete to solve a puzzle</td>
+          </tr>
+          <tr>
+            <td>Proof of Stake</td>
+            <td>Ethereum (post-Merge)</td>
+            <td>Nodes are chosen based on stake (coins held)</td>
+          </tr>
+          <tr>
+            <td>PBFT</td>
+            <td>Hyperledger, Cosmos</td>
+            <td>Nodes vote and reach majority agreement</td>
+          </tr>
+          <tr>
+            <td>Proof of Authority</td>
+            <td>Private chains</td>
+            <td>Identity-based trusted validators</td>
+          </tr>
+        </tbody>
+      </table>      
+		  <p>We’ll focus on simulating the core idea that underpins most of these: Agreement on the longest, valid chain.</p>
+      <h6>Simulating Simple Consensus in Go</h6>
+		  <p>Let’s simulate a network of nodes. Each node:</p>
+      <ul>
+        <li>Stores a copy of the blockchain</li>
+        <li>Receives new blocks from peers</li>
+        <li>Accepts the longest valid chain as truth</li>
+      </ul>
+		  <p>This is the basic consensus logic behind Proof of Work blockchains like Bitcoin. See next section for more.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== GO SECTION ============================ -->
+
+	<section class="bg-light" id="go">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Go example</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+			<pre><code>package main
+
+import (
+  "crypto/sha256"
+  "encoding/hex"
+  "fmt"
+  "strconv"
+  "strings"
+  "time"
+)
+
+// Block represents a block in the blockchain
+type Block struct {
+  Index     int
+  Timestamp string
+  Data      string
+  PrevHash  string
+  Hash      string
+  Nonce     int
+}
+
+// Node represents a node in the network
+type Node struct {
+  ID         string
+  Blockchain []Block
+}
+
+// Calculates the SHA-256 hash of a block including its nonce
+func calculateHash(block Block) string {
+  record := strconv.Itoa(block.Index) + block.Timestamp + block.Data + block.PrevHash + strconv.Itoa(block.Nonce)
+  hash := sha256.Sum256([]byte(record))
+  return hex.EncodeToString(hash[:])
+}
+
+// Proof of Work mining function
+func mineBlock(block *Block, difficulty int) {
+  targetPrefix := strings.Repeat("0", difficulty)
+  for {
+    hash := calculateHash(*block)
+    if strings.HasPrefix(hash, targetPrefix) {
+      block.Hash = hash
+      return
+    }
+    block.Nonce++
+  }
+}
+
+// Creates the first block (genesis block)
+func generateGenesisBlock(difficulty int) Block {
+  block := Block{
+    Index:     0,
+    Timestamp: time.Now().String(),
+    Data:      "Genesis Block",
+    PrevHash:  "",
+  }
+  mineBlock(&block, difficulty)
+  return block
+}
+
+// Mines and returns the next block based on the previous one
+func mineNewBlock(prevBlock Block, data string, difficulty int) Block {
+  newBlock := Block{
+    Index:     prevBlock.Index + 1,
+    Timestamp: time.Now().String(),
+    Data:      data,
+    PrevHash:  prevBlock.Hash,
+  }
+  mineBlock(&newBlock, difficulty)
+  return newBlock
+}
+
+// Validates a full blockchain (links and hashes must match)
+func isValidChain(chain []Block) bool {
+  for i := 1; i < len(chain); i++ {
+    prev := chain[i-1]
+    curr := chain[i]
+    if curr.PrevHash != prev.Hash {
+      return false
+    }
+    if calculateHash(curr) != curr.Hash {
+      return false
+    }
+  }
+  return true
+}
+
+// Simulates consensus: adopt the longest valid chain from neighbors
+func resolveConflict(node *Node, neighbors []*Node) {
+  maxLength := len(node.Blockchain)
+  var longestChain []Block
+
+  for _, peer := range neighbors {
+    if isValidChain(peer.Blockchain) && len(peer.Blockchain) > maxLength {
+      maxLength = len(peer.Blockchain)
+      longestChain = peer.Blockchain
+    }
+  }
+
+  if longestChain != nil {
+    node.Blockchain = longestChain
+    fmt.Printf("Node %s adopted a longer chain from peers.\n", node.ID)
+  }
+}
+
+// Display the chain for debugging or verification
+func printChain(node *Node) {
+  fmt.Printf("\nBlockchain at node %s:\n", node.ID)
+  for _, block := range node.Blockchain {
+    fmt.Printf("Index: %d, Nonce: %d, Hash: %s\n", block.Index, block.Nonce, block.Hash)
+  }
+}
+
+func main() {
+  difficulty := 3
+
+  // Genesis block shared across all nodes
+  genesis := generateGenesisBlock(difficulty)
+
+  // Simulate three nodes in a network
+  nodeA := &Node{ID: "A", Blockchain: []Block{genesis}}
+  nodeB := &Node{ID: "B", Blockchain: []Block{genesis}}
+  nodeC := &Node{ID: "C", Blockchain: []Block{genesis}}
+
+  // Node A mines 2 blocks
+  nodeA.Blockchain = append(nodeA.Blockchain, mineNewBlock(nodeA.Blockchain[len(nodeA.Blockchain)-1], "Tx A1", difficulty))
+  nodeA.Blockchain = append(nodeA.Blockchain, mineNewBlock(nodeA.Blockchain[len(nodeA.Blockchain)-1], "Tx A2", difficulty))
+
+  // Node B mines 1 block
+  nodeB.Blockchain = append(nodeB.Blockchain, mineNewBlock(nodeB.Blockchain[len(nodeB.Blockchain)-1], "Tx B1", difficulty))
+
+  // Node C receives chains from A and B, and adopts the longest valid one
+  neighbors := []*Node{nodeA, nodeB}
+  resolveConflict(nodeC, neighbors)
+
+  // Print results
+  printChain(nodeA)
+  printChain(nodeB)
+  printChain(nodeC)
+}</code></pre>
+      <h6>What We Simulated</h6>
+			<p>Node A had the longest chain.</p>
+			<p>Node C accepted Node A’s chain over Node B’s.</p>
+			<p>Consensus was reached: everyone trusts the longest valid chain.</p>
+			<p>This is a simplified version of how Bitcoin nodes operate: trust the chain with the most work behind it.</p>
+      <h6>Consensus in the Real World</h6>
+			<p>Benefits:</p>
+      <ul>
+        <li>Tolerance to node failure or delay</li>
+        <li>No central authority required</li>
+        <li>Secure against malicious actors (up to a point)</li>
+      </ul>
+			<p>Limitations:</p>
+      <ul>
+        <li>Proof of Work is energy-intensive</li>
+        <li>Finality (when a block is truly irreversible) can be slow</li>
+        <li>Forks and chain reorganizations can occur</li>
+      </ul>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

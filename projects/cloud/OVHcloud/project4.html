@@ -145,7 +145,7 @@ aws s3 cp index.yaml s3://helm-repo/ --profile ovh-helm --endpoint-url https://s
             <p>Helm can’t use S3 directly yet, so we use tools like:</p>
             <p>Option A: Use ChartMuseum (self-hosted)</p>
             <p>You can proxy your OVH storage with ChartMuseum running in Kubernetes or locally.</p>
-            <p>Option B: Use s3:// with helm-s3 plugin</p>
+            <p>Option B: Use s3 with helm-s3 plugin</p>
             <p>Install:</p>
             <pre><code>helm plugin install https://github.com/hypnoglow/helm-s3.git</code></pre>
             <p>Configure:</p>

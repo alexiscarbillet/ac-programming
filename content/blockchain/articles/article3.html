@@ -3,16 +3,16 @@
   <head>
 
     <meta charset="utf-8">
-    <title>History</title>
+    <title>Proof of Work Explained</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Website of Alexis Carbillet">
-    <meta name="keywords" content="alexis carbillet, carbillet, cryptography">
+    <meta name="description" content="Proof of Work Explained">
+    <meta name="keywords" content="alexis carbillet, carbillet, blockchain, go">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
     <meta property="og:title" content="Alexis Carbillet" />
-    <meta property="og:description" content="Website of Alexis Carbillet" />
-    <meta property='og:url' content="https://www.ac-programming.com/content/crypto/Overview/applications.html" />
+    <meta property="og:description" content="Proof of Work Explained" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/blockchain/articles/article3.html" />
     <meta property="og:type" content="website" />
 
     <!-- Bootstrap core CSS -->
@@ -55,6 +55,9 @@
 			<li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#article">Article</a>
             </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#go">Go Example</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
@@ -81,20 +84,133 @@
       <div class="container">
         <div class="row">
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h2 class="section-heading text-uppercase">Applications of cryptography</h2>
+			<h2 class="section-heading text-uppercase">Proof of Work Explained</h2>
 		  </div>
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-		  <ul>
-        <li><b>Secure Communication</b>: Cryptography enables secure communication over insecure channels, such as the internet. It ensures that sensitive information, such as financial transactions, personal messages, and business communications, remains confidential and cannot be intercepted or deciphered by unauthorized parties.</li>
-        <li><b>Data Protection and Privacy</b>: In an era of increasing digitalization, protecting sensitive data from unauthorized access is paramount. Cryptography is used to encrypt data stored on devices, transmitted over networks, or processed in the cloud, safeguarding individuals' privacy and preventing data breaches.</li>
-        <li><b>E-commerce and Online Banking</b>: Cryptography underpins the security of e-commerce and online banking systems. Secure protocols such as SSL/TLS encrypt data exchanged between users and websites, preventing eavesdropping and ensuring the integrity of transactions.</li>
-        <li><b>Digital Signatures</b>: Cryptography enables the use of digital signatures, which verify the authenticity and integrity of electronic documents, contracts, and transactions. Digital signatures provide non-repudiation, meaning the signer cannot later deny their involvement.</li>
-        <li><b>Authentication and Access Control</b>: Cryptography plays a crucial role in authentication mechanisms, such as passwords, biometrics, and cryptographic keys, which verify the identity of users and control access to sensitive systems and data.</li>
-        <li><b>Blockchain and Cryptocurrencies</b>: Cryptography is fundamental to the operation of blockchain technology, which underpins cryptocurrencies like Bitcoin and Ethereum. Cryptographic techniques such as hashing, digital signatures, and consensus algorithms ensure the security, immutability, and decentralization of blockchain networks.</li>
-        <li><b>Secure Software and Systems</b>: Cryptography is used to secure software applications, operating systems, and network protocols against various cyber threats, including malware, phishing attacks, and data tampering.</li>
-        <li><b>National Security and Defense</b>: Cryptography is a vital component of national security and defense systems, protecting classified information, military communications, and critical infrastructure from espionage, sabotage, and cyber attacks.</li>
-        <li><b>IoT Security</b>:  With the proliferation of Internet of Things (IoT) devices, cryptography is essential for securing communication and data exchange between interconnected devices, preventing unauthorized access and ensuring the integrity of IoT ecosystems.</li>
+		  <p>If you’ve heard of Bitcoin or blockchain, you’ve probably heard of Proof of Work (PoW) — the mechanism that makes blockchains secure and decentralized. But how does it actually work?</p>
+		  <p>In this article, we'll explain PoW in simple terms and implement it in Go. You’ll see how it prevents spam and fraud in distributed systems and why it's the engine behind cryptocurrencies like Bitcoin.</p>
+		  <h6>What Is Proof of Work?</h6>
+      <p>Proof of Work is a computational puzzle. It’s hard to solve, but easy to verify.</p>
+		  <p>The idea is to add a new block to the blockchain, you must find a value (called a nonce) that makes the block’s hash start with a certain number of zeros.</p>
+		  <p>This process is called mining. It:</p>
+      <ul>
+        <li>Slows down block creation</li>
+        <li>Requires real-world computational effort (i.e., work)</li>
+        <li>Makes attacking the chain costly</li>
       </ul>
+      <h6>A Simple Example</h6>
+		  <p>Let’s say we want a block’s SHA-256 hash to start with two zeros, like 00ab3f.... You can’t guess it directly. So you:</p>
+      <ul>
+        <li>Try a nonce (number)</li>
+        <li>Hash the block + nonce</li>
+        <li>Check if the hash starts with 00</li>
+        <li>Repeat until you succeed</li>
+      </ul>
+		  <p>That’s Proof of Work!</p>
+      <h6>Implementing PoW in Go</h6>
+		  <p>See the following section.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== GO SECTION ============================ -->
+
+	<section class="bg-light" id="go">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Go example</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+			<pre><code>package main
+
+import (
+    "crypto/sha256"
+    "encoding/hex"
+    "fmt"
+    "strconv"
+    "strings"
+    "time"
+)
+
+type Block struct {
+    Index     int
+    Timestamp string
+    Data      string
+    PrevHash  string
+    Hash      string
+    Nonce     int
+}
+
+func calculateHash(block Block) string {
+    record := strconv.Itoa(block.Index) + block.Timestamp + block.Data + block.PrevHash + strconv.Itoa(block.Nonce)
+    h := sha256.New()
+    h.Write([]byte(record))
+    return hex.EncodeToString(h.Sum(nil))
+}
+
+func mineBlock(block *Block, difficulty int) {
+    target := strings.Repeat("0", difficulty)
+    for {
+        hash := calculateHash(*block)
+        if strings.HasPrefix(hash, target) {
+            block.Hash = hash
+            return
+        }
+        block.Nonce++
+    }
+}
+
+func createGenesisBlock(difficulty int) Block {
+    block := Block{
+        Index:     0,
+        Timestamp: time.Now().String(),
+        Data:      "Genesis Block",
+        PrevHash:  "",
+    }
+    mineBlock(&block, difficulty)
+    return block
+}
+
+func generateNextBlock(prevBlock Block, data string, difficulty int) Block {
+    block := Block{
+        Index:     prevBlock.Index + 1,
+        Timestamp: time.Now().String(),
+        Data:      data,
+        PrevHash:  prevBlock.Hash,
+    }
+    mineBlock(&block, difficulty)
+    return block
+}
+
+func main() {
+    var blockchain []Block
+    difficulty := 4 // Adjust for faster or slower mining
+
+    genesis := createGenesisBlock(difficulty)
+    blockchain = append(blockchain, genesis)
+
+    for i := 1; i <= 3; i++ {
+        fmt.Printf("Mining block #%d...\n", i)
+        newBlock := generateNextBlock(blockchain[len(blockchain)-1], fmt.Sprintf("Block %d data", i), difficulty)
+        blockchain = append(blockchain, newBlock)
+    }
+
+    for _, block := range blockchain {
+        fmt.Printf("\nIndex: %d\nNonce: %d\nHash: %s\nPrevHash: %s\n", block.Index, block.Nonce, block.Hash, block.PrevHash)
+    }
+}</code></pre>
+      <h6>What Did We Build?</h6>
+			<p>Each block is mined until its hash matches the required difficulty.</p>
+			<p>The Nonce is incremented until the hash is valid.</p>
+			<p>This simulates how Bitcoin and others ensure blocks aren’t created instantly or maliciously.</p>
+      <h6>Why It Matters</h6>
+			<p>Makes it hard to add blocks (security)</p>
+			<p>Makes it easy to verify blocks (speed)</p>
+			<p>Makes attacking the blockchain expensive (protection)</p>
 		  </div>
 		</div>
       </div>

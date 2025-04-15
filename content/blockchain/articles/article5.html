@@ -3,16 +3,16 @@
   <head>
 
     <meta charset="utf-8">
-    <title>History</title>
+    <title>Smart Contracts Without Ethereum: The Idea Behind Programmable Money</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Website of Alexis Carbillet">
-    <meta name="keywords" content="alexis carbillet, carbillet, cryptography">
+    <meta name="description" content="Smart Contracts Without Ethereum: The Idea Behind Programmable Money">
+    <meta name="keywords" content="alexis carbillet, carbillet, blockchain, go">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
     <meta property="og:title" content="Alexis Carbillet" />
-    <meta property="og:description" content="Website of Alexis Carbillet" />
-    <meta property='og:url' content="https://www.ac-programming.com/content/crypto/Overview/applications.html" />
+    <meta property="og:description" content="Smart Contracts Without Ethereum: The Idea Behind Programmable Money" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/blockchain/articles/article5.html" />
     <meta property="og:type" content="website" />
 
     <!-- Bootstrap core CSS -->
@@ -55,6 +55,9 @@
 			<li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#article">Article</a>
             </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#go">Go Example</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
@@ -81,20 +84,138 @@
       <div class="container">
         <div class="row">
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h2 class="section-heading text-uppercase">Applications of cryptography</h2>
+			<h2 class="section-heading text-uppercase">Smart Contracts Without Ethereum: The Idea Behind Programmable Money</h2>
 		  </div>
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-		  <ul>
-        <li><b>Secure Communication</b>: Cryptography enables secure communication over insecure channels, such as the internet. It ensures that sensitive information, such as financial transactions, personal messages, and business communications, remains confidential and cannot be intercepted or deciphered by unauthorized parties.</li>
-        <li><b>Data Protection and Privacy</b>: In an era of increasing digitalization, protecting sensitive data from unauthorized access is paramount. Cryptography is used to encrypt data stored on devices, transmitted over networks, or processed in the cloud, safeguarding individuals' privacy and preventing data breaches.</li>
-        <li><b>E-commerce and Online Banking</b>: Cryptography underpins the security of e-commerce and online banking systems. Secure protocols such as SSL/TLS encrypt data exchanged between users and websites, preventing eavesdropping and ensuring the integrity of transactions.</li>
-        <li><b>Digital Signatures</b>: Cryptography enables the use of digital signatures, which verify the authenticity and integrity of electronic documents, contracts, and transactions. Digital signatures provide non-repudiation, meaning the signer cannot later deny their involvement.</li>
-        <li><b>Authentication and Access Control</b>: Cryptography plays a crucial role in authentication mechanisms, such as passwords, biometrics, and cryptographic keys, which verify the identity of users and control access to sensitive systems and data.</li>
-        <li><b>Blockchain and Cryptocurrencies</b>: Cryptography is fundamental to the operation of blockchain technology, which underpins cryptocurrencies like Bitcoin and Ethereum. Cryptographic techniques such as hashing, digital signatures, and consensus algorithms ensure the security, immutability, and decentralization of blockchain networks.</li>
-        <li><b>Secure Software and Systems</b>: Cryptography is used to secure software applications, operating systems, and network protocols against various cyber threats, including malware, phishing attacks, and data tampering.</li>
-        <li><b>National Security and Defense</b>: Cryptography is a vital component of national security and defense systems, protecting classified information, military communications, and critical infrastructure from espionage, sabotage, and cyber attacks.</li>
-        <li><b>IoT Security</b>:  With the proliferation of Internet of Things (IoT) devices, cryptography is essential for securing communication and data exchange between interconnected devices, preventing unauthorized access and ensuring the integrity of IoT ecosystems.</li>
+		  <p>When we think of smart contracts, we often think of Ethereum. But the core idea — code that runs on a blockchain — isn't limited to Ethereum at all.</p>
+		  <p>In this article, we'll:</p>
+      <ul>
+        <li>Demystify what smart contracts are</li>
+        <li>Show how the idea can work even in a simple blockchain</li>
+        <li>Implement a basic programmable transaction system in Go</li>
       </ul>
+		  <p>Let’s dive into what makes a contract "smart" — and how we can simulate one without needing Solidity or the Ethereum Virtual Machine.</p>
+      <h6>What Is a Smart Contract?</h6>
+		  <p>At its core, a smart contract is a self-executing program stored on the blockchain that runs when certain conditions are met.</p>
+		  <p>Think of it as:</p>
+      <ul>
+        <li>Code + Rules + Money</li>
+        <li>“If this happens, then do that — automatically and immutably.”</li>
+      </ul>
+		  <p>Examples:</p>
+      <ul>
+        <li>Escrow: Funds are released only if both parties approve.</li>
+        <li>Crowdfunding: If a funding goal is met, transfer money; if not, refund.</li>
+      </ul>
+      <h6>Our Goal: Simple Smart Contracts in Go</h6>
+		  <p>Instead of deploying to Ethereum, we’ll:</p>
+      <ul>
+        <li>Simulate a blockchain that holds "accounts" with balances.</li>
+        <li>Let users define transactions with embedded rules (our mini-contracts).</li>
+        <li>Execute and verify those rules before applying changes.</li>
+      </ul>
+		  <p>This is enough to grasp the essence of smart contracts: programmable, verifiable conditions on transactions.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== GO SECTION ============================ -->
+
+	<section class="bg-light" id="go">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Go example</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+			<pre><code>package main
+
+import (
+  "fmt"
+)
+
+// A programmable transaction
+type Transaction struct {
+  From   string
+  To     string
+  Amount int
+  Rule   func(state *State) bool // Contract condition
+}
+
+// Global account state
+type State struct {
+  Balances map[string]int
+}
+
+// Executes a transaction if the rule and funds are valid
+func ExecuteTransaction(tx Transaction, state *State) bool {
+  if !tx.Rule(state) {
+    fmt.Println("❌ Rule rejected the transaction.")
+    return false
+  }
+  if state.Balances[tx.From] < tx.Amount {
+    fmt.Println("❌ Insufficient balance.")
+    return false
+  }
+  state.Balances[tx.From] -= tx.Amount
+  state.Balances[tx.To] += tx.Amount
+  fmt.Println("✅ Transaction executed successfully.")
+  return true
+}
+
+func main() {
+  // Initial blockchain state
+  state := &State{
+    Balances: map[string]int{
+      "Alice": 100,
+      "Bob":   50,
+      "Carol": 0,
+    },
+  }
+
+  fmt.Println("Initial balances:", state.Balances)
+
+  // Simple rule: Only execute if Alice has at least 80 coins
+  rule := func(state *State) bool {
+    return state.Balances["Alice"] >= 80
+  }
+
+  tx := Transaction{
+    From:   "Alice",
+    To:     "Bob",
+    Amount: 30,
+    Rule:   rule,
+  }
+
+  // Execute the programmable transaction
+  ExecuteTransaction(tx, state)
+  fmt.Println("Balances after tx 1:", state.Balances)
+
+  // Another rule: Only send money to Carol if Bob has more than 100
+  rule2 := func(state *State) bool {
+    return state.Balances["Bob"] > 100
+  }
+
+  tx2 := Transaction{
+    From:   "Bob",
+    To:     "Carol",
+    Amount: 10,
+    Rule:   rule2,
+  }
+
+  ExecuteTransaction(tx2, state)
+  fmt.Println("Balances after tx 2:", state.Balances)
+}</code></pre>
+			<p>Even without Ethereum, we just created:</p>
+			<ul>
+        <li>Conditional transactions</li>
+        <li>Verifiable, code-defined rules</li>
+        <li>A simple but powerful idea: money that moves when logic says so</li>
+      </ul>
+			<p></p>
 		  </div>
 		</div>
       </div>

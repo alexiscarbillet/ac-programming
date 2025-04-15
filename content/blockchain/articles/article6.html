@@ -3,16 +3,16 @@
   <head>
 
     <meta charset="utf-8">
-    <title>Asymetric cryptography</title>
+    <title>Immutable Logs: Why Blockchain Is Great for Audit Trails</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="What is asymetric cryptography?">
-    <meta name="keywords" content="alexis carbillet, carbillet, cryptography, asymetric cryptography">
+    <meta name="description" content="Immutable Logs: Why Blockchain Is Great for Audit Trails">
+    <meta name="keywords" content="alexis carbillet, carbillet, blockchain, go">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
     <meta property="og:title" content="Alexis Carbillet" />
-    <meta property="og:description" content="What is asymetric cryptography?" />
-    <meta property='og:url' content="https://www.ac-programming.com/content/crypto/Kind/asymetric.html" />
+    <meta property="og:description" content="Immutable Logs: Why Blockchain Is Great for Audit Trails" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/blockchain/articles/article6.html" />
     <meta property="og:type" content="website" />
 
     <!-- Bootstrap core CSS -->
@@ -56,13 +56,13 @@
               <a class="nav-link js-scroll-trigger" href="#article">Article</a>
             </li>
 			<li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#go">Go example</a>
+              <a class="nav-link js-scroll-trigger" href="#go">Go Example</a>
             </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
 			<li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../../../index.html#template_crypto.html">Main</a>
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cyber">Main</a>
             </li>
           </ul>
         </div>
@@ -84,33 +84,45 @@
       <div class="container">
         <div class="row">
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h2 class="section-heading text-uppercase">Asymetric cryptography</h2>
+			<h2 class="section-heading text-uppercase">Immutable Logs: Why Blockchain Is Great for Audit Trails</h2>
 		  </div>
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-		  <p>Asymmetric cryptography, also known as public-key cryptography, is a cryptographic system that uses pairs of keys: a public key and a private key. Unlike symmetric cryptography, where the same key is used for both encryption and decryption, asymmetric cryptography uses different keys for these operations.</p>
-		  <ul>
-        <li><b>Explanation of Asymmetric Encryption</b>:</li>
-        <p>In asymmetric encryption, each party has a pair of keys: a public key and a private key. The public key is made freely available to anyone who wants to send an encrypted message to the owner of that key. The private key, on the other hand, is kept secret and is only known to the owner.</p>
-        <p>When Alice wants to send a message to Bob using asymmetric encryption:</p>
-        <ul>
-          <li>Alice obtains Bob's public key.</li>
-          <li>Alice encrypts the message using Bob's public key.</li>
-          <li>Alice sends the encrypted message to Bob.</li>
-          <li>Bob decrypts the message using his private key.</li>
-        </ul>
-        <p>This process ensures that only Bob, the holder of the private key, can decrypt the message, even though the encryption was performed using his public key.</p>
-        <li><b>Examples of Asymmetric Encryption Algorithms</b>:</li>
-        <ul>
-          <li><u>RSA</u> (Rivest-Shamir-Adleman): RSA is one of the most widely used asymmetric encryption algorithms. It relies on the difficulty of factoring large integers into their prime factors. RSA is widely used for secure data transmission, digital signatures, and key exchange protocols.</li>
-          <li><u>ECC</u> (Elliptic Curve Cryptography): ECC is an alternative to RSA and is based on the algebraic structure of elliptic curves over finite fields. ECC offers the same level of security as RSA but with smaller key sizes, making it more efficient in terms of computational resources. It is often used in environments where resource constraints are a concern, such as mobile devices and IoT devices.</li>
-        </ul>
-        <li><b>Key Exchange Mechanisms</b>:</li>
-        <p>Asymmetric cryptography is often used in key exchange mechanisms to establish secure communication channels between parties. Here are two common key exchange mechanisms:</p>
-        <ul>
-          <li><u>Diffie-Hellman Key Exchange</u> (DH): Diffie-Hellman allows two parties to establish a shared secret over an insecure channel without exchanging any private keys. Instead, they exchange public keys and use them, along with their private keys, to compute a shared secret. This shared secret can then be used to derive symmetric encryption keys for secure communication.</li>
-          <li><u>Elliptic Curve Diffie-Hellman</u> (ECDH): ECDH is a variant of Diffie-Hellman that uses elliptic curve cryptography. It provides the same functionality as DH but with smaller key sizes and faster computations, making it more suitable for resource-constrained environments.</li>
-        </ul>
-        <p>These key exchange mechanisms enable secure communication between parties by allowing them to establish shared secrets without the risk of interception or eavesdropping.</p>
+		  <p>If you've ever dealt with compliance, security, or data integrity, you've probably heard this phrase: “We need a tamper-proof audit trail.”</p>
+		  <p>That’s where blockchain shines.</p>
+		  <p>In this article, we’ll:</p>
+      <ul>
+        <li>Explain what makes blockchain logs immutable</li>
+        <li>Show how blockchain can power audit trails</li>
+        <li>Build a Go implementation of an immutable logging system using blockchain concepts</li>
+      </ul>
+      <h6>What’s an Audit Trail?</h6>
+		  <p>An audit trail is a chronological record of events or operations in a system:</p>
+      <ul>
+        <li>A user logs in</li>
+        <li>A document is accessed</li>
+        <li>A transaction is approved</li>
+      </ul>
+		  <p>It must be:</p>
+      <ul>
+        <li>Chronological (ordered)</li>
+        <li>Tamper-evident (you can tell if it’s changed)</li>
+        <li>Persistent (can’t be deleted silently)</li>
+      </ul>
+		  <p>Traditional systems use databases with timestamps — but malicious actors can modify logs if they gain access. Enter blockchain.</p>
+		  <h6>Blockchain: A Natural Fit for Logging</h6>
+      <p>Blockchain is:</p>
+      <ul>
+        <li>Append-only: Data is added, never deleted</li>
+        <li>Cryptographically linked: Each record includes a hash of the previous one</li>
+        <li>Distributed (optionally): Can be stored across many machines</li>
+      </ul>
+		  <p>Key Insight: If you change one record, it breaks the entire chain.</p>
+      <h6>Idea: A Blockchain-Based Logger</h6>
+		  <p>We'll create a system where every log entry is a block:</p>
+      <ul>
+        <li>It stores an event message, timestamp, and its hash</li>
+        <li>Each block points to the hash of the previous one</li>
+        <li>Any change to a block will invalidate all that follow</li>
       </ul>
 		  </div>
 		</div>
@@ -128,58 +140,103 @@
 			<h2 class="section-heading text-uppercase">Go example</h2>
 		  </div>
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-      <p>Here's an example of RSA encryption and decryption in Go:</p>
 			<pre><code>package main
 
 import (
-  "crypto/rand"
-  "crypto/rsa"
-  "crypto/x509"
-  "encoding/pem"
+  "crypto/sha256"
+  "encoding/hex"
   "fmt"
+  "time"
 )
 
+// A single log entry (block)
+type LogEntry struct {
+  Index     int
+  Timestamp string
+  Event     string
+  PrevHash  string
+  Hash      string
+}
+
+// Generate a SHA-256 hash of the log entry
+func calculateHash(entry LogEntry) string {
+  record := fmt.Sprintf("%d%s%s%s", entry.Index, entry.Timestamp, entry.Event, entry.PrevHash)
+  hash := sha256.Sum256([]byte(record))
+  return hex.EncodeToString(hash[:])
+}
+
+// Add a new entry to the log
+func addLogEntry(event string, chain []LogEntry) []LogEntry {
+  lastEntry := chain[len(chain)-1]
+  newEntry := LogEntry{
+    Index:     lastEntry.Index + 1,
+    Timestamp: time.Now().Format(time.RFC3339),
+    Event:     event,
+    PrevHash:  lastEntry.Hash,
+  }
+  newEntry.Hash = calculateHash(newEntry)
+  return append(chain, newEntry)
+}
+
+// Create the genesis entry (first log record)
+func createGenesisLog() LogEntry {
+  entry := LogEntry{
+    Index:     0,
+    Timestamp: time.Now().Format(time.RFC3339),
+    Event:     "System initialized",
+    PrevHash:  "",
+  }
+  entry.Hash = calculateHash(entry)
+  return entry
+}
+
+// Validate the chain to detect tampering
+func isValidLogChain(chain []LogEntry) bool {
+  for i := 1; i < len(chain); i++ {
+    prev := chain[i-1]
+    curr := chain[i]
+
+    if curr.PrevHash != prev.Hash {
+      return false
+    }
+    if calculateHash(curr) != curr.Hash {
+      return false
+    }
+  }
+  return true
+}
+
+func printChain(chain []LogEntry) {
+  for _, entry := range chain {
+    fmt.Printf("Index: %d | Time: %s | Event: %s | Hash: %s\n", entry.Index, entry.Timestamp, entry.Event, entry.Hash)
+  }
+}
+
 func main() {
-  // Generate RSA key pair
-  privateKey, err := rsa.GenerateKey(rand.Reader, 2048)
-  if err != nil {
-    fmt.Println("Error generating RSA private key:", err)
-    return
+  // Start the log chain
+  logChain := []LogEntry{createGenesisLog()}
+
+  // Simulate some events
+  logChain = addLogEntry("User Alice logged in", logChain)
+  logChain = addLogEntry("Document XYZ accessed", logChain)
+  logChain = addLogEntry("Configuration updated by admin", logChain)
+
+  printChain(logChain)
+
+  // Validate the log
+  if isValidLogChain(logChain) {
+    fmt.Println("\n✅ Audit log is valid and untampered.")
+  } else {
+    fmt.Println("\n❌ Audit log has been tampered with!")
   }
-
-  // Public key
-  publicKey := &privateKey.PublicKey
-
-  // Original message
-  message := []byte("Hello, RSA!")
-
-  // Encrypt the message using the public key
-  ciphertext, err := rsa.EncryptPKCS1v15(rand.Reader, publicKey, message)
-  if err != nil {
-    fmt.Println("Error encrypting message:", err)
-    return
-  }
-  fmt.Printf("Encrypted message: %x\n", ciphertext)
-
-  // Decrypt the message using the private key
-  plaintext, err := rsa.DecryptPKCS1v15(rand.Reader, privateKey, ciphertext)
-  if err != nil {
-    fmt.Println("Error decrypting message:", err)
-    return
-  }
-  fmt.Println("Decrypted message:", string(plaintext))
 }</code></pre>
-			<p>Results you should obtain:</p>
-      <code><pre>Encrypted message: 8e1b2ed11de5101064f1ff3b4...
-Decrypted message: Hello, RSA!</pre></code>
-        <p>In this code:</p>
-        <ul>
-          <li>We generate an RSA key pair with a 2048-bit private key.</li>
-          <li>We extract the public key from the generated private key.</li>
-          <li>We define a message to be encrypted.</li>
-          <li>We encrypt the message using the RSA public key.</li>
-          <li>We decrypt the ciphertext using the RSA private key.</li>
-        </ul>
+      <h6>When Would You Use This?</h6>
+      <ul>
+        <li>Security logs: Who did what and when — with full integrity.</li>
+        <li>Compliance systems: Prove no one has changed a record silently.</li>
+        <li>Forensics: Trust that logs are original, especially in breach investigations.</li>
+        <li>IoT data logging: Track sensor/device events securely over time.</li>
+      </ul>
 		  </div>
 		</div>
       </div>

@@ -6,7 +6,7 @@
     <title>Alexis Carbillet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Contains different articles about coding, databases, AI, Data Visualization, ...">
-    <meta name="keywords" content="alexis carbillet, carbillet, artificial intelligence, neural network, machine learning, data visualization, prom, prometheus, python, recommendation system, sql, mongodb, html, puppet, kube, kubernetes, docker, javascript">
+    <meta name="keywords" content="alexis carbillet, carbillet, artificial intelligence, neural network, machine learning, data visualization, prom, prometheus, python, recommendation system, sql, mongodb, html, puppet, kube, kubernetes, docker, terraform, linux, javascript, cloud, OVHcloud, blockchain">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
@@ -68,7 +68,7 @@
 			  <a class="nav-link js-scroll-trigger" href="#android">Android</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link js-scroll-trigger" href="#crypto">Crypto</a>
+				<a class="nav-link js-scroll-trigger" href="#cyber">Cybersecurity</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link js-scroll-trigger" href="#cloud">Cloud</a>
@@ -788,44 +788,71 @@
 </section>
 <!-- ======================================================================= -->
 
-<!-- ========================== CRYPTOGRAPHY SECTION ============================== -->
+<!-- ========================== CYBERSECURITY SECTION ============================== -->
 
-<section class="bg-dark" id="crypto">
+<section class="bg-dark" id="cyber">
 	<div class="parallaxstory">
 	  <div class="container">
 		<div class="row">
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h1 class="section-heading text-uppercase" style="color:white;">CRYPTOGRAPHY</h1>
-			<h3 class="section-subheading-android" style="color:white;">You will find in this section different articles about cryptography. Some contain examples written in Go. You can find my related work in the links below:</h3>
-			<div class="centered-list-container" style="color: white">
-				<ul class="centered-list">
-					<ul id="crypto-list" class="sub-centered-list">
-						<li class="sub-sub-centered-list-item text-left" onclick="toggleVisibility('crypto-list1')">Overview | 3 articles</li>
-						<ul id="crypto-list1" class="sub-centered-list hidden">
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Overview/history.html" style="color: #69b3a2" target=”_blank”>History</a></li>
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Overview/applications.html" style="color: #69b3a2" target=”_blank”>Applications</a></li>
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Overview/basics.html" style="color: #69b3a2" target=”_blank”>Basics</a></li>
+			<h1 class="section-heading text-uppercase" style="color:white;">CYBERSECURITY</h1>
+			<h3 class="section-subheading text-white" style="margin-bottom: 0%; color:white; margin-top: 0%">Use the buttons below to change the content of this section.</h3>
+			<h3 class="section-subheading-android" style="color:white;"></h3>
+			<button class="btn btn-perso" onclick="showSection5('section17', this)">Cryptography</button>
+			<button class="btn btn-perso" onclick="showSection5('section18', this)">Blockchain</button>
+			<div id="commonSection">
+				<div id="section17" style="display: block;">
+					<h2 class="section-heading text-uppercase text-white" style="padding-top: 2%">Cryptography</h2>
+					<h3 class="section-subheading text-white">You will find in this section different articles about cryptography. Some contain examples written in Go. You can find my related work in the links below:</h3>
+					<div class="centered-list-container" style="color: white">
+						<ul class="centered-list">
+							<ul id="crypto-list" class="sub-centered-list">
+								<li class="sub-sub-centered-list-item text-left" onclick="toggleVisibility('crypto-list1')">Overview | 3 articles</li>
+								<ul id="crypto-list1" class="sub-centered-list hidden">
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Overview/history.html" style="color: #69b3a2" target=”_blank”>History</a></li>
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Overview/applications.html" style="color: #69b3a2" target=”_blank”>Applications</a></li>
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Overview/basics.html" style="color: #69b3a2" target=”_blank”>Basics</a></li>
+								</ul>
+								<li class="sub-sub-centered-list-item text-left" onclick="toggleVisibility('crypto-list2')">Different kinds | 3 articles</li>
+								<ul id="crypto-list2" class="sub-centered-list hidden" style="color: #69b3a2">
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Kind/symetric.html" style="color: #69b3a2" target=”_blank”>Symetric</a></li>
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Kind/asymetric.html" style="color: #69b3a2" target=”_blank”>Asymetric</a></li>
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Kind/hash.html" style="color: #69b3a2" target=”_blank”>Hashing</a></li>
+								</ul>
+								<li class="sub-sub-centered-list-item text-left" onclick="toggleVisibility('crypto-list3')">Protocols | 3 articles</li>
+								<ul id="crypto-list3" class="sub-centered-list hidden">
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Protocol/ssl.html" style="color: #69b3a2" target=”_blank”>SSL/TLS</a></li>
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Protocol/ssh.html" style="color: #69b3a2" target=”_blank”>Pep8</a></li>
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Protocol/ipsec.html" style="color: #69b3a2" target=”_blank”>IPsec</a></li>
+								</ul>
+								<li class="sub-sub-centered-list-item text-left" onclick="toggleVisibility('crypto-list4')">Applications | 3 articles</li>
+								<ul id="crypto-list4" class="sub-centered-list hidden">
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="hhttps://ac-programming.com/content/crypto/Application/currency.html" style="color: #69b3a2" target=”_blank”>Crytocurrency</a></li>
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Application/signature.html" style="color: #69b3a2" target=”_blank”>Digital signature</a></li>
+									<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Application/communication.html" style="color: #69b3a2" target=”_blank”>Secure communication</a></li>
+								</ul>
+							</ul>
 						</ul>
-						<li class="sub-sub-centered-list-item text-left" onclick="toggleVisibility('crypto-list2')">Different kinds | 3 articles</li>
-						<ul id="crypto-list2" class="sub-centered-list hidden" style="color: #69b3a2">
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Kind/symetric.html" style="color: #69b3a2" target=”_blank”>Symetric</a></li>
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Kind/asymetric.html" style="color: #69b3a2" target=”_blank”>Asymetric</a></li>
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Kind/hash.html" style="color: #69b3a2" target=”_blank”>Hashing</a></li>
+					</div>
+				</div>
+				<div id="section18" style="display: none;">
+					<h2 class="section-heading text-uppercase text-white" style="padding-top: 2%">Blockchain</h2>
+					<h3 class="section-subheading text-white">You will find in this section different articles about blockchain. Some contain examples written in Go. You can find my related work in the links below:</h3>
+					<div class="centered-list-container" style="color: white">
+						<ul class="centered-list">
+							<ul id="crypto-list" class="sub-centered-list">
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article1.html" style="color: #69b3a2" target=”_blank”>What Is a Blockchain? Build a Mini One in Go</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article2.html" style="color: #69b3a2" target=”_blank”>How Transactions Work: Simulate a Crypto Wallet</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article3.html" style="color: #69b3a2" target=”_blank”>Proof of Work Explained</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article4.html" style="color: #69b3a2" target=”_blank”>Consensus Algorithms: Why Nodes Trust Each Other</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article5.html" style="color: #69b3a2" target=”_blank”>Smart Contracts Without Ethereum: The Idea Behind Programmable Money</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article6.html" style="color: #69b3a2" target=”_blank”>Immutable Logs: Why Blockchain Is Great for Audit Trails</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article7.html" style="color: #69b3a2" target=”_blank”>Building a CLI Explorer for Your Own Blockchain</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article8.html" style="color: #69b3a2" target=”_blank”>Blockchain vs. Traditional Databases: A Developer’s View</a></li>
+							</ul>
 						</ul>
-						<li class="sub-sub-centered-list-item text-left" onclick="toggleVisibility('crypto-list3')">Protocols | 3 articles</li>
-						<ul id="crypto-list3" class="sub-centered-list hidden">
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Protocol/ssl.html" style="color: #69b3a2" target=”_blank”>SSL/TLS</a></li>
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Protocol/ssh.html" style="color: #69b3a2" target=”_blank”>Pep8</a></li>
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Protocol/ipsec.html" style="color: #69b3a2" target=”_blank”>IPsec</a></li>
-						</ul>
-						<li class="sub-sub-centered-list-item text-left" onclick="toggleVisibility('crypto-list4')">Applications | 3 articles</li>
-						<ul id="crypto-list4" class="sub-centered-list hidden">
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="hhttps://ac-programming.com/content/crypto/Application/currency.html" style="color: #69b3a2" target=”_blank”>Crytocurrency</a></li>
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Application/signature.html" style="color: #69b3a2" target=”_blank”>Digital signature</a></li>
-							<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/crypto/Application/communication.html" style="color: #69b3a2" target=”_blank”>Secure communication</a></li>
-						</ul>
-					</ul>
-				</ul>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -835,7 +862,7 @@
 </section>
 <!-- ======================================================================= -->
 
-<!-- ========================== CRYPTOGRAPHY SECTION ============================== -->
+<!-- ========================== CLOUD SECTION ============================== -->
 
 <section class="bg-light" id="cloud">
 	<div class="parallaxstory">

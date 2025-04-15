@@ -3,16 +3,16 @@
   <head>
 
     <meta charset="utf-8">
-    <title>History</title>
+    <title>How Transactions Work: Simulate a Crypto Wallet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Website of Alexis Carbillet">
-    <meta name="keywords" content="alexis carbillet, carbillet, cryptography">
+    <meta name="description" content="How Transactions Work: Simulate a Crypto Wallet">
+    <meta name="keywords" content="alexis carbillet, carbillet, blockchain, go">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
     <meta property="og:title" content="Alexis Carbillet" />
-    <meta property="og:description" content="Website of Alexis Carbillet" />
-    <meta property='og:url' content="https://www.ac-programming.com/content/crypto/Overview/applications.html" />
+    <meta property="og:description" content="How Transactions Work: Simulate a Crypto Wallet" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/blockchain/articles/article2.html" />
     <meta property="og:type" content="website" />
 
     <!-- Bootstrap core CSS -->
@@ -55,6 +55,9 @@
 			<li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#article">Article</a>
             </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#go">Go Example</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
@@ -81,20 +84,138 @@
       <div class="container">
         <div class="row">
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h2 class="section-heading text-uppercase">Applications of cryptography</h2>
+			<h2 class="section-heading text-uppercase">How Transactions Work: Simulate a Crypto Wallet</h2>
 		  </div>
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-		  <ul>
-        <li><b>Secure Communication</b>: Cryptography enables secure communication over insecure channels, such as the internet. It ensures that sensitive information, such as financial transactions, personal messages, and business communications, remains confidential and cannot be intercepted or deciphered by unauthorized parties.</li>
-        <li><b>Data Protection and Privacy</b>: In an era of increasing digitalization, protecting sensitive data from unauthorized access is paramount. Cryptography is used to encrypt data stored on devices, transmitted over networks, or processed in the cloud, safeguarding individuals' privacy and preventing data breaches.</li>
-        <li><b>E-commerce and Online Banking</b>: Cryptography underpins the security of e-commerce and online banking systems. Secure protocols such as SSL/TLS encrypt data exchanged between users and websites, preventing eavesdropping and ensuring the integrity of transactions.</li>
-        <li><b>Digital Signatures</b>: Cryptography enables the use of digital signatures, which verify the authenticity and integrity of electronic documents, contracts, and transactions. Digital signatures provide non-repudiation, meaning the signer cannot later deny their involvement.</li>
-        <li><b>Authentication and Access Control</b>: Cryptography plays a crucial role in authentication mechanisms, such as passwords, biometrics, and cryptographic keys, which verify the identity of users and control access to sensitive systems and data.</li>
-        <li><b>Blockchain and Cryptocurrencies</b>: Cryptography is fundamental to the operation of blockchain technology, which underpins cryptocurrencies like Bitcoin and Ethereum. Cryptographic techniques such as hashing, digital signatures, and consensus algorithms ensure the security, immutability, and decentralization of blockchain networks.</li>
-        <li><b>Secure Software and Systems</b>: Cryptography is used to secure software applications, operating systems, and network protocols against various cyber threats, including malware, phishing attacks, and data tampering.</li>
-        <li><b>National Security and Defense</b>: Cryptography is a vital component of national security and defense systems, protecting classified information, military communications, and critical infrastructure from espionage, sabotage, and cyber attacks.</li>
-        <li><b>IoT Security</b>:  With the proliferation of Internet of Things (IoT) devices, cryptography is essential for securing communication and data exchange between interconnected devices, preventing unauthorized access and ensuring the integrity of IoT ecosystems.</li>
+		  <p>Blockchain isn’t just about blocks and hashes — at its core, it's a system for managing digital transactions without a central authority. Whether you're sending Bitcoin or NFTs, the magic happens through cryptographic wallets and digitally signed transactions.</p>
+		  <p>In this article, we’ll break down how transactions work and simulate a basic crypto wallet using Go. You’ll learn how to:</p>
+      <ul>
+        <li>Generate public/private key pairs</li>
+        <li>Create a simple transaction</li>
+        <li>Digitally sign it</li>
+        <li>Verify the signature</li>
       </ul>
+      <h6>What Is a Crypto Wallet, Really?</h6>
+		  <p>A crypto wallet doesn’t store coins — it stores keys:</p>
+      <ul>
+        <li>A private key (keep secret!) is used to sign transactions.</li>
+        <li>A public key is shared with others and used to verify signatures</li>
+      </ul>
+		  <p>When you "send crypto," you're really creating a digitally signed message that proves:</p>
+		  <p>"I authorize this amount to be sent to this address."</p>
+		  <p>In the following section, you will find a code written in go that illustrate this.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== GO SECTION ============================ -->
+
+	<section class="bg-light" id="go">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Go example</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+			<pre><code>package main
+
+import (
+    "crypto/ecdsa"
+    "crypto/elliptic"
+    "crypto/rand"
+    "crypto/sha256"
+    "encoding/hex"
+    "fmt"
+    "math/big"
+)
+
+type Transaction struct {
+    From      string
+    To        string
+    Amount    float64
+    Signature []byte
+}
+
+func generateKeyPair() (*ecdsa.PrivateKey, error) {
+    return ecdsa.GenerateKey(elliptic.P256(), rand.Reader)
+}
+
+func signTransaction(tx *Transaction, privKey *ecdsa.PrivateKey) error {
+    data := tx.From + tx.To + fmt.Sprintf("%f", tx.Amount)
+    hash := sha256.Sum256([]byte(data))
+
+    r, s, err := ecdsa.Sign(rand.Reader, privKey, hash[:])
+    if err != nil {
+        return err
+    }
+
+    tx.Signature = append(r.Bytes(), s.Bytes()...)
+    return nil
+}
+
+func verifyTransaction(tx *Transaction, pubKey *ecdsa.PublicKey) bool {
+    data := tx.From + tx.To + fmt.Sprintf("%f", tx.Amount)
+    hash := sha256.Sum256([]byte(data))
+
+    r := big.Int{}
+    s := big.Int{}
+    sigLen := len(tx.Signature)
+    r.SetBytes(tx.Signature[:(sigLen / 2)])
+    s.SetBytes(tx.Signature[(sigLen / 2):])
+
+    return ecdsa.Verify(pubKey, hash[:], &r, &s)
+}
+
+func publicKeyToString(pubKey *ecdsa.PublicKey) string {
+    pubBytes := append(pubKey.X.Bytes(), pubKey.Y.Bytes()...)
+    return hex.EncodeToString(pubBytes)
+}
+
+func main() {
+    // Wallets
+    senderPriv, _ := generateKeyPair()
+    senderPub := &senderPriv.PublicKey
+    receiverPriv, _ := generateKeyPair()
+    receiverPub := &receiverPriv.PublicKey
+
+    // Create a transaction
+    tx := Transaction{
+        From:   publicKeyToString(senderPub),
+        To:     publicKeyToString(receiverPub),
+        Amount: 42.0,
+    }
+
+    // Sign it
+    signTransaction(&tx, senderPriv)
+
+    // Verify it
+    valid := verifyTransaction(&tx, senderPub)
+    fmt.Printf("Transaction valid: %v\n", valid)
+
+    if !valid {
+        fmt.Println("Transaction failed verification!")
+    } else {
+        fmt.Printf("From: %s\nTo: %s\nAmount: %.2f\nSignature: %x\n",
+            tx.From, tx.To, tx.Amount, tx.Signature)
+    }
+}</code></pre>
+			<p>Result:</p>
+      <pre><code>Transaction valid: true
+From: 04e6b4a...23ff2
+To:   0424cc1...5a89f
+Amount: 42.00
+Signature: 3045ab...9fce</code></pre>
+      <h6>How the code works</h6>
+			<ul>
+        <li>You generate keys for both sender and receiver.</li>
+        <li>The transaction is created and hashed.</li>
+        <li>The sender signs the hash using their private key.</li>
+        <li>Anyone (like miners or validators) can verify it using the public key.</li>
+      </ul>
+      <p>This is the backbone of how cryptocurrencies stay trustless and secure.</p>
 		  </div>
 		</div>
       </div>

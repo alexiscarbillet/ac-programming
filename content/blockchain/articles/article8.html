@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Blockchain vs. Traditional Databases: A Developer’s View</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Blockchain vs. Traditional Databases: A Developer’s View">
+    <meta name="keywords" content="alexis carbillet, carbillet, blockchain, go">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Alexis Carbillet" />
+    <meta property="og:description" content="Blockchain vs. Traditional Databases: A Developer’s View" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/blockchain/articles/article8.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cyber">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Blockchain vs. Traditional Databases: A Developer’s View</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+		  <p>How does a blockchain compare to a traditional database?</p>
+		  <p>Let’s break this down from a developer’s perspective. We'll cover use cases, architecture, advantages, and code-level thinking — all through a practical lens.</p>
+		  <h6>TL;DR</h6>
+      <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th>Blockchain</th>
+            <th>Traditional Database</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Data Model</td>
+            <td>Append-only ledger</td>
+            <td>Mutable tables</td>
+          </tr>
+          <tr>
+            <td>Trust Model</td>
+            <td>Decentralized (trustless)</td>
+            <td>Centralized (trust the owner)</td>
+          </tr>
+          <tr>
+            <td>Data Integrity</td>
+            <td>Cryptographically secured</td>
+            <td>Application-level controls</td>
+          </tr>
+          <tr>
+            <td>Immutability</td>
+            <td>Built-in</td>
+            <td>Custom implementation needed</td>
+          </tr>
+          <tr>
+            <td>Querying & Performance</td>
+            <td>Limited querying, slow writes</td>
+            <td>Fast and flexible</td>
+          </tr>
+          <tr>
+            <td>Use Case</td>
+            <td>Transparency, integrity</td>
+            <td>General-purpose data storage</td>
+          </tr>
+        </tbody>
+      </table>
+      <h6>Traditional Databases: The Workhorse</h6>      
+      <p>A traditional RDBMS (MySQL, PostgreSQL) or NoSQL database (MongoDB, Redis) is:</p>
+      <ul>
+        <li>Fast</li>
+        <li>Easy to query</li>
+        <li>Designed for CRUD (Create, Read, Update, Delete)</li>
+        <li>Great for storing structured or unstructured data</li>
+        <li>Centralized — access is managed by a single authority</li>
+      </ul>
+		  <p>You'd use one when you need:</p>
+      <ul>
+        <li>User accounts</li>
+        <li>E-commerce orders</li>
+        <li>Blog content</li>
+        <li>Complex filters or aggregations</li>
+      </ul>
+		  <p><b>But here's the catch: data can be silently changed by an admin or bug — and you may never know.</b></p>
+		  <h6>Blockchain: The Immutable Ledger</h6>
+      <p>A blockchain is a special kind of database:</p>
+      <ul>
+        <li>Data is write-only (append-only)</li>
+        <li>Each block is cryptographically linked to the previous one</li>
+        <li>It’s hard (or impossible) to modify historical data</li>
+        <li>Often decentralized — no single point of control</li>
+      </ul>
+		  <p>You’d use blockchain when:</p>
+      <ul>
+        <li>You need auditability or tamper detection</li>
+        <li>Multiple parties don't trust each other</li>
+        <li>You want to track ownership or timestamped data</li>
+      </ul>
+      <h6>Developer Comparison: Let’s Talk Code</h6>
+		  <p><b></b>:</p>
+      <pre><code>INSERT INTO transactions (sender, receiver, amount) VALUES ('Alice', 'Bob', 10);</code></pre>
+		  <p>You can update or delete it anytime:</p>
+      <pre><code>UPDATE transactions SET amount = 5 WHERE sender = 'Alice';
+DELETE FROM transactions WHERE sender = 'Alice';</code></pre>
+      <p><b>Blockchain (Go example)</b></p>
+      <p>Here’s a Go struct for a block:</p>
+      <pre><code>type Block struct {
+  Index     int
+  Timestamp string
+  Data      string
+  PrevHash  string
+  Hash      string
+}</code></pre>
+        <p>To add a new block:</p>
+        <pre><code>func generateBlock(prev Block, data string) Block {
+  newBlock := Block{
+    Index:     prev.Index + 1,
+    Timestamp: time.Now().Format(time.RFC3339),
+    Data:      data,
+    PrevHash:  prev.Hash,
+  }
+  newBlock.Hash = calculateHash(newBlock)
+  return newBlock
+}</code></pre>
+        <p>There’s no UPDATE. There's no DELETE. The past is the past.</p>
+        <h6>Use Cases: When to Use What?</h6>
+        <table border="1" cellpadding="8" cellspacing="0">
+          <thead>
+            <tr>
+              <th>Feature</th>
+              <th>Blockchain</th>
+              <th>Traditional Database</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Data Model</td>
+              <td>Append-only ledger</td>
+              <td>Mutable tables</td>
+            </tr>
+            <tr>
+              <td>Trust Model</td>
+              <td>Decentralized (trustless)</td>
+              <td>Centralized (trust the owner)</td>
+            </tr>
+            <tr>
+              <td>Data Integrity</td>
+              <td>Cryptographically secured</td>
+              <td>Application-level controls</td>
+            </tr>
+            <tr>
+              <td>Immutability</td>
+              <td>Built-in</td>
+              <td>Custom implementation needed</td>
+            </tr>
+            <tr>
+              <td>Querying & Performance</td>
+              <td>Limited querying, slow writes</td>
+              <td>Fast and flexible</td>
+            </tr>
+            <tr>
+              <td>Use Case</td>
+              <td>Transparency, integrity</td>
+              <td>General-purpose data storage</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>Use databases for performance and flexibility, and blockchains for integrity and trustless systems.</p>        
+        <h6>Common Developer Misconceptions</h6>
+        <p>“Blockchain replaces SQL databases” — Nope. It solves different problems.</p>
+        <p>“You can't query blockchain data” — You can, but it's more like reading a log than querying a table.</p>
+        <p>“Blockchains are secure by default” — They are tamper-resistant, but bad input can still go in.</p>
+        <h6>When You Might Use Both</h6>
+        <p>Hybrid architectures are becoming popular. For example:</p>
+        <ul>
+          <li>Store transactions on-chain</li>
+          <li>Store fast, queryable metadata off-chain</li>
+          <li>Link them via hashes or block references</li>
+        </ul>
+        <p>This gives you the audit trail of a blockchain + the speed and flexibility of a DB.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

@@ -3,16 +3,16 @@
   <head>
 
     <meta charset="utf-8">
-    <title>History</title>
+    <title>What Is a Blockchain? Build a Mini One in Go</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Website of Alexis Carbillet">
-    <meta name="keywords" content="alexis carbillet, carbillet, cryptography">
+    <meta name="description" content="What Is a Blockchain? Build a Mini One in Go">
+    <meta name="keywords" content="alexis carbillet, carbillet, blockchain, go">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
     <meta property="og:title" content="Alexis Carbillet" />
-    <meta property="og:description" content="Website of Alexis Carbillet" />
-    <meta property='og:url' content="https://www.ac-programming.com/content/crypto/Overview/applications.html" />
+    <meta property="og:description" content="What Is a Blockchain? Build a Mini One in Go" />
+    <meta property='og:url' content="https://www.ac-programming.com/content/blockchain/articles/article1.html" />
     <meta property="og:type" content="website" />
 
     <!-- Bootstrap core CSS -->
@@ -55,6 +55,9 @@
 			<li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#article">Article</a>
             </li>
+			<li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#go">Go Example</a>
+            </li>
             <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
             </li>
@@ -81,20 +84,108 @@
       <div class="container">
         <div class="row">
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h2 class="section-heading text-uppercase">Applications of cryptography</h2>
+			<h2 class="section-heading text-uppercase">What Is a Blockchain? Build a Mini One in Go</h2>
 		  </div>
 		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-		  <ul>
-        <li><b>Secure Communication</b>: Cryptography enables secure communication over insecure channels, such as the internet. It ensures that sensitive information, such as financial transactions, personal messages, and business communications, remains confidential and cannot be intercepted or deciphered by unauthorized parties.</li>
-        <li><b>Data Protection and Privacy</b>: In an era of increasing digitalization, protecting sensitive data from unauthorized access is paramount. Cryptography is used to encrypt data stored on devices, transmitted over networks, or processed in the cloud, safeguarding individuals' privacy and preventing data breaches.</li>
-        <li><b>E-commerce and Online Banking</b>: Cryptography underpins the security of e-commerce and online banking systems. Secure protocols such as SSL/TLS encrypt data exchanged between users and websites, preventing eavesdropping and ensuring the integrity of transactions.</li>
-        <li><b>Digital Signatures</b>: Cryptography enables the use of digital signatures, which verify the authenticity and integrity of electronic documents, contracts, and transactions. Digital signatures provide non-repudiation, meaning the signer cannot later deny their involvement.</li>
-        <li><b>Authentication and Access Control</b>: Cryptography plays a crucial role in authentication mechanisms, such as passwords, biometrics, and cryptographic keys, which verify the identity of users and control access to sensitive systems and data.</li>
-        <li><b>Blockchain and Cryptocurrencies</b>: Cryptography is fundamental to the operation of blockchain technology, which underpins cryptocurrencies like Bitcoin and Ethereum. Cryptographic techniques such as hashing, digital signatures, and consensus algorithms ensure the security, immutability, and decentralization of blockchain networks.</li>
-        <li><b>Secure Software and Systems</b>: Cryptography is used to secure software applications, operating systems, and network protocols against various cyber threats, including malware, phishing attacks, and data tampering.</li>
-        <li><b>National Security and Defense</b>: Cryptography is a vital component of national security and defense systems, protecting classified information, military communications, and critical infrastructure from espionage, sabotage, and cyber attacks.</li>
-        <li><b>IoT Security</b>:  With the proliferation of Internet of Things (IoT) devices, cryptography is essential for securing communication and data exchange between interconnected devices, preventing unauthorized access and ensuring the integrity of IoT ecosystems.</li>
-      </ul>
+        <p>Blockchain has become one of the most exciting technologies of the 21st century, powering cryptocurrencies, smart contracts, supply chain tracking, and more. But what is a blockchain, really?</p>
+        <p>In this article, we’ll demystify the concept by building a simple blockchain from scratch using Go. No crypto libraries, no external frameworks—just Go’s standard packages and a few dozen lines of code.</p>
+        <p>By the end, you’ll understand how blocks are linked together using hashes, and you’ll have a working toy blockchain to play with.</p>
+        <h6>What Is a Blockchain?</h6>
+        <p>At its core, a blockchain is:</p>
+        <ul>
+          <li>A chain of blocks</li>
+          <li>Each block contains data and a cryptographic hash</li>
+          <li>Each block references the hash of the previous block</li>
+        </ul>
+        <p>This creates an immutable ledger—if someone tampers with a previous block, all the following hashes break. This structure is what gives blockchain its integrity.</p>
+        <p>Let’s visualize it:</p>
+        <pre><code>[Block 0] --> [Block 1] --> [Block 2] --> ...
+    |             |             |
+  Hash 0      Prev:Hash 0   Prev:Hash 1</code></pre>
+        <p>Each block contains:</p>
+        <ul>
+          <li>An index (its position in the chain)</li>
+          <li>A timestamp</li>
+          <li>Some data (like transactions)</li>
+          <li>The hash of the previous block</li>
+          <li>Its own hash (calculated from its content)</li>
+        </ul>
+        <h6>Building a Simple Blockchain in Go</h6>
+        <p>See the next section.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== GO SECTION ============================ -->
+
+	<section class="bg-light" id="go">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Go example</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+			<pre><code>type Block struct {
+    Index        int
+    Timestamp    string
+    Data         string
+    PrevHash     string
+    Hash         string
+}
+func calculateHash(block Block) string {
+  record := strconv.Itoa(block.Index) + block.Timestamp + block.Data + block.PrevHash
+  h := sha256.New()
+  h.Write([]byte(record))
+  return hex.EncodeToString(h.Sum(nil))
+}
+func createGenesisBlock() Block {
+  genesis := Block{0, time.Now().String(), "Genesis Block", "", ""}
+  genesis.Hash = calculateHash(genesis)
+  return genesis
+}
+func generateNextBlock(prevBlock Block, data string) Block {
+  newBlock := Block{
+      Index:     prevBlock.Index + 1,
+      Timestamp: time.Now().String(),
+      Data:      data,
+      PrevHash:  prevBlock.Hash,
+  }
+  newBlock.Hash = calculateHash(newBlock)
+  return newBlock
+}
+func main() {
+  var blockchain []Block
+
+  genesis := createGenesisBlock()
+  blockchain = append(blockchain, genesis)
+
+  for i := 1; i <= 5; i++ {
+      newBlock := generateNextBlock(blockchain[len(blockchain)-1], fmt.Sprintf("Block #%d data", i))
+      blockchain = append(blockchain, newBlock)
+  }
+
+  for _, block := range blockchain {
+      fmt.Printf("Index: %d\nTimestamp: %s\nData: %s\nPrevHash: %s\nHash: %s\n\n",
+          block.Index, block.Timestamp, block.Data, block.PrevHash, block.Hash)
+  }
+}</code></pre>
+        <p>Here is what the output should look like:</p>
+        <pre><code>Index: 0
+Timestamp: 2025-04-14 12:34:56
+Data: Genesis Block
+PrevHash:
+Hash: 2a7c...a3e9
+
+Index: 1
+Timestamp: 2025-04-14 12:35:01
+Data: Block #1 data
+PrevHash: 2a7c...a3e9
+Hash: e7fd...1d3b
+... </code></pre>
+        <p>Each block clearly links to the one before it. If any block is modified, the hashes no longer match — making tampering obvious and easily detectable.</p>
 		  </div>
 		</div>
       </div>

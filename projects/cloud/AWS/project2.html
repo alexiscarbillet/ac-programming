@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Personal Bookmark Saver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Personal Bookmark Saver">
+    <meta name="keywords" content="alexis carbillet, carbillet, AWS">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Personal Bookmark Saver" />
+    <meta property="og:description" content="Personal Bookmark Saver" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/AWS/project2.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cloud">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+<section id="article">
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Personal Bookmark Saver</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+            <p>The goal of this project is to create a simple web app to save your favorites, add tags and notes, search or export bookmarks.</p>
+            <h6>What will be used</h6>
+          <ul>
+            <li>Cognito: Handle user authentication.</li>
+            <li>API Gateway: Expose API endpoints for frontend (add, list, delete).</li>
+            <li>Lambda: Handle backend logic (read/write bookmarks).</li>
+            <li>DynamoDB: Store bookmarks (URL, title, tags, timestamp, notes, etc.).</li>
+            <li>S3: Host the frontend (HTML/JS).</li>
+        </ul>
+        <h6>Create DynamoDB Table</h6>
+        <p>Go to DynamoDB, create a table:</p>
+        <ul>
+            <li>Table name: Bookmarks</li>
+            <li>Partition key: userId (String)</li>
+            <li>Sort key: timestamp (Number)</li>
+        </ul>
+        <p>Add attributes:</p>
+        <ul>
+            <li>url (String)</li>
+            <li>title (String)</li>
+            <li>tags (String)</li>
+            <li>notes (String)</li>
+        </ul>
+        <h6>Set Up Cognito</h6>
+        <p>Go to Amazon Cognito:</p>
+        <ul>
+            <li>Create a User Pool and a User Pool App Client.</li>
+            <li>Enable email/password sign-up.</li>
+            <li>Enable hosted UI if needed.</li>
+            <li>Use Cognito Identity Pool for temporary AWS credentials in frontend.</li>
+        </ul>
+        <h6>Create Lambda Functions</h6>
+        <p>Here are the different functions:</p>
+        <ul>
+            <li>addBookmark</li>
+            <pre><code>import boto3
+import json
+import time
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('Bookmarks')
+
+def lambda_handler(event, context):
+    body = json.loads(event['body'])
+
+    user_id = event['requestContext']['authorizer']['claims']['sub']  # Cognito user ID
+    timestamp = int(time.time())
+
+    item = {
+        'userId': user_id,
+        'timestamp': timestamp,
+        'url': body['url'],
+        'title': body['title'],
+        'tags': body.get('tags', ''),
+        'notes': body.get('notes', '')
+    }
+
+    table.put_item(Item=item)
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps({'message': 'Bookmark added'})
+    }</code></pre>
+            <li>listBookmarks</li>
+            <pre><code>import boto3
+import json
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('Bookmarks')
+
+def lambda_handler(event, context):
+    user_id = event['requestContext']['authorizer']['claims']['sub']
+
+    response = table.query(
+        KeyConditionExpression=boto3.dynamodb.conditions.Key('userId').eq(user_id),
+        ScanIndexForward=False  # latest first
+    )
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps(response['Items'])
+    }</code></pre>
+            <li>deleteBookmark</li>
+            <pre><code>import boto3
+import json
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('Bookmarks')
+
+def lambda_handler(event, context):
+    user_id = event['requestContext']['authorizer']['claims']['sub']
+    body = json.loads(event['body'])
+
+    table.delete_item(
+        Key={
+            'userId': user_id,
+            'timestamp': body['timestamp']
+        }
+    )
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps({'message': 'Bookmark deleted'})
+    }</code></pre>
+            <li>exportBookmarks (CSV)</li>
+            <pre><code>import boto3
+import json
+import csv
+import io
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('Bookmarks')
+
+def lambda_handler(event, context):
+    user_id = event['requestContext']['authorizer']['claims']['sub']
+
+    response = table.query(
+        KeyConditionExpression=boto3.dynamodb.conditions.Key('userId').eq(user_id)
+    )
+
+    bookmarks = response['Items']
+
+    output = io.StringIO()
+    writer = csv.DictWriter(output, fieldnames=['url', 'title', 'tags', 'notes', 'timestamp'])
+    writer.writeheader()
+    for item in bookmarks:
+        writer.writerow({
+            'url': item.get('url', ''),
+            'title': item.get('title', ''),
+            'tags': item.get('tags', ''),
+            'notes': item.get('notes', ''),
+            'timestamp': item.get('timestamp', '')
+        })
+
+    return {
+        'statusCode': 200,
+        'headers': {
+            'Content-Type': 'text/csv',
+            'Content-Disposition': 'attachment; filename="bookmarks.csv"'
+        },
+        'body': output.getvalue()
+    }</code></pre>
+          </ul>
+          <h6>Create API Gateway</h6>
+          <p>Create a HTTP API.</p>
+          <p>Add routes:</p>
+          <ul>
+            <li>POST /add-bookmark → addBookmark Lambda</li>
+            <li>GET /list-bookmarks → listBookmarks Lambda</li>
+            <li>POST /delete-bookmark -> deleteBookmark Lambda</li>
+            <li>GET /export-bookmarks -> exportBookmarks</li>
+          </ul>
+          <p>Enable CORS for frontend use.</p>
+          <p>Fnable authorization for Cognito.</p>
+          <h6>Build the Frontend</h6>
+          <p>Simple HTML + JS interface:</p>
+          <pre><code>&lt;form onsubmit=&quot;saveBookmark(); return false;&quot;&gt;
+    &lt;input id=&quot;url&quot; placeholder=&quot;URL&quot;&gt;&lt;br&gt;
+    &lt;input id=&quot;title&quot; placeholder=&quot;Title&quot;&gt;&lt;br&gt;
+    &lt;input id=&quot;tags&quot; placeholder=&quot;Tags&quot;&gt;&lt;br&gt;
+    &lt;textarea id=&quot;notes&quot; placeholder=&quot;Notes&quot;&gt;&lt;/textarea&gt;&lt;br&gt;
+    &lt;button type=&quot;submit&quot;&gt;Save&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;pre id=&quot;response&quot;&gt;&lt;/pre&gt;
+
+&lt;script&gt;
+async function saveBookmark() {
+    const data = {
+    url: document.getElementById('url').value,
+    title: document.getElementById('title').value,
+    tags: document.getElementById('tags').value,
+    notes: document.getElementById('notes').value
+    };
+
+    const res = await fetch(&quot;https://your-api-id.amazonaws.com/add-bookmark&quot;, {
+    method: &quot;POST&quot;,
+    headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+    body: JSON.stringify(data)
+    });
+
+    const result = await res.json();
+    document.getElementById(&quot;response&quot;).textContent = JSON.stringify(result, null, 2);
+}
+&lt;/script&gt;</code></pre>            
+            <p>Create your S3 bucket:</p>
+            <ul>
+                <li>Go to the AWS Console → S3 → Create bucket</li>
+                <li>Give it a name like my-bookmark-app</li>
+                <li>Region: same as your Lambda/API if possible</li>
+                <li>Uncheck "Block all public access"</li>
+                <li>Acknowledge the warning checkbox</li>
+            </ul>
+            <p>Enable Static Website Hosting</p>
+            <ul>
+                <li>After creating the bucket, go to Properties tab</li>
+                <li>Scroll to Static website hosting</li>
+                <li>Click Edit → Enable</li>
+                <li>Set:</li>
+                <ul>
+                    <li>Index document: index.html</li>
+                    <li>(optional) Error document: error.html</li>
+                </ul>
+                <li>Click Save changes</li>
+            </ul>
+            <p>Upload Your HTML File defined earlier</p>
+            <p>Make the HTML Public</p>
+            <ul>
+                <li>Go to the uploaded index.html</li>
+                <li>Click Permissions tab → Edit → Set object to public</li>
+                <li>Or use a Bucket Policy (recommended for multiple files):</li>
+                <pre><code>{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+        "Sid": "PublicRead",
+        "Effect": "Allow",
+        "Principal": "*",
+        "Action": "s3:GetObject",
+        "Resource": "arn:aws:s3:::my-bookmark-app/*"
+        }
+    ]
+}</code></pre>
+                <p>Replace my-bookmark-app with your bucket name.</p>
+            </ul>
+            <p>Your static site is now live at (replace yourRegion): http://my-bookmark-app.s3-website-yourRegion.amazonaws.com</p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

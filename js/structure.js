@@ -152,3 +152,19 @@ function showSection5(sectionId, button) {
     // Add 'selected' class to the clicked button
     button.classList.add('selected');
 }
+
+function showSection6(sectionId, button) {
+  // Hide all sections
+  document.getElementById('section20').style.display = 'none';
+  document.getElementById('section21').style.display = 'none';
+
+  // Show the selected section
+  document.getElementById(sectionId).style.display = 'block';
+
+    // Remove 'selected' class from all buttons
+    const buttons = document.querySelectorAll('.btn-perso');
+    buttons.forEach(btn => btn.classList.remove('selected'));
+  
+    // Add 'selected' class to the clicked button
+    button.classList.add('selected');
+}

@@ -5,8 +5,8 @@
     <meta charset="utf-8">
     <title>Alexis Carbillet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Contains different articles about coding, databases, AI, Data Visualization, ...">
-    <meta name="keywords" content="alexis carbillet, carbillet, artificial intelligence, neural network, machine learning, data visualization, prom, prometheus, python, recommendation system, sql, mongodb, html, puppet, kube, kubernetes, docker, terraform, linux, javascript, cloud, OVHcloud, blockchain">
+    <meta name="description" content="Contains different articles about coding, databases, AI, Data Visualization, etc. Many languages are used but scripts are mainly written in Python and Go.">
+    <meta name="keywords" content="alexis carbillet, carbillet, artificial intelligence, neural network, machine learning, data visualization, prom, prometheus, python, recommendation system, sql, mongodb, html, puppet, kube, kubernetes, docker, terraform, linux, javascript, cloud, OVHcloud, blockchain, wireshark">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
@@ -800,6 +800,7 @@
 			<h3 class="section-subheading-android" style="color:white;"></h3>
 			<button class="btn btn-perso" onclick="showSection5('section17', this)">Cryptography</button>
 			<button class="btn btn-perso" onclick="showSection5('section18', this)">Blockchain</button>
+			<button class="btn btn-perso" onclick="showSection5('section19', this)">Wireshark</button>
 			<div id="commonSection">
 				<div id="section17" style="display: block;">
 					<h2 class="section-heading text-uppercase text-white" style="padding-top: 2%">Cryptography</h2>
@@ -840,15 +841,29 @@
 					<h3 class="section-subheading text-white">You will find in this section different articles about blockchain. Some contain examples written in Go. You can find my related work in the links below:</h3>
 					<div class="centered-list-container" style="color: white">
 						<ul class="centered-list">
-							<ul id="crypto-list" class="sub-centered-list">
-								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article1.html" style="color: #69b3a2" target=”_blank”>What Is a Blockchain? Build a Mini One in Go</a></li>
-								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article2.html" style="color: #69b3a2" target=”_blank”>How Transactions Work: Simulate a Crypto Wallet</a></li>
-								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article3.html" style="color: #69b3a2" target=”_blank”>Proof of Work Explained</a></li>
-								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article4.html" style="color: #69b3a2" target=”_blank”>Consensus Algorithms: Why Nodes Trust Each Other</a></li>
-								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article5.html" style="color: #69b3a2" target=”_blank”>Smart Contracts Without Ethereum: The Idea Behind Programmable Money</a></li>
-								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article6.html" style="color: #69b3a2" target=”_blank”>Immutable Logs: Why Blockchain Is Great for Audit Trails</a></li>
-								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article7.html" style="color: #69b3a2" target=”_blank”>Building a CLI Explorer for Your Own Blockchain</a></li>
-								<li class="sub-sub-sub-sub-centered-list-item text-left"><li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article8.html" style="color: #69b3a2" target=”_blank”>Blockchain vs. Traditional Databases: A Developer’s View</a></li>
+							<ul id="blockchain-list" class="sub-centered-list">
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article1.html" style="color: #69b3a2" target=”_blank”>What Is a Blockchain? Build a Mini One in Go</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article2.html" style="color: #69b3a2" target=”_blank”>How Transactions Work: Simulate a Crypto Wallet</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article3.html" style="color: #69b3a2" target=”_blank”>Proof of Work Explained</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article4.html" style="color: #69b3a2" target=”_blank”>Consensus Algorithms: Why Nodes Trust Each Other</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article5.html" style="color: #69b3a2" target=”_blank”>Smart Contracts Without Ethereum: The Idea Behind Programmable Money</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article6.html" style="color: #69b3a2" target=”_blank”>Immutable Logs: Why Blockchain Is Great for Audit Trails</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article7.html" style="color: #69b3a2" target=”_blank”>Building a CLI Explorer for Your Own Blockchain</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="https://ac-programming.com/content/blockchain/articles/article8.html" style="color: #69b3a2" target=”_blank”>Blockchain vs. Traditional Databases: A Developer’s View</a></li>
+							</ul>
+						</ul>
+					</div>
+				</div>
+				<div id="section19" style="display: none;">
+					<h2 class="section-heading text-uppercase text-white" style="padding-top: 2%">Wireshark</h2>
+					<h3 class="section-subheading text-white">You will find in this section different articles about wireshark. You can find my related work in the links below:</h3>
+					<div class="centered-list-container" style="color: white">
+						<ul class="centered-list">
+							<ul id="wireshark-list" class="sub-centered-list">
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="projects/Wireshark/Project1/project1.html" style="color: #69b3a2" target=”_blank”>Top 10 Wireshark Display Filters You Should Know</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="projects/Wireshark/Project2/project2.html" style="color: #69b3a2" target=”_blank”>Troubleshooting Slow Internet with Wireshark: A Step-by-Step Guide</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="projects/Wireshark/Project3/project3.html" style="color: #69b3a2" target=”_blank”>How to Detect ARP Spoofing or MITM Attacks with Wireshark</a></li>
+								<li class="sub-sub-sub-sub-centered-list-item text-left"><a href="projects/Wireshark/Project4/project4.html" style="color: #69b3a2" target=”_blank”>Deep Dive into TLS Handshakes and Certificate Inspection</a></li>
 							</ul>
 						</ul>
 					</div>

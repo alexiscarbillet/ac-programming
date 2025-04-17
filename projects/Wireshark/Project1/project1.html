@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Top 10 Wireshark Display Filters You Should Know</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Top 10 Wireshark Display Filters You Should Know">
+    <meta name="keywords" content="alexis carbillet, carbillet, wireshark">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Top 10 Wireshark Display Filters You Should Know" />
+    <meta property="og:description" content="Top 10 Wireshark Display Filters You Should Know" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Wireshark/Project1/project1.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cyber">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+<section id="article">
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Top 10 Wireshark Display Filters You Should Know</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+            <p>Wireshark is a powerhouse tool for network analysis—but without mastering display filters, you’ll quickly drown in a sea of packets. Display filters let you zero in on exactly the traffic you want to analyze, saving time and making your job way easier.</p>
+            <p>In this article, we’ll walk through 10 essential display filters that every Wireshark user should know. Whether you're troubleshooting a network issue or investigating suspicious behavior, these filters will help you cut through the noise.</p>
+            <h6>ip.addr == x.x.x.x</h6>
+            <p>Purpose: Show all traffic to or from a specific IP address.</p>
+            <p>This is one of the most basic and useful filters. It matches both source and destination addresses.</p>
+            <h6>ip.src == x.x.x.x / ip.dst == x.x.x.x</h6>
+            <p>Purpose: Show traffic where the IP is specifically the source or destination.</p>
+            <p>Use these when you want to isolate traffic direction.</p>
+            <h6>tcp.port == 80</h6>
+            <p>Purpose: Filter all TCP traffic using port 80 (typically HTTP).</p>
+            <p>This works for both source and destination ports. You can replace 80 with any port: 443 (HTTPS), 21 (FTP), etc.</p>
+            <h6>http</h6>
+            <p>Purpose: Quickly isolate HTTP traffic.</p>
+            <p>No need to specify ports—this filter targets packets recognized by Wireshark as HTTP.</p>
+            <h6>dns</h6>
+            <p>Purpose: Filter all Domain Name System (DNS) traffic.</p>
+            <p>Great for troubleshooting DNS resolution issues.</p>
+            <h6>tcp.flags.syn == 1 and tcp.flags.ack == 0</h6>
+            <p>Purpose: Show only initial SYN packets, used during TCP handshake.</p>
+            <p>Useful when identifying new TCP connection attempts.</p>
+            <h6>tcp contains "password"</h6>
+            <p>Purpose: Search for strings in TCP payloads (in cleartext).</p>
+            <p>Use this cautiously—it can help during security audits (on unencrypted traffic), but always respect privacy and legality.</p>
+            <h6>arp</h6>
+            <p>Purpose: Filter all Address Resolution Protocol packets.</p>
+            <p>Handy when diagnosing local network issues like ARP spoofing or MAC address conflicts.</p>
+            <h6>frame contains "example.com"</h6>
+            <p>Purpose: Search for a string anywhere in a packet’s raw data.</p>
+            <p>Great when you're looking for specific domains, hostnames, or keywords across all protocols.</p>
+            <h6>tcp.analysis.retransmission</h6>
+            <p>Purpose: Find TCP retransmissions (a sign of packet loss or latency).</p>
+            <p>Excellent filter for diagnosing poor network performance or flaky connections.</p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

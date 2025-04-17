@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Deep Dive into TLS Handshakes and Certificate Inspection</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Deep Dive into TLS Handshakes and Certificate Inspection">
+    <meta name="keywords" content="alexis carbillet, carbillet, wireshark">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Deep Dive into TLS Handshakes and Certificate Inspection" />
+    <meta property="og:description" content="Deep Dive into TLS Handshakes and Certificate Inspection" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Wireshark/Project4/project4.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cyber">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+<section id="article">
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Deep Dive into TLS Handshakes and Certificate Inspection</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+          <p>Transport Layer Security (TLS) is the backbone of encrypted communication on the web—powering HTTPS, secure emails, and VPNs. But what exactly happens during a TLS handshake, and how can you analyze it using Wireshark?</p>
+          <p>In this guide, we’ll break down each phase of the TLS handshake, show how to inspect certificates in Wireshark, and highlight what to look for when diagnosing issues or verifying security posture.</p>
+          <h6>What is the TLS Handshake?</h6>
+          <p>The TLS handshake is a negotiation process between a client (like a browser) and a server to establish a secure, encrypted connection.</p>
+          <p>Typical TLS Handshake Flow (TLS 1.2)</p>
+          <ul>
+            <li>ClientHello: Client sends supported TLS versions, cipher suites, random value, and SNI (Server Name Indication).</li>
+            <li>ServerHello: Server selects TLS version, cipher suite, sends random value, and optionally its certificate.</li>
+            <li>Certificate: Server presents its certificate chain for authentication.</li>
+            <li>ServerHelloDone: Indicates server is done with initial negotiation.</li>
+            <li>ClientKeyExchange: Client sends key material for session encryption.</li>
+            <li>ChangeCipherSpec: Client and server switch to encrypted communication.</li>
+            <li>Finished: Both parties exchange a hash of the handshake to confirm success.</li>
+          </ul>
+          <p>TLS 1.3 simplifies this process significantly by reducing round trips and encrypting more handshake data.</p>
+          <h6>Capturing the TLS Handshake in Wireshark</h6>
+          <p>Capture only TLS traffic to reduce noise:</p>
+          <pre><code>tcp port 443</code></pre>
+          <p>Open a browser and visit a site like https://example.com. Watch the packets appear.</p>
+          <h6>Step-by-Step Analysis in Wireshark</h6>
+          <ul>
+            <li>Locate the ClientHello</li>
+            <p>Apply the display filter:</p>
+            <pre><code>tls.handshake.type == 1</code></pre>
+            <p>This shows only ClientHello packets.</p>
+            <p>Look for:</p>
+            <ul>
+              <li>TLS Version (e.g., TLS 1.2, TLS 1.3)</li>
+              <li>Supported Cipher Suites</li>
+              <li>Extensions like:</li>
+              <ul>
+                <li>server_name (SNI)</li>
+                <li>supported_groups (Elliptic curve preferences)</li>
+                <li>signature_algorithms</li>
+              </ul>
+            </ul>
+            <p> SNI is useful for identifying which domain the client is contacting in multi-host environments.</p>
+            <li>Examine the ServerHello</li>
+            <p>Filter:</p>
+            <pre><code>tls.handshake.type == 2</code></pre>
+            <p>This shows ServerHello packets.</p>
+            <p>Check:</p>
+            <ul>
+              <li>Selected cipher suite</li>
+              <li>Selected TLS version</li>
+              <li>Random value (used in key generation)</li>
+              <li>Any extensions returned by the server</li>
+            </ul>
+            <li>Inspect the Server Certificate</li>
+            <p>Filter:</p>
+            <pre><code>tls.handshake.type == 11</code></pre>
+            <p>Expand the "Handshake Protocol: Certificate" section to view:</p>
+            <ul>
+              <li>Subject CN (common name of the server)</li>
+              <li>Issuer CN (certificate authority)</li>
+              <li>Validity period</li>
+              <li>Public key algorithm</li>
+              <li>Certificate chain</li>
+            </ul>
+            <p>Verify:</p>
+            <ul>
+              <li>The certificate is not expired</li>
+              <li>It matches the requested domain</li>
+              <li>It's signed by a trusted CA</li>
+            </ul>
+            <p>Tip: Wireshark decodes X.509 certs nicely—no need to export unless you want to analyze them further (e.g., with openssl).</p>
+            <li>Look for Session Resumption</li>
+            <p>Filter:</p>
+            <pre><code>tls.session_id_length > 0</code></pre>
+            <p>If the client and server reuse session parameters (session IDs or tickets), this speeds up future connections.</p>
+            <li>TLS 1.3 Differences</li>
+            <p>TLS 1.3 has only one round trip:</p>
+            <ul>
+              <li>ClientHello includes almost everything (cipher suites, extensions, and key shares)</li>
+              <li>ServerHello is immediately followed by encrypted data</li>
+            </ul>
+            <p>To check if TLS 1.3 is used:</p>
+            <pre><code>tls.record.version == 0x0304</code></pre>
+            <p>and</p>
+            <pre><code>tls.handshake.type == 1 && tls.handshake.version == 0x0304</code></pre>
+          </ul>
+          <h6>Detecting Problems or Weaknesses</h6>
+            <ul>
+              <li>Detecting Problems or Weaknesses</li>
+              <p>If the server supports or selects outdated ciphers (e.g., RC4, 3DES), that’s a red flag.</p>
+              <p>Look under:</p>
+              <pre><code>ClientHello → Cipher Suites</code></pre>
+              <p>Or search with:</p>
+              <pre><code>tls.handshake.ciphersuite</code></pre>
+              <li>Self-signed or Invalid Certificates</li>
+              <p>If the Issuer CN matches the Subject CN, the cert is self-signed.</p>
+              <p>Look for alerts:</p>
+              <pre><code>tls.record.content_type == 21</code></pre>
+              <p>This filters TLS Alert messages, which may indicate issues like:</p>
+              <ul>
+                <li>Unknown certificate authority</li>
+                <li>Expired certificates</li>
+                <li>Unsupported protocol versions</li>
+              </ul>
+            </ul>
+          <h6>Exporting the Certificate for Manual Inspection</h6>
+          <p>Right-click on the Certificate frame.</p>
+          <p>Choose Export Packet Bytes.</p>
+          <p>Save as .der format.</p>
+          <p>Inspect with:</p>
+          <pre><code>openssl x509 -in cert.der -inform DER -text -noout</code></pre>
+          <h6>Best Practices for TLS Security</h6>
+          <p>Enforce TLS 1.2 or higher</p>
+          <p>Use strong cipher suites like AES-GCM and ECDHE</p>
+          <p>Avoid deprecated features like SSLv3, RSA key exchange, and SHA-1</p>
+          <p>Ensure valid, trusted certificates with correct SANs (Subject Alternative Names)</p>
+          <p>Periodically scan public-facing endpoints with tools like SSL Labs</p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

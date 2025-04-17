@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Troubleshooting Slow Internet with Wireshark: A Step-by-Step Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Troubleshooting Slow Internet with Wireshark: A Step-by-Step Guide">
+    <meta name="keywords" content="alexis carbillet, carbillet, wireshark">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Troubleshooting Slow Internet with Wireshark: A Step-by-Step Guide" />
+    <meta property="og:description" content="Troubleshooting Slow Internet with Wireshark: A Step-by-Step Guide" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Wireshark/Project2/project2.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cyber">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+<section id="article">
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Troubleshooting Slow Internet with Wireshark: A Step-by-Step Guide</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+          <p>Whether you’re working from home, managing a corporate LAN, or simply gaming online, nothing is more frustrating than sluggish network performance. Wireshark lets you peer under the hood of your traffic and pinpoint exactly where the bottleneck lies. In this guide, we’ll walk you through capturing, filtering, and interpreting packet data to diagnose—and ultimately fix—slow Internet issues.</p>
+          <h6>Step 1: Set Up Your Capture</h6>
+          <ul>
+            <li>Choose the right interface</li>
+            <ul>
+              <li>For wired connections, pick the Ethernet NIC.</li>
+              <li>For Wi‑Fi, select the wireless adapter (ensure in “monitor” or “promiscuous” mode if needed).</li>
+            </ul>
+            <li>Apply a simple capture filter (to reduce noise)</li>
+            <pre><code>host 8.8.8.8 or port 80 or port 443</code></pre>
+            <p>This captures traffic to Google DNS and HTTP/HTTPS.</p>
+            <li>Start capturing, then reproduce the slowdown (e.g., load a video).</li>
+            <li>Stop capture once you’ve seen sluggish behavior for several seconds.</li>
+            <p>Tip: Save your capture as .pcapng for later comparison.</p>
+          </ul>
+          <h6>Step 2: Get a Bird’s‑Eye View with IO Graphs</h6>
+          <p>Go to Statistics → I/O Graphs.</p>
+          <p>Plot bytes per tick over time on your main interface.</p>
+          <p>Look for dips or flat lines where throughput collapses.</p>
+          <p>If you see repeated troughs, note their timestamps for deeper analysis.</p>
+          <h6>Step 3: Identify Packet Loss & Retransmissions</h6>
+          <p>Excessive retransmissions often signal packet loss:</p>
+          <ul>
+            <li>Display filter:</li>
+            <pre><code>tcp.analysis.retransmission</code></pre>
+            <li>Count events: Statistics → Conversations → TCP, then check the Retransmissions column.</li>
+          </ul>
+          <p>High retransmission rates usually point to:</p>
+          <ul>
+            <li>Bad cabling or Wi‑Fi signal issues</li>
+            <li>NIC driver bugs</li>
+            <li>ISP line problems</li>
+          </ul>
+          <h6>Step 4: Measure Latency (Round‑Trip Time)</h6>
+          <p>Enable the Round‑Trip Time (RTT) column:</p>
+          <ul>
+            <li>Right‑click on any column header → Column Preferences.</li>
+            <li>Add a new column: Field name = tcp.analysis.ack_rtt, Title = “RTT”.</li>
+          </ul>
+          <p>Sort by “RTT” and inspect the highest values.</p>
+          <p>Note which flows (IP pairs, ports) have elevated RTTs—these are your latency offenders.</p>
+          <h6>Step 5: Check DNS Resolution Delays</h6>
+          <p>Slow name lookups can stall web pages:</p>
+          <ul>
+            <li>Display filter:</li>
+            <pre><code>dns && dns.response_in > 0</code></pre>
+            <li>Add column for dns.time: Field name = dns.time, Title = “DNS Latency”.</li>
+          </ul>
+          <p>Sort by DNS Latency; anything above ~200 ms is suspect. If your local resolver is slow, try switching to a public DNS (e.g., 1.1.1.1, 8.8.8.8) and re‑test.</p>
+          <h6>Step 6: Pinpoint Application‑Level Delays</h6>
+          <p>For HTTP(S) or other application protocols:</p>
+          <ul>
+            <li>HTTP timing:</li>
+            <ul>
+              <li>Filter:</li>
+              <pre><code>http && tcp.port == 80</code></pre>
+              <li>Use Follow → HTTP Stream to see request/response gaps.</li>
+            </ul>
+            <li>TLS handshake delays:</li>
+            <ul>
+              <li>Filter:</li>
+              <pre><code>tls.handshake.type == 1</code></pre>
+              <li>Check time between ClientHello and ServerHello.</li>
+            </ul>
+          </ul>
+          <p>Long gaps here can indicate server slowness or network congestion.</p>
+          <h6>Step 7: Diagnose Local Network Issues (ARP, DHCP)</h6>
+          <p>Local‑layer problems can masquerade as Internet slowness:</p>
+          <ul>
+            <li>ARP storms:</li>
+            <pre><code>arp</code></pre>
+            <p>Look for excessive ARP requests without replies.</p>
+            <li>DHCP delays (if you’re on dynamic addressing):</li>
+            <pre><code>bootp</code></pre>
+            <p>A slow DHCP lease renewal can disrupt connectivity.</p>
+          </ul>
+          <h6>Step 8: Compare Against a “Good” Trace</h6>
+          <p>Always benchmark against a capture taken when speeds are normal:</p>
+          <ul>
+            <li>Capture a session while Internet is fast.</li>
+            <li>Compare key metrics: throughput, retransmission %, RTT, DNS times.</li>
+          </ul>
+          <p>Use Statistics → Compare (Wireshark’s “diff” engine) or simply eyeball the I/O Graphs side by side.</p>
+          <h6>Step 9: Leverage Expert Information</h6>
+          <p>Wireshark’s built‑in Expert Info flags anomalies:</p>
+          <ul>
+            <li>Go to Analyze → Expert Information.</li>
+            <li>Look for Warnings and Errors like “Out‑of‑order packets,” “Zero window,” or “Duplicate ACKs.”</li>
+          </ul>
+          <p>These give you a prioritized list of issues to tackle first.</p>
+          <h6>Step 10: Take Action & Validate</h6>
+          <p>Replace faulty cables or move closer to Wi‑Fi AP.</p>
+          <p>Update NIC drivers and firmware.</p>
+          <p>Switch DNS servers if lookups are slow.</p>
+          <p>Contact ISP with your .pcapng evidence if external line issues persist.</p>
+          <p>After making changes, re‑capture and compare to ensure your fixes actually improved performance.</p>
+          <h6>Conclusion</h6>
+          <p>Slow Internet can stem from physical‑layer hiccups, DNS snafus, or application‑level bottlenecks. Wireshark arms you with the data to cut through guesswork:</p>
+          <ul>
+            <li>Capture smartly (use filters).</li>
+            <li>Visualize trends (I/O graphs).</li>
+            <li>Quantify anomalies (retransmissions, RTT, DNS latency).</li>
+            <li>Compare & validate against a known‑good state.</li>
+          </ul>
+          <p>Armed with these steps, you’ll go from “Why is it so slow?” to “Here’s exactly what’s wrong—and how to fix it.” Happy troubleshooting!</p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

@@ -138,6 +138,16 @@ section li.section-subheading {
   text-shadow: none;
 }
 
+#cloud ::-moz-selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
+#cloud ::selection {
+  background: #69b3a2;
+  text-shadow: none;
+}
+
 #contact ::-moz-selection {
   background: #69b3a2;
   text-shadow: none;

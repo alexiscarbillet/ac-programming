@@ -140,6 +140,7 @@ function showSection5(sectionId, button) {
   // Hide all sections
   document.getElementById('section17').style.display = 'none';
   document.getElementById('section18').style.display = 'none';
+  document.getElementById('section19').style.display = 'none';
 
   // Show the selected section
   document.getElementById(sectionId).style.display = 'block';

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>How to Detect ARP Spoofing or MITM Attacks with Wireshark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="How to Detect ARP Spoofing or MITM Attacks with Wireshark">
+    <meta name="keywords" content="alexis carbillet, carbillet, wireshark">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="How to Detect ARP Spoofing or MITM Attacks with Wireshark" />
+    <meta property="og:description" content="How to Detect ARP Spoofing or MITM Attacks with Wireshark" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Wireshark/Project3/project3.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cyber">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+<section id="article">
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">How to Detect ARP Spoofing or MITM Attacks with Wireshark</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+          <p>ARP spoofing, also known as ARP poisoning, is a common attack used to intercept traffic on a local network—often as part of a Man-in-the-Middle (MITM) strategy. Wireshark is a powerful tool that can help you detect and confirm whether your network is under such an attack.</p>
+          <p>In this article, you’ll learn how ARP spoofing works, what it looks like in packet captures, and how to use Wireshark to identify suspicious ARP behavior.</p>
+          <h6>What Is ARP Spoofing?</h6>
+          <p>The Address Resolution Protocol (ARP) is used to map IP addresses to MAC (hardware) addresses on a local network. When a device needs to send data to another on the same LAN, it broadcasts a request: “Who has IP 192.168.1.1? Tell 192.168.1.100.”</p>
+          <p>The legitimate device replies with its MAC address. However, ARP lacks authentication. An attacker can forge ARP replies, falsely associating their own MAC address with another IP (e.g., your gateway), tricking devices into routing traffic through them.</p>
+          <p>This opens the door to:</p>
+          <ul>
+            <li>Packet sniffing</li>
+            <li>Traffic manipulation or injection</li>
+            <li>Credential theft</li>
+          </ul>
+          <h6>Symptoms of ARP Spoofing / MITM</h6>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <p></p>
+          <h5></h5>
+          <h6>Step 1: Start a Capture on Your Local Network Interface</h6>
+          <p>Open Wireshark.</p>
+          <p>Choose your active Ethernet or Wi-Fi adapter.</p>
+          <p>Apply the capture filter:</p>
+          <pre><code>arp</code></pre>
+          <p>This limits captured traffic to ARP packets only.</p>
+          <h6>Step 2: Observe ARP Traffic in Real Time</h6>
+          <p>Legitimate ARP traffic usually looks like this:</p>
+          <ul>
+            <li>A request, followed by a reply</li>
+            <li>Example:</li>
+            <ul>
+              <li>Request: Who has 192.168.1.1?</li>
+              <li>Reply: 192.168.1.1 is at AA:BB:CC:DD:EE:FF</li>
+            </ul>
+          </ul>
+          <p>Suspicious behavior includes:</p>
+          <ul>
+            <li>ARP replies without requests</li>
+            <li>Multiple ARP replies from different MACs claiming the same IP address</li>
+            <li>Excessive unsolicited ARP replies</li>
+          </ul>
+          <h6>Step 3: Use Display Filters for Deeper Analysis</h6>
+          <p>After capturing some data, use this Wireshark display filter to view only ARP replies:</p>
+          <pre><code>arp.opcode == 2</code></pre>
+          <p>This shows all ARP responses. Scroll through and check:</p>
+          <ul>
+            <li>Are there multiple replies for the same IP from different MAC addresses?</li>
+            <li>Do some MAC addresses appear too often, especially unsolicited?</li>
+          </ul>
+          <p>To find multiple MACs claiming the same IP, sort the "Info" or "Source" columns and look for inconsistency.</p>
+          <h6>Step 4: Use the Endpoint and Conversations Statistics</h6>
+          <p>Go to:</p>
+          <ul>
+            <li>Statistics → Endpoints → Ethernet</li>
+            <p>Check for the same MAC used with multiple IPs.</p>
+            <li>Statistics → Conversations → Ethernet</li>
+            <p>Look for abnormal MAC address activity.</p>
+          </ul>
+          <h6>Step 5: Mark and Track the Suspect</h6>
+          <p>Once you spot a suspicious MAC address:</p>
+          <ul>
+            <li>Use the display filter to isolate it:</li>
+            <pre><code>eth.src == aa:bb:cc:dd:ee:ff</code></pre>
+            <li>Track all ARP replies it sends.</li>
+            <li>See if it’s claiming to be the default gateway or DNS server.</li>
+          </ul>
+          <p>Tip: If the attacker is spoofing your gateway IP, you might also see redirected DNS or HTTP/HTTPS traffic.</p>
+          <h6>How to Prevent or Respond to ARP Spoofing</h6>
+          <ul>
+            <li>Use static ARP entries on critical hosts.</li>
+            <li>Enable dynamic ARP inspection (DAI) on managed switches (enterprise networks).</li>
+            <li>Segment your network with VLANs.</li>
+            <li>Use HTTPS and encrypted protocols to mitigate sniffing.</li>
+            <li>Detect and log changes with IDS tools like Snort or Suricata.</li>
+            <li>Run ARP scanning tools like arpwatch, arpscan, or XArp.</li>
+          </ul>
+          <p>If you identify an attack:</p>
+          <ul>
+            <li>Disconnect the suspect MAC address (or block it via firewall/switch).</li>
+            <li>Change passwords (if credentials may have been sniffed).</li>
+            <li>Review logs for data exfiltration or lateral movement.</li>
+          </ul>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

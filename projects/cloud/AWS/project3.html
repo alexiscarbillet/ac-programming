@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title> AWS IoT Temperature Logger (Simulated)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content=" AWS IoT Temperature Logger (Simulated)">
+    <meta name="keywords" content="alexis carbillet, carbillet, AWS, AI">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content=" AWS IoT Temperature Logger (Simulated)" />
+    <meta property="og:description" content=" AWS IoT Temperature Logger (Simulated)" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/AWS/project3.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cloud">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+<section id="article">
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">AWS IoT Temperature Logger (Simulated)</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+          <h6>Create and Register an IoT "Thing" (Device)</h6>
+          <p>Go to AWS IoT Core → Manage → Things</p>
+          <p>Click Create things → Choose Create single thing</p>
+          <p>Give it a name: TempSensor001</p>
+          <p>Leave default settings (no shadow, no groups)</p>
+          <p>Click Next</p>
+          <h6>Create Certificates and Attach Policies</h6>
+          <p>AWS will prompt to create certificates for the Thing.</p>
+          <p>Download:</p>
+          <ul>
+            <li>certificate.pem.crt</li>
+            <li>private.pem.key</li>
+            <li>AmazonRootCA1.pem (link provided by AWS)</li>
+            <li>public.pem.key (optional)</li>
+          </ul>
+          <p>Save them securely.</p>
+          <p>Click Attach policy → Create a policy:</p>
+          <pre><code>{
+  "Version": "2025-04-20",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "iot:Connect",
+        "iot:Publish",
+        "iot:Subscribe",
+        "iot:Receive"
+      ],
+      "Resource": "*"
+    }
+  ]
+}</code></pre>
+          <p>Attach this policy to the certificate.</p>
+          <h6>Write the Simulator Script</h6>
+          <p>iot_simulator.py</p>
+          <pre><code>import ssl
+import time
+import json
+import random
+import paho.mqtt.client as mqtt
+
+ENDPOINT = "your-iot-endpoint.amazonaws.com"  # Replace with your AWS IoT Core endpoint
+PORT = 8883
+TOPIC = "iot/temperature"
+
+CA = "AmazonRootCA1.pem"
+CERT = "certificate.pem.crt"
+KEY = "private.pem.key"
+
+client = mqtt.Client()
+client.tls_set(ca_certs=CA,
+                certfile=CERT,
+                keyfile=KEY,
+                tls_version=ssl.PROTOCOL_TLSv1_2)
+
+client.connect(ENDPOINT, PORT)
+client.loop_start()
+
+while True:
+    temperature = round(random.uniform(20, 35), 2)
+    payload = {
+        "device": "TempSensor001",
+        "temperature": temperature,
+        "timestamp": int(time.time())
+    }
+    print("Sending:", payload)
+    client.publish(TOPIC, json.dumps(payload), qos=1)
+    time.sleep(5)</code></pre>
+          <p>Replace your-iot-endpoint.amazonaws.com with the endpoint from AWS IoT Core → Settings.</p>
+          <h6>Create an IoT Rule to Log Data</h6>
+          <p>Go to AWS IoT → Message Routing → Rules:</p>
+          <ul>
+            <li>Click Create rule</li>
+            <li>Rule name: LogTemperature</li>
+            <li>SQL:</li>
+            <pre><code>SELECT * FROM 'iot/temperature'</code></pre>
+            <li>Add an action → Insert into DynamoDB (or CloudWatch Logs)</li>
+            <ul>
+              <li>Table name: TemperatureLogs</li>
+              <li>Partition key: device (String)</li>
+              <li>Sort key: timestamp (Number)</li>
+              <li>Create the table first in DynamoDB</li>
+            </ul>
+            <p>Alternatively: Use CloudWatch Logs for easier setup.</p>
+          </ul>
+          <h6>View Logged Data</h6>
+          <p>Option 1: DynamoDB</p>
+          <ul>
+            <li>Go to DynamoDB → Tables → TemperatureLogs</li>
+            <li>Click Explore Table Items to see entries</li>
+          </ul>
+          <p>Option 2: CloudWatch Logs</p>
+          <ul>
+            <li>Go to CloudWatch → Logs → Log groups → Look for /aws/iot/LogTemperature</li>
+          </ul>
+          <h6>Testing</h6>
+          <p>Run your simulator locally:</p>
+          <pre><code>python iot_simulator.py</code></pre>
+          <p>Go to AWS IoT → MQTT Test Client and subscribe to topic:</p>
+          <pre><code>iot/temperature</code></pre>
+          <p>You’ll see your messages arriving in real time.</p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

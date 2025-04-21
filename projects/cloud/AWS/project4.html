@@ -3,16 +3,16 @@
   <head>
 
     <meta charset="utf-8">
-    <title>AWS IoT Temperature Logger (Simulated)</title>
+    <title>URL shortener</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="AWS IoT Temperature Logger (Simulated)">
-    <meta name="keywords" content="alexis carbillet, carbillet, AWS, IoT">
+    <meta name="description" content="URL shortener">
+    <meta name="keywords" content="alexis carbillet, carbillet, AWS">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
-    <meta property="og:title" content="AWS IoT Temperature Logger (Simulated)" />
-    <meta property="og:description" content="AWS IoT Temperature Logger (Simulated)" />
-    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/AWS/project3.html" />
+    <meta property="og:title" content="URL shortener" />
+    <meta property="og:description" content="URL shortener" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/AWS/project4.html" />
     <meta property="og:type" content="website" />
 
     <!-- Bootstrap core CSS -->
@@ -81,110 +81,108 @@
     <div class="container">
         <div class="row">
         <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">AWS IoT Temperature Logger (Simulated)</h2>
+            <h2 class="section-heading text-uppercase">URL shortener</h2>
         </div>
         <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
-          <h6>Create and Register an IoT "Thing" (Device)</h6>
-          <p>Go to AWS IoT Core → Manage → Things</p>
-          <p>Click Create things → Choose Create single thing</p>
-          <p>Give it a name: TempSensor001</p>
-          <p>Leave default settings (no shadow, no groups)</p>
-          <p>Click Next</p>
-          <h6>Create Certificates and Attach Policies</h6>
-          <p>AWS will prompt to create certificates for the Thing.</p>
-          <p>Download:</p>
-          <ul>
-            <li>certificate.pem.crt</li>
-            <li>private.pem.key</li>
-            <li>AmazonRootCA1.pem (link provided by AWS)</li>
-            <li>public.pem.key (optional)</li>
-          </ul>
-          <p>Save them securely.</p>
-          <p>Click Attach policy → Create a policy:</p>
-          <pre><code>{
-  "Version": "2025-04-20",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Connect",
-        "iot:Publish",
-        "iot:Subscribe",
-        "iot:Receive"
-      ],
-      "Resource": "*"
-    }
-  ]
-}</code></pre>
-          <p>Attach this policy to the certificate.</p>
-          <h6>Write the Simulator Script</h6>
-          <p>iot_simulator.py</p>
-          <pre><code>import ssl
-import time
-import json
+          <h6>Create DynamoDB Table</h6>
+          <p>Table name: UrlShortener</p>
+          <p>Partition key: shortCode (string)</p>
+          <h6>Lambda Function 1: Create Short URL</h6>
+          <p>Name: CreateShortUrl</p>
+          <pre><code>import json
+import boto3
+import string
 import random
-import paho.mqtt.client as mqtt
 
-ENDPOINT = "your-iot-endpoint.amazonaws.com"  # Replace with your AWS IoT Core endpoint
-PORT = 8883
-TOPIC = "iot/temperature"
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('UrlShortener')
 
-CA = "AmazonRootCA1.pem"
-CERT = "certificate.pem.crt"
-KEY = "private.pem.key"
+def generate_short_code(length=6):
+    return ''.join(random.choices(string.ascii_letters + string.digits, k=length))
 
-client = mqtt.Client()
-client.tls_set(ca_certs=CA,
-                certfile=CERT,
-                keyfile=KEY,
-                tls_version=ssl.PROTOCOL_TLSv1_2)
+def lambda_handler(event, context):
+    body = json.loads(event['body'])
+    long_url = body.get('long_url')
 
-client.connect(ENDPOINT, PORT)
-client.loop_start()
+    if not long_url:
+        return {
+            "statusCode": 400,
+            "body": json.dumps({"error": "Missing URL"})
+        }
 
-while True:
-    temperature = round(random.uniform(20, 35), 2)
-    payload = {
-        "device": "TempSensor001",
-        "temperature": temperature,
-        "timestamp": int(time.time())
+    short_code = generate_short_code()
+    table.put_item(Item={
+        "shortCode": short_code,
+        "longUrl": long_url
+    })
+
+    return {
+        "statusCode": 200,
+        "body": json.dumps({
+            "short_url": f"https://your-api-id.amazonaws.com/{short_code}"
+        })
+    }</code></pre>
+          <h6>Lambda Function 2: Redirect</h6>
+          <p>Name: RedirectToOriginal</p>
+          <pre><code>import boto3
+
+dynamodb = boto3.resource('dynamodb')
+table = dynamodb.Table('UrlShortener')
+
+def lambda_handler(event, context):
+    short_code = event['pathParameters']['code']
+
+    response = table.get_item(Key={'shortCode': short_code})
+    if 'Item' in response:
+        long_url = response['Item']['longUrl']
+        return {
+            "statusCode": 301,
+            "headers": {
+                "Location": long_url
+            }
+        }
+    else:
+        return {
+            "statusCode": 404,
+            "body": "URL not found"
+        }</code></pre>
+          <h6>Create API Gateway</h6>
+          <p>POST /shorten → CreateShortUrl Lambda</p>
+          <p>GET /{code} → RedirectToOriginal Lambda</p>
+          <p>Don’t forget to:</p>
+          <ul>
+            <li>Enable CORS on both endpoints (especially for POST)</li>
+            <p>In the API Gateway console, go to your API → Resources → click on the method (POST or GET) → click Actions → select Enable CORS. Confirm the settings and click Enable CORS and replace existing CORS headers, then Deploy the API afterward.</p>
+            <li>Deploy to a stage (e.g., prod)</li>
+            <p>In the API Gateway console, click Actions → Deploy API → choose an existing stage or create a new one (e.g., prod) → click Deploy. This will generate the live endpoint URL you can use in your frontend.</p>
+            <li>Replace your-api-id in the code with your actual API Gateway URL</li>
+          </ul>
+          <h6>Create Frontend (HTML Form on S3)</h6>
+          <pre><code>&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;&lt;title&gt;Shorten URL&lt;/title&gt;&lt;/head&gt;
+&lt;body&gt;
+  &lt;form onsubmit=&quot;shortenUrl(); return false;&quot;&gt;
+    &lt;input id=&quot;longUrl&quot; placeholder=&quot;Paste your long URL&quot; size=&quot;50&quot;&gt;
+    &lt;button type=&quot;submit&quot;&gt;Shorten&lt;/button&gt;
+  &lt;/form&gt;
+  &lt;p id=&quot;result&quot;&gt;&lt;/p&gt;
+
+  &lt;script&gt;
+    async function shortenUrl() {
+      const longUrl = document.getElementById(&quot;longUrl&quot;).value;
+      const res = await fetch(&quot;https://your-api-id.amazonaws.com/shorten&quot;, {
+        method: &quot;POST&quot;,
+        headers: { &quot;Content-Type&quot;: &quot;application/json&quot; },
+        body: JSON.stringify({ long_url: longUrl })
+      });
+      const data = await res.json();
+      document.getElementById(&quot;result&quot;).innerHTML = `&lt;a href=&quot;${data.short_url}&quot; target=&quot;_blank&quot;&gt;${data.short_url}&lt;/a&gt;`;
     }
-    print("Sending:", payload)
-    client.publish(TOPIC, json.dumps(payload), qos=1)
-    time.sleep(5)</code></pre>
-          <p>Replace your-iot-endpoint.amazonaws.com with the endpoint from AWS IoT Core → Settings.</p>
-          <h6>Create an IoT Rule to Log Data</h6>
-          <p>Go to AWS IoT → Message Routing → Rules:</p>
-          <ul>
-            <li>Click Create rule</li>
-            <li>Rule name: LogTemperature</li>
-            <li>SQL:</li>
-            <pre><code>SELECT * FROM 'iot/temperature'</code></pre>
-            <li>Add an action → Insert into DynamoDB (or CloudWatch Logs)</li>
-            <ul>
-              <li>Table name: TemperatureLogs</li>
-              <li>Partition key: device (String)</li>
-              <li>Sort key: timestamp (Number)</li>
-              <li>Create the table first in DynamoDB</li>
-            </ul>
-            <p>Alternatively: Use CloudWatch Logs for easier setup.</p>
-          </ul>
-          <h6>View Logged Data</h6>
-          <p>Option 1: DynamoDB</p>
-          <ul>
-            <li>Go to DynamoDB → Tables → TemperatureLogs</li>
-            <li>Click Explore Table Items to see entries</li>
-          </ul>
-          <p>Option 2: CloudWatch Logs</p>
-          <ul>
-            <li>Go to CloudWatch → Logs → Log groups → Look for /aws/iot/LogTemperature</li>
-          </ul>
-          <h6>Testing</h6>
-          <p>Run your simulator locally:</p>
-          <pre><code>python iot_simulator.py</code></pre>
-          <p>Go to AWS IoT → MQTT Test Client and subscribe to topic:</p>
-          <pre><code>iot/temperature</code></pre>
-          <p>You’ll see your messages arriving in real time.</p>
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+          <p>Host this file in S3 (see <a href="project2.html" target=”_blank”>bookmark project</a> part "Build the Frontend" for a detailed explanation on how to use S3 to store a static website).</p>
         </div>
     </div>
   </div>

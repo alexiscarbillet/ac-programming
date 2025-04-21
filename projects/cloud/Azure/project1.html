@@ -3,16 +3,16 @@
   <head>
 
     <meta charset="utf-8">
-    <title>AWS IoT Temperature Logger (Simulated)</title>
+    <title>Create an Automated Backup System with Azure</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="AWS IoT Temperature Logger (Simulated)">
-    <meta name="keywords" content="alexis carbillet, carbillet, AWS, IoT">
+    <meta name="description" content="Create an Automated Backup System with Azure">
+    <meta name="keywords" content="alexis carbillet, carbillet, Azure">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
-    <meta property="og:title" content="AWS IoT Temperature Logger (Simulated)" />
-    <meta property="og:description" content="AWS IoT Temperature Logger (Simulated)" />
-    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/AWS/project3.html" />
+    <meta property="og:title" content="Create an Automated Backup System with Azure" />
+    <meta property="og:description" content="Create an Automated Backup System with Azure" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/Azure/project1.html" />
     <meta property="og:type" content="website" />
 
     <!-- Bootstrap core CSS -->
@@ -81,110 +81,75 @@
     <div class="container">
         <div class="row">
         <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">AWS IoT Temperature Logger (Simulated)</h2>
+            <h2 class="section-heading text-uppercase">Create an Automated Backup System with Azure</h2>
         </div>
         <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
-          <h6>Create and Register an IoT "Thing" (Device)</h6>
-          <p>Go to AWS IoT Core → Manage → Things</p>
-          <p>Click Create things → Choose Create single thing</p>
-          <p>Give it a name: TempSensor001</p>
-          <p>Leave default settings (no shadow, no groups)</p>
-          <p>Click Next</p>
-          <h6>Create Certificates and Attach Policies</h6>
-          <p>AWS will prompt to create certificates for the Thing.</p>
-          <p>Download:</p>
-          <ul>
-            <li>certificate.pem.crt</li>
-            <li>private.pem.key</li>
-            <li>AmazonRootCA1.pem (link provided by AWS)</li>
-            <li>public.pem.key (optional)</li>
-          </ul>
-          <p>Save them securely.</p>
-          <p>Click Attach policy → Create a policy:</p>
-          <pre><code>{
-  "Version": "2025-04-20",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": [
-        "iot:Connect",
-        "iot:Publish",
-        "iot:Subscribe",
-        "iot:Receive"
-      ],
-      "Resource": "*"
-    }
-  ]
-}</code></pre>
-          <p>Attach this policy to the certificate.</p>
-          <h6>Write the Simulator Script</h6>
-          <p>iot_simulator.py</p>
-          <pre><code>import ssl
-import time
-import json
-import random
-import paho.mqtt.client as mqtt
-
-ENDPOINT = "your-iot-endpoint.amazonaws.com"  # Replace with your AWS IoT Core endpoint
-PORT = 8883
-TOPIC = "iot/temperature"
-
-CA = "AmazonRootCA1.pem"
-CERT = "certificate.pem.crt"
-KEY = "private.pem.key"
-
-client = mqtt.Client()
-client.tls_set(ca_certs=CA,
-                certfile=CERT,
-                keyfile=KEY,
-                tls_version=ssl.PROTOCOL_TLSv1_2)
-
-client.connect(ENDPOINT, PORT)
-client.loop_start()
-
-while True:
-    temperature = round(random.uniform(20, 35), 2)
-    payload = {
-        "device": "TempSensor001",
-        "temperature": temperature,
-        "timestamp": int(time.time())
-    }
-    print("Sending:", payload)
-    client.publish(TOPIC, json.dumps(payload), qos=1)
-    time.sleep(5)</code></pre>
-          <p>Replace your-iot-endpoint.amazonaws.com with the endpoint from AWS IoT Core → Settings.</p>
-          <h6>Create an IoT Rule to Log Data</h6>
-          <p>Go to AWS IoT → Message Routing → Rules:</p>
-          <ul>
-            <li>Click Create rule</li>
-            <li>Rule name: LogTemperature</li>
-            <li>SQL:</li>
-            <pre><code>SELECT * FROM 'iot/temperature'</code></pre>
-            <li>Add an action → Insert into DynamoDB (or CloudWatch Logs)</li>
+            <h6>Set Up Azure Blob Storage</h6>
+            <p>Go to Azure Portal: <a href="https://portal.azure.com">https://portal.azure.com</a></p>
+            <p>Create a Storage Account:</p>
             <ul>
-              <li>Table name: TemperatureLogs</li>
-              <li>Partition key: device (String)</li>
-              <li>Sort key: timestamp (Number)</li>
-              <li>Create the table first in DynamoDB</li>
+                <li>Click Create a Resource > Storage > Storage Account</li>
+                <li>Use Standard performance and Hot access tier for frequent access</li>
             </ul>
-            <p>Alternatively: Use CloudWatch Logs for easier setup.</p>
-          </ul>
-          <h6>View Logged Data</h6>
-          <p>Option 1: DynamoDB</p>
-          <ul>
-            <li>Go to DynamoDB → Tables → TemperatureLogs</li>
-            <li>Click Explore Table Items to see entries</li>
-          </ul>
-          <p>Option 2: CloudWatch Logs</p>
-          <ul>
-            <li>Go to CloudWatch → Logs → Log groups → Look for /aws/iot/LogTemperature</li>
-          </ul>
-          <h6>Testing</h6>
-          <p>Run your simulator locally:</p>
-          <pre><code>python iot_simulator.py</code></pre>
-          <p>Go to AWS IoT → MQTT Test Client and subscribe to topic:</p>
-          <pre><code>iot/temperature</code></pre>
-          <p>You’ll see your messages arriving in real time.</p>
+            <p>Create a Container:</p>
+            <ul>
+                <li>After the storage account is deployed, go to it and select Containers</li>
+                <li>Add a new container (e.g., backups)</li>
+                <li>Set public access to Private</li>
+            </ul>
+            <h6>Create an Azure Function</h6>
+            <p>Create a Function App:</p>
+            <ul>
+                <li>Go to Create a resource > Compute > Function App</li>
+                <li>Choose Python 3.10, use Consumption Plan to save costs</li>
+            </ul>
+            <p>Deploy Code:</p>
+            <ul>
+                <li>Use VS Code with the <a href="https://marketplace.visualstudio.com/items?itemName=ms-azuretools.vscode-azurefunctions">Azure Functions Extension</a></li>
+                <li>Create a new function with an HTTP trigger</li>
+                <li>Example Python code to back up a file:</li>
+            </ul>
+            <pre><code>import logging
+import azure.functions as func
+from azure.storage.blob import BlobServiceClient
+import os
+
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    file_name = req.params.get('file')
+    if not file_name:
+        return func.HttpResponse("Please pass the file name as ?file=", status_code=400)
+
+    connection_str = os.getenv("AzureWebJobsStorage")
+    blob_service_client = BlobServiceClient.from_connection_string(connection_str)
+    container_client = blob_service_client.get_container_client("backups")
+
+    # Simulate local file (replace with real file path or stream)
+    local_path = f"/home/site/wwwroot/temp/{file_name}"
+    if not os.path.exists(local_path):
+        return func.HttpResponse(f"{file_name} not found", status_code=404)
+
+    with open(local_path, "rb") as data:
+        container_client.upload_blob(name=file_name, data=data, overwrite=True)
+
+    return func.HttpResponse(f"{file_name} backed up successfully.")</code></pre>
+            <p>Set Environment Variable:</p>
+            <pre><code>Add AzureWebJobsStorage in your Function App’s configuration (it's already set if you chose a storage account during creation)</code></pre>
+            <h6>Automate It with Logic Apps</h6>
+            <p>If you want a no-code trigger, use Azure Logic Apps to call your function on a schedule.</p>
+            <p>Go to Logic Apps > Create</p>
+            <p>Select Blank Logic App</p>
+            <p>Add a Recurrence trigger (e.g., daily at 2 AM)</p>
+            <p>Add HTTP action:</p>
+            <ul>
+                <li>Method: GET</li>
+                <li>URL: Your function URL (include ?file=filename.txt)</li>
+            </ul>
+            <p>Save and Test</p>
+            <h6>Test the Backup System</h6>
+            <p>Upload a file to your local directory or GitHub</p>
+            <p>Call your function URL (via browser or Logic App)</p>
+            <p>Go to your Azure Blob Storage > Container</p>
+            <p>Confirm the file was uploaded</p>
         </div>
     </div>
   </div>

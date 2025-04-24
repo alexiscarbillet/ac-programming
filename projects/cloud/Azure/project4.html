@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Build a Serverless API with Azure Functions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Build a Serverless API with Azure Functions">
+    <meta name="keywords" content="alexis carbillet, carbillet, cloud, Azure">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Build a Serverless API with Azure Functions" />
+    <meta property="og:description" content="Build a Serverless API with Azure Functions" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/Azure/project4.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cloud">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+<section id="article">
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Build a Serverless API with Azure Functions</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+            <h6>Create a Function App</h6>
+            <p>Go to Azure Portal > Create a Resource > Compute > Function App</p>
+            <p>Basic Setup:</p>
+            <ul>
+                <li>Runtime stack: Python</li>
+                <li>Region: Closest to your users</li>
+                <li>Hosting plan: Consumption (pay-per-use)</li>
+            </ul>
+            <h6>Choose the Trigger Type: HTTP</h6>
+            <p>Once the Function App is ready, go to Functions > Add</p>
+            <p>Choose HTTP trigger</p>
+            <p>Give it a name (e.g., GetUsers) and choose Authorization level: Function (or Anonymous for testing)</p>
+            <h6>Write the API Code</h6>
+            <pre><code>import azure.functions as func
+import json
+
+def main(req: func.HttpRequest) -> func.HttpResponse:
+    name = req.params.get('name')
+    if not name:
+        try:
+            req_body = req.get_json()
+        except ValueError:
+            pass
+        else:
+            name = req_body.get('name')
+
+    if name:
+        return func.HttpResponse(f"Hello, {name}!")
+    else:
+        return func.HttpResponse("Please pass a name on the query string or in the request body", status_code=400)</code></pre>
+            <p>Output:</p>
+            <p>GET https://<your-function-app>.azurewebsites.net/api/GetUsers?name=Azure</p>
+            <p>Returns: Hello, Azure!</p>
+            <h6>Test Your API</h6>
+            <p>You can test with:</p>
+            <pre><code>curl "https://<your-func>.azurewebsites.net/api/GetUsers?name=Azure"</code></pre>
+            <p>Or use Postman for a POST request with a JSON body.</p>
+            <h6>Add More Routes</h6>
+            <p>Add more function files, like:</p>
+            <ul>
+                <li>GetUserById</li>
+                <li>AddUser</li>
+                <li>DeleteUser</li>
+                <li>UpdateUser</li>
+            </ul>
+            <p>You now have a mini-REST API!</p>
+            <h6>Persist Data</h6>
+            <p>Bind Azure Functions to storage:</p>
+            <ul>
+                <li>Cosmos DB: Add a user, retrieve by ID</li>
+                <li>Blob Storage: Upload or download files</li>
+                <li>Table Storage: Lightweight key-value storage</li>
+            </ul>
+            <p>Example: Add Cosmos DB binding in function.json</p>
+            <pre><code>{
+    "bindings": [
+        {
+        "type": "cosmosDB",
+        "name": "outputDocument",
+        "databaseName": "UsersDB",
+        "collectionName": "Users",
+        "createIfNotExists": true,
+        "connectionStringSetting": "CosmosDBConnection",
+        "direction": "out"
+        }
+    ]
+}</code></pre>
+        <h6>Secure Your API</h6>
+        <p>Use function keys or Azure AD</p>
+        <p>Add rate limits and IP restrictions in Function App settings</p>
+        <h6>Monitor and Scale</h6>
+        <p>Azure Functions scale automatically under load</p>
+        <p>Use Application Insights for logs, errors, and performance</p>
+        <p>View metrics under “Monitoring” in the Function App blade</p>
+        </div>
+    </div>
+  </div>
+</section>
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Personal Search Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Personal Search Engine">
+    <meta name="keywords" content="alexis carbillet, carbillet, opensearch">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Personal Search Engine" />
+    <meta property="og:description" content="Personal Search Engine" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/OpenSearch/Project1/Project1.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#prom">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">Personal Search Engine</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+          <h6>Prepare Your Data (Local Files or Bookmarks)</h6>
+          <p>You need to decide on the source of data you’ll index (e.g., local files, PDFs, bookmarks).</p>
+          <p>Choose a Data Source</p>
+          <ul>
+            <li>Local files: Text files, PDFs, Word documents, etc.</li>
+            <li>Bookmarks: You could use a browser extension to export your bookmarks in an easily parseable format (e.g., HTML, JSON).</li>
+          </ul>
+          <p>Extract Text from Files</p>
+          <ul>
+            <li>For PDFs: You can use libraries like PyMuPDF or pdfminer to extract text from PDFs.</li>
+            <li>For Word Documents: Use python-docx to extract text.</li>
+            <li>For text files: Simply read the file content.</li>
+          </ul>
+          <p>Example code to extract text from a PDF:</p>
+          <pre><code>import fitz  # PyMuPDF
+
+def extract_text_from_pdf(file_path):
+    doc = fitz.open(file_path)
+    text = ""
+    for page in doc:
+        text += page.get_text()
+    return text</code></pre>
+            <h6>Index Data in OpenSearch</h6>
+            <p>You can index documents by sending the extracted text to OpenSearch as JSON. Each document will be a JSON object with the relevant fields (e.g., title, content, date_created, etc.).</p>
+            <pre><code>import os
+import fitz  # PyMuPDF for PDFs
+import docx  # python-docx for Word files
+import requests
+import json
+
+# Function to extract text from PDF
+def extract_text_from_pdf(file_path):
+    doc = fitz.open(file_path)
+    text = ""
+    for page in doc:
+        text += page.get_text()
+    return text
+
+# Function to extract text from Word files
+def extract_text_from_docx(file_path):
+    doc = docx.Document(file_path)
+    text = ""
+    for para in doc.paragraphs:
+        text += para.text
+    return text
+
+# Function to extract text from plain text files
+def extract_text_from_txt(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
+        return file.read()
+
+# Function to index document into OpenSearch
+def index_document(file_path, content):
+    url = "http://localhost:9200/personal-search/_doc/"
+    doc = {
+        "title": file_path,  # Or filename
+        "content": content,  # Extracted text
+        "date_created": "2025-04-01"  # Replace with actual creation date or timestamp
+    }
+    headers = {'Content-Type': 'application/json'}
+    response = requests.post(url, headers=headers, data=json.dumps(doc))
+    if response.status_code == 201:
+        print(f"Successfully indexed: {file_path}")
+    else:
+        print(f"Error indexing: {file_path}")
+
+# Function to process all files in a folder
+def process_folder(folder_path):
+    for root, dirs, files in os.walk(folder_path):
+        for file in files:
+            file_path = os.path.join(root, file)
+            # Extract text based on file type
+            if file.endswith(".pdf"):
+                content = extract_text_from_pdf(file_path)
+            elif file.endswith(".docx"):
+                content = extract_text_from_docx(file_path)
+            elif file.endswith(".txt"):
+                content = extract_text_from_txt(file_path)
+            else:
+                print(f"Skipping unsupported file type: {file_path}")
+                continue
+            
+            # Index the document in OpenSearch
+            index_document(file_path, content)
+
+# Example usage: pass the folder path
+folder_path = "/path/to/your/folder"  # Replace with your folder path
+process_folder(folder_path)</code></pre>              
+          <h6>Search Functionality</h6>
+          <p>OpenSearch provides a query DSL (Domain Specific Language) for searching your data. You can search for keywords, phrases, or use filters.</p>
+          <p>Example of a simple query:</p>
+          <pre><code>def search_index(query):
+    url = f"http://localhost:9200/personal-search/_search"
+    search_query = {
+        "query": {
+            "match": {
+                "content": query  # Searching within the 'content' field
+            }
+        }
+    }
+    response = requests.get(url, json=search_query)
+    return response.json()
+
+# Example of a search
+result = search_index("Python tutorial")
+print(result)</code></pre>
+          <p>You can also use OpenSearch Dashboards as a UI to query the opensearch index.</p>
+        </div>
+		  </div>
+    </div>
+  </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

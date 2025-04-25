@@ -6,7 +6,7 @@
     <title>Alexis Carbillet</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="Contains different articles about coding, databases, AI, Data Visualization, etc. Many languages are used but scripts are mainly written in Python and Go.">
-    <meta name="keywords" content="alexis carbillet, carbillet, artificial intelligence, neural network, machine learning, data visualization, prom, prometheus, python, recommendation system, sql, mongodb, html, puppet, kube, kubernetes, docker, terraform, linux, javascript, cloud, OVHcloud, blockchain, wireshark, AWS, GCP, Azure">
+    <meta name="keywords" content="alexis carbillet, carbillet, artificial intelligence, neural network, machine learning, data visualization, prom, prometheus, python, recommendation system, sql, mongodb, html, puppet, kube, kubernetes, docker, terraform, linux, javascript, cloud, OVHcloud, blockchain, wireshark, AWS, GCP, Azure, opensearch">
     <meta name="author" content="Alexis Carbillet ">
  
     <!-- Control appearance when share by social media -->
@@ -56,10 +56,10 @@
 			  <a class="nav-link js-scroll-trigger" href="#coding">Coding</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link js-scroll-trigger" href="#db">Databases</a>
+			  <a class="nav-link js-scroll-trigger" href="#db">Datastores</a>
 			</li>
 			<li class="nav-item">
-			  <a class="nav-link js-scroll-trigger" href="#advanced">Advanced</a>
+			  <a class="nav-link js-scroll-trigger" href="#advanced">AI & Data</a>
 			</li>
 			<li class="nav-item">
 			  <a class="nav-link js-scroll-trigger" href="#sys">SysAdmin</a>
@@ -89,7 +89,7 @@
 		  <div class="intro-text">
           <div class="intro-lead-in text-center" style="padding-top: 10%">
 		  Hello there! I am passionated about coding. I create this website from scratch and it contains different personnel projects I worked on. I also wrote short articles about different topics. <br>
-		  You will find 6 main sections: <a href="index.html#coding">coding</a>, <a href="index.html#db">databases</a>, <a href="index.html#advanced">advanced</a> (AI, visualization, ...), <a href="index.html#sys">sysAdmin</a> (Puppet, Kubernetes, ...), <a href="index.html#android">android</a>, <a href="index.html#cyber">cybersecurity</a> and <a href="index.html#cloud">cloud</a>.<br>
+		  You will find 6 main sections: <a href="index.html#coding">coding</a>, <a href="index.html#db">datastores</a>, <a href="index.html#advanced">AI & Data</a> (AI, visualization, ...), <a href="index.html#sys">sysAdmin</a> (Puppet, Kubernetes, ...), <a href="index.html#android">android</a>, <a href="index.html#cyber">cybersecurity</a> and <a href="index.html#cloud">cloud</a>.<br>
 		  Below are the links to my others websites. Feel free to check them out!
 		  <ul class="list-inline social-buttons">
 			<li class="list-inline-item">
@@ -286,12 +286,13 @@
   <div class="container">
 	<div class="row">
 	  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-		<h1 class="section-heading text-uppercase text-white">DATABASES</h1>
+		<h1 class="section-heading text-uppercase text-white">DATASTORES</h1>
 		<h3 class="section-subheading  text-white" style="margin-bottom: 0%; margin-top: 0%">Use the buttons below to change the content of this section.</h3>
 		<!-- Buttons to toggle between sections -->
 		<button class="btn btn-perso" onclick="showSection2('section3', this)">Prometheus</button>
 		<button class="btn btn-perso" onclick="showSection2('section4', this)">SQL</button>
 		<button class="btn btn-perso " onclick="showSection2('section5', this)">MongoDB</button>
+		<button class="btn btn-perso " onclick="showSection2('section24', this)">Opensearch</button>
 		<div id="commonSection">
 			<div id="section3" style="display: block;">
 				<h2 class="section-heading text-uppercase text-white" style="padding-top: 2%">Prometheus</h2>
@@ -372,6 +373,17 @@
 					</ul>
 				</div>
 			</div>
+			<div id="section24" style="display: none;">
+				<h2 class="section-heading text-uppercase text-white" style="padding-top: 2%">Opensearch</h2>
+				<h3 class="section-subheading text-white">OpenSearch is an open-source search and analytics engine designed for ingesting, storing, searching, and visualizing large volumes of structured and unstructured data in real time.</h3>
+				<div class="centered-list-container" style="color: white">
+					<ul class="centered-list">
+						<ul id="mongo-list" class="sub-centered-list">
+							<li class="sub-sub-sub-sub-centered-list-item text-left">Project 1: <a href="projects/OpenSearch/Project1/Project1.html" style="color: #69b3a2;" target=”_blank”>Personal Search Engine</a></li>
+						</ul>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	</div>
@@ -382,7 +394,7 @@
 
 <!-- ======================================================================= -->
 
-<!-- ======================== ADVANCED BLOG SECTION ============================ -->
+<!-- ======================== AI & Data BLOG SECTION ============================ -->
 
 
 <section class="bg-light" id="advanced">
@@ -390,7 +402,7 @@
   <div class="container">
 	<div class="row">
 	  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-		<h1 class="section-heading text-uppercase">ADVANCED</h1>
+		<h1 class="section-heading text-uppercase">AI & DATA</h1>
 		<h3 class="section-subheading" style="margin-bottom: 0%; margin-top: 0%">Use the buttons below to change the content of this section.</h3>
 		<!-- Buttons to toggle between sections -->
 		<button class="btn btn-perso" onclick="showSection3('section6', this)">Artificial Intelligence</button>

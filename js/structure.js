@@ -88,6 +88,7 @@ function showSection2(sectionId, button) {
   document.getElementById('section3').style.display = 'none';
   document.getElementById('section4').style.display = 'none';
   document.getElementById('section5').style.display = 'none';
+  document.getElementById('section24').style.display = 'none';
 
   // Show the selected section
   document.getElementById(sectionId).style.display = 'block';

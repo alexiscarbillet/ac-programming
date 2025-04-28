@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Building a Simple Book Tracker with Django</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Building a Simple Book Tracker with Django">
+    <meta name="keywords" content="alexis carbillet, carbillet, python, django">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Building a Simple Book Tracker with Django" />
+    <meta property="og:description" content="Building a Simple Book Tracker with Django" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Python/Project10/project10.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#py">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+      <div class="container">
+        <div class="row">
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+			<h2 class="section-heading text-uppercase">Building a Simple Book Tracker with Django</h2>
+		  </div>
+		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+        <p>The app allows users to:</p>
+        <ul>
+          <li>Sign up and log in securely</li>
+          <li>View a list of their books</li>
+          <li>Add new books with details (title, author, and status)</li>
+          <li>Logout and manage their sessions easily</li>
+        </ul>
+        <p>This project will demonstrate basic features of Django, including user authentication, form handling, and dynamic web pages.</p>
+        <p>Tech Stack:</p>
+        <ul>
+          <li>Django: A high-level Python web framework that encourages rapid development and clean, pragmatic design.</li>
+          <li>SQLite: The default database for Django, which stores user data and books.</li>
+          <li>HTML: For structuring the user interface.</li>
+        </ul>
+        <p>Features of the Book Tracker App</p>
+        <ul>
+          <li>Users can sign up, log in, and log out. The app uses Django's built-in user authentication system to handle the creation and management of user accounts.</li>
+          <li>Users can view a list of books they've added to the app, which includes the book title, author, and status (e.g., "Read", "Currently Reading", "To Read").</li>
+          <li>Users can add new books by providing details like the title, author, and current status. The form is built using Django's ModelForm, which automatically generates a form based on the model.</li>
+          <li>Users can delete books from their list, which helps in managing their collection effectively.</li>
+        </ul>
+        <h6>Project Breakdown</h6>
+        <ul>
+          <li>Setting Up the Project</li>
+          <ul>
+            <li>Install Django and set up the project.</li>
+            <li>Create a new Django app (books) and configure the project settings.</li>
+          </ul>
+          <li>User Authentication</li>
+          <ul>
+            <li>Django’s built-in authentication system is used to manage user login, logout, and signup functionalities.</li>
+            <li>The login page is protected using the @login_required decorator, ensuring that only logged-in users can access the book tracker.</li>
+          </ul>
+          <li>Creating the Book Model</li>
+          <ul>
+            <li>Define a Book model with fields for title, author, and status. The status field is a choice field to track whether a book is read, currently reading, or to read.</li>
+          </ul>
+          <li>Creating Forms and Views</li>
+          <ul>
+            <li>Create a form to add new books using Django's ModelForm.</li>
+            <li>Define views to handle the displaying of books, adding new books, and user authentication.</li>
+          </ul>
+          <li>Creating Templates</li>
+          <ul>
+            <li>Use Django templates to create a clean and simple interface.</li>
+            <li>Include a navigation bar with links to the homepage, the add book page, and logout functionality.</li>
+            <li>Display the list of books dynamically.</li>
+          </ul>
+          <li>Testing the Application</li>
+          <ul>
+            <li>Run the development server, sign up, log in, and test adding and viewing books.</li>
+            <li>Ensure that only authenticated users can interact with the book tracker.</li>
+          </ul>
+        </ul>
+        <p>You can find all the code <a href="https://github.com/alexiscarbillet/archive_code/tree/main/python_examples/booktracker">here</a>.</p>
+		  </div>
+		</div>
+      </div>
+    </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

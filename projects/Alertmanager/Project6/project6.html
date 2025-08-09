@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Setting Up Multi-Receiver Alert Routing in Alertmanager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Learn how to configure multi-receiver alert routing in Prometheus Alertmanager to send alerts to different teams and channels based on conditions.">
+    <meta name="keywords" content="Prometheus, Alertmanager, alert routing, multi-receiver, notification routing, monitoring, DevOps">
+
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Setting Up Multi-Receiver Alert Routing in Alertmanager" />
+    <meta property="og:description" content="Learn how to configure multi-receiver alert routing in Prometheus Alertmanager to send alerts to different teams and channels based on conditions." />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Alertmanager/Project6/project6.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+    
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+    <!-- Choice of languages -->
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#sys">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container">
+      </div>
+    </header>
+  
+    <!-- ======================== ARTICLE SECTION ============================ -->
+
+    <section id="article">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Setting Up Multi-Receiver Alert Routing in Alertmanager</h2>
+          </div>
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+
+            <h6>Introduction</h6>
+            <p>Alertmanager allows flexible routing of alerts to multiple receivers based on labels, severity, or any other alert attribute. This is critical for sending the right alerts to the right teams.</p>
+
+            <h6>Basic Routing Concepts</h6>
+            <p>The <code>route</code> section in <code>alertmanager.yml</code> defines how alerts are grouped and routed. Child routes can match specific labels and override receivers.</p>
+
+            <h6>Example Configuration</h6>
+            <p>Here’s a sample <code>alertmanager.yml</code> snippet illustrating multi-receiver routing:</p>
+            <pre><code>route:
+  receiver: 'default-receiver'
+  group_by: ['alertname']
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 3h
+
+  routes:
+    - match:
+        severity: 'critical'
+      receiver: 'pagerduty-receiver'
+
+    - match_re:
+        team: 'devops|backend'
+      receiver: 'slack-devops'
+
+    - match:
+        team: 'frontend'
+      receiver: 'slack-frontend'
+</code></pre>
+
+            <h6>How This Works</h6>
+            <ul>
+              <li>Alerts with <code>severity=critical</code> go to PagerDuty.</li>
+              <li>Alerts where <code>team</code> matches “devops” or “backend” go to the DevOps Slack channel.</li>
+              <li>Alerts for the “frontend” team go to their Slack channel.</li>
+              <li>All other alerts go to the <code>default-receiver</code>.</li>
+            </ul>
+
+            <h6>Receiver Definitions</h6>
+            <p>Define the receivers corresponding to each route with appropriate configurations (email, Slack, PagerDuty, etc.):</p>
+            <pre><code>receivers:
+- name: 'default-receiver'
+  email_configs:
+    - to: 'team@example.com'
+
+- name: 'pagerduty-receiver'
+  pagerduty_configs:
+    - service_key: 'your-pagerduty-service-key'
+
+- name: 'slack-devops'
+  slack_configs:
+    - api_url: 'https://hooks.slack.com/services/xxx/yyy/zzz'
+      channel: '#devops-alerts'
+
+- name: 'slack-frontend'
+  slack_configs:
+    - api_url: 'https://hooks.slack.com/services/aaa/bbb/ccc'
+      channel: '#frontend-alerts'
+</code></pre>
+
+            <h6>Tips for Effective Routing</h6>
+            <ul>
+              <li>Use meaningful alert labels to simplify routing.</li>
+              <li>Test configurations with the <code>alertmanager --config.file=alertmanager.yml --dry-run</code> command.</li>
+              <li>Keep routing hierarchy clear to avoid unexpected alert duplication.</li>
+            </ul>
+
+            <h6>Conclusion</h6>
+            <p>Multi-receiver routing in Alertmanager provides granular control over alert notifications, ensuring your teams get timely and relevant alerts to improve incident response.</p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+
+    <!-- ========================== CONTACT SECTION ============================== -->
+
+    <iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+    <!-- ======================================================================= -->
+
+    <!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+            <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+          </div>
+          <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+          </div>
+          <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+          <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+            <a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+          </div>
+        </div>
+        <div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+    <!-- ======================================================================= -->
+
+    <!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+    
+    <!-- Particles part -->
+    <script src="../../../js/particles.js"></script>
+    <script src="../../../js/app.js"></script>
+    
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+  
+
+  <!-- ======================================================================= -->
+  </body>
+</html>

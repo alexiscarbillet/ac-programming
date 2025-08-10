@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>Building a High-Availability Alertmanager Setup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Guide to building a high-availability Alertmanager setup: architecture, Kubernetes patterns, best practices, testing, and operational tips.">
+    <meta name="keywords" content="Prometheus, Alertmanager, high availability, HA, Kubernetes, StatefulSet, clustering, monitoring, alerting">
+
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="Building a High-Availability Alertmanager Setup" />
+    <meta property="og:description" content="Guide to building a high-availability Alertmanager setup: architecture, Kubernetes patterns, best practices, testing, and operational tips." />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Alertmanager/Project18/project18.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+    
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+    <!-- Choice of languages -->
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#sys">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container">
+      </div>
+    </header>
+  
+    <!-- ======================== ARTICLE SECTION ============================ -->
+
+    <section id="article">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Building a High-Availability Alertmanager Setup</h2>
+          </div>
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+
+            <h6>Introduction</h6>
+            <p>Alertmanager is a critical component for routing and deduplicating alerts in Prometheus-based monitoring. In production you want Alertmanager resilient to instance failures, configuration changes, and network partitions. This guide explains the architecture patterns, Kubernetes deployment options, and best practices for building a highly available (HA) Alertmanager setup.</p>
+
+            <h6>HA Principles for Alertmanager</h6>
+            <ul>
+              <li><strong>Run multiple replicas</strong> — at least 3 instances is common to tolerate failures and keep quorum for cluster state replication.</li>
+              <li><strong>Identical configuration</strong> — all replicas should use the same alertmanager.yml so routing, silences and inhibition behave consistently.</li>
+              <li><strong>Local persistence</strong> — Alertmanager persists silences and notification logs to disk; use persistent volumes so state survives restarts.</li>
+              <li><strong>Peer discovery / clustering</strong> — replicas form a cluster so state is replicated across members.</li>
+              <li><strong>Fronting service/load balancing</strong> — expose a single endpoint for Prometheus and operators while the cluster manages internal state.</li>
+            </ul>
+
+            <h6>Typical HA Architecture (concept)</h6>
+            <pre><code>
+           +--------------------------+
+           |     Load Balancer /      |
+           |     Service (UI/API)     |
+           +-----------+--------------+
+                       |
+             +---------+---------+
+             |  Alertmanager (1) |
+             +---------+---------+
+             |  Alertmanager (2) |
+             +---------+---------+
+             |  Alertmanager (3) |
+             +---------+---------+
+                       |
+                 Persistent volumes
+            </code></pre>
+
+            <h6>Kubernetes: Recommended Pattern</h6>
+            <p>On Kubernetes, a common pattern is a StatefulSet with an odd number of replicas (3), each using a persistent volume claim and the same ConfigMap-mounted <code>alertmanager.yml</code>. Use a ClusterIP service that Prometheus points to; the service will load-balance requests across Alertmanager pods.</p>
+
+            <h6>Minimal StatefulSet (conceptual)</h6>
+            <p>This is a simplified example showing the main ideas: StatefulSet for stable network IDs, PVC for storage, and a headless service for peer discovery. (Adapt to your environment / storage class.)</p>
+            <pre><code>
+apiVersion: v1
+kind: Service
+metadata:
+  name: alertmanager
+spec:
+  clusterIP: None          # headless for stable DNS per pod
+  ports:
+    - port: 9093
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: alertmanager
+spec:
+  serviceName: "alertmanager"
+  replicas: 3
+  selector:
+    matchLabels:
+      app: alertmanager
+  template:
+    metadata:
+      labels:
+        app: alertmanager
+    spec:
+      containers:
+      - name: alertmanager
+        image: prom/alertmanager:latest
+        args:
+        - "--config.file=/etc/alertmanager/alertmanager.yml"
+        - "--storage.path=/alertmanager"
+        volumeMounts:
+        - name: config
+          mountPath: /etc/alertmanager
+        - name: storage
+          mountPath: /alertmanager
+  volumeClaimTemplates:
+  - metadata:
+      name: storage
+    spec:
+      accessModes: ["ReadWriteOnce"]
+      resources:
+        requests:
+          storage: 5Gi
+            </code></pre>
+
+            <h6>How Replicas Discover Each Other</h6>
+            <p>Alertmanager supports peer discovery so replicas can form a mesh and replicate state. In Kubernetes the headless service gives each pod a stable DNS name (e.g. <code>alertmanager-0.alertmanager.default.svc.cluster.local</code>) that can be used for peer discovery. Many operators (Prometheus Operator) handle this for you automatically.</p>
+
+            <h6>Configuration Consistency</h6>
+            <p>Always ensure every replica uses the same <code>alertmanager.yml</code>. On Kubernetes this is usually a ConfigMap mounted into all pods. When changing configuration, follow a controlled rollout (see “Rolling updates & config changes” below).</p>
+
+            <h6>Rolling Updates & Config Changes</h6>
+            <ul>
+              <li>Use a controlled rollout (StatefulSet or operator) to update replicas one at a time.</li>
+              <li>Verify new config or image on a single replica before continuing the rollout.</li>
+              <li>For Alertmanager, configuration reloads can be triggered by sending SIGHUP or using the /-/reload HTTP endpoint (if available in your version).</li>
+            </ul>
+
+            <h6>Operational Best Practices</h6>
+            <ul>
+              <li><strong>Run an odd number of replicas</strong> (3 or 5) to improve resilience during partitions.</li>
+              <li><strong>Use Pod anti-affinity</strong> to spread replicas across nodes to avoid single-node failure impact.</li>
+              <li><strong>Protect the API/UI</strong> with TLS and authentication in front of Alertmanager.</li>
+              <li><strong>Monitor Alertmanager health</strong> (HTTP health/readiness endpoints, metrics) and set alerts for replica count, cluster membership changes, and storage errors.</li>
+              <li><strong>Back up configuration</strong> and keep a copy of silences/notification logs if your workflow needs it.</li>
+            </ul>
+
+            <h6>Testing HA & Failover</h6>
+            <p>Test failure scenarios regularly:</p>
+            <ul>
+              <li>Kill one Alertmanager pod and confirm remaining replicas continue to receive and route alerts.</li>
+              <li>Simulate network partition and ensure cluster converges when connectivity is restored.</li>
+              <li>Test Prometheus scrape/alertmanager target pointing at the service to verify alerts still arrive when individual pods fail.</li>
+            </ul>
+
+            <h6>Common Pitfalls</h6>
+            <ul>
+              <li><strong>Inconsistent configs:</strong> different alertmanager.yml on replicas cause unpredictable routing.</li>
+              <li><strong>No persistent storage:</strong> you lose silences/notification history after pod restarts.</li>
+              <li><strong>Single Replica:</strong> unacceptable for production — it’s a single point of failure.</li>
+              <li><strong>Improper peer discovery:</strong> cluster never forms if DNS/peer addresses are incorrect.</li>
+            </ul>
+
+            <h6>When to Use an Operator</h6>
+            <p>For Kubernetes, consider Prometheus Operator (or other ecosystem operators). They manage Alertmanager clusters, config rolling updates, and handle many operational details (peer discovery, configuration propagation, stable service endpoints) for you.</p>
+
+            <h6>Conclusion</h6>
+            <p>A robust HA Alertmanager setup reduces the risk of losing alerting capability and preserves silences and notification history during outages. Use multiple replicas, persistent storage, careful config management, and test failover scenarios to ensure your alerting pipeline remains reliable in production.</p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+
+    <!-- ========================== CONTACT SECTION ============================== -->
+
+    <iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+    <!-- ======================================================================= -->
+
+    <!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+            <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+          </div>
+          <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+          </div>
+          <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+          <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+            <a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+          </div>
+        </div>
+        <div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+    <!-- ======================================================================= -->
+
+    <!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+    
+    <!-- Particles part -->
+    <script src="../../../js/particles.js"></script>
+    <script src="../../../js/app.js"></script>
+    
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+  
+
+  <!-- ======================================================================= -->
+  </body>
+</html>

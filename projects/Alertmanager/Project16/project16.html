@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+    <meta charset="utf-8">
+    <title>How We Reduced MTTR by 40% with Prometheus and Alertmanager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Case study: practical steps we took using Prometheus and Alertmanager to reduce Mean Time To Repair (MTTR) by 40% — alert tuning, routing, runbooks, automation, and measurements.">
+    <meta name="keywords" content="Prometheus, Alertmanager, MTTR, incident response, case study, monitoring, alerting, DevOps">
+
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="How We Reduced MTTR by 40% with Prometheus and Alertmanager" />
+    <meta property="og:description" content="Case study: practical steps we took using Prometheus and Alertmanager to reduce Mean Time To Repair (MTTR) by 40% — alert tuning, routing, runbooks, automation, and measurements." />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/Alertmanager/Project16/project16.html" />
+    <meta property="og:type" content="article" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Icon -->
+	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
+	
+    <!-- Custom fonts for this template -->
+    <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+	<!-- Choice of languages -->
+	<link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+
+  </head>
+
+  <body id="page-top">
+
+
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+			      <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#sys">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+
+    <!-- Header -->
+    <header class="masthead">
+	  <div class="container">		
+		  
+	  </div>
+    </header>
+	
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+	<section id="article">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+          <h2 class="section-heading text-uppercase">How We Reduced MTTR by 40% with Prometheus and Alertmanager</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+
+            <h6>Executive summary</h6>
+            <p>In this case study we describe a practical program we ran to reduce Mean Time To Repair (MTTR) across our core services by <strong>40%</strong>. The work focused on three pillars: <em>alert signal quality</em>, <em>fast and accurate routing</em>, and <em>playbooks + automation</em>. With Prometheus evaluating alerts and Alertmanager handling routing, we tuned rules, added runbooks, introduced inhibition/grouping, and used webhooks for automated remediation.</p>
+
+            <h6>Baseline — where we started</h6>
+            <ul>
+              <li>MTTR: ~75 minutes (median) across production incidents.</li>
+              <li>High alert volume: on-call engineers received ~120 alerts/day (many duplicates and low-value warnings).</li>
+              <li>No standard runbook links in alerts and inconsistent routing — on-call often had to identify owner manually.</li>
+              <li>Few automations — most fixes required manual intervention.</li>
+            </ul>
+
+            <h6>Goals</h6>
+            <ul>
+              <li>Reduce median MTTR by at least 30% in 3 months.</li>
+              <li>Cut alert volume and duplicates by >50% for on-call engineers.</li>
+              <li>Automate simple remediation actions for the most common incidents.</li>
+            </ul>
+
+            <h6>What we changed — summary of actions</h6>
+            <ol>
+              <li><strong>Label-driven alert design:</strong> added consistent labels (service, severity, team, runbook).</li>
+              <li><strong>Tuned alert rules:</strong> adjusted thresholds and added rate/duration conditions to reduce flapping and false positives.</li>
+              <li><strong>Alertmanager routing improvements:</strong> group_by, grouping windows, inhibition rules, and multi-receiver routing to the correct teams and escalation tools.</li>
+              <li><strong>Runbooks and context in alerts:</strong> added links + remediation steps in alert annotations.</li>
+              <li><strong>Automation via webhooks:</strong> for a handful of frequent, low-risk fixes (restart pod, scale up deployment, clear queue).</li>
+              <li><strong>Measure & iterate:</strong> created dashboards tracking MTTA/MTTR, alerts per service, and alerts per on-call shift.</li>
+            </ol>
+
+            <h6>Implementation details — examples</h6>
+
+            <h6>1) Prometheus alert rule (example)</h6>
+            <pre><code># example: high error rate sustained for 3m
+groups:
+- name: service.rules
+  rules:
+  - alert: HighRequestErrorRate
+    expr: |
+      increase(http_requests_total{job="payments",status=~"5.."}[3m])
+      /
+      increase(http_requests_total{job="payments"}[3m])
+      > 0.05
+    for: 3m
+    labels:
+      severity: critical
+      service: payments
+      team: payments
+    annotations:
+      summary: "Payments service: >5% 5xx rate in last 3m"
+      runbook: "https://wiki.company.com/runbooks/payments-high-5xx"
+</code></pre>
+
+            <p>Key points: use <code>for</code> to avoid transient blips; attach <code>runbook</code> and <code>team</code> labels for routing and immediate context.</p>
+
+            <h6>2) Alertmanager routing snippet (example)</h6>
+            <pre><code>route:
+  group_by: ['alertname','service','team']
+  group_wait: 20s
+  group_interval: 4m
+  repeat_interval: 2h
+  receiver: 'default-email'
+
+  routes:
+    - match:
+        severity: 'critical'
+      receiver: 'pagerduty-main'
+    - match_re:
+        team: 'payments|billing'
+      receiver: 'slack-payments'
+</code></pre>
+
+            <p>Grouping reduces notification storms and gives responders a batch view. Routes send critical alerts to PagerDuty and service-specific alerts to team Slack channels.</p>
+
+            <h6>3) Inhibition rules (example)</h6>
+            <pre><code>inhibit_rules:
+- source_match:
+    severity: 'critical'
+  target_match:
+    severity: 'warning'
+  equal: ['service', 'instance']
+</code></pre>
+
+            <p>When a critical alert fires for a service, related lower-severity warnings are suppressed — reducing noisy duplicates.</p>
+
+            <h6>4) Runbooks & playbooks</h6>
+            <p>Every alert includes an annotation <code>runbook</code> that points to a concise step-by-step playbook. Example runbook items:</p>
+            <ul>
+              <li>Check service health dashboard (link)</li>
+              <li>Inspect recent deploys and pod restarts</li>
+              <li>Command to restart the failing pod or scale deployment</li>
+              <li>How to roll back a bad deployment</li>
+              <li>How to acknowledge and silence related alerts</li>
+            </ul>
+
+            <h6>5) Automated remediation via webhook</h6>
+            <p>We implemented a small remediation service that:</p>
+            <ul>
+              <li>Accepts Alertmanager webhook POSTs</li>
+              <li>Validates the alert payload and the alert fingerprint</li>
+              <li>Executes low-risk actions (e.g., scaling a deployment, restarting a pod) after checking preconditions</li>
+              <li>Logs actions and creates a ticket when automation runs</li>
+            </ul>
+            <pre><code># alertmanager receiver
+receivers:
+- name: 'webhook-remediation'
+  webhook_configs:
+  - url: 'https://remediate.company.com/alert'
+    send_resolved: true
+</code></pre>
+
+            <h6>Measurement — how we tracked progress</h6>
+            <p>We created dashboards and tracked the following KPIs weekly:</p>
+            <ul>
+              <li>Median MTTR (minutes)</li>
+              <li>Median MTTA (time to acknowledge)</li>
+              <li>Alerts per on-call per shift</li>
+              <li>Number of automated remediation actions and their success rate</li>
+              <li>False positive rate (alerts closed without action)</li>
+            </ul>
+
+            <h6>Results</h6>
+            <ul>
+              <li><strong>MTTR</strong>: reduced from ~75 minutes to ~45 minutes (≈40% reduction) within 8 weeks.</li>
+              <li><strong>MTTA</strong>: median time to acknowledge fell by ~35% due to better routing and PagerDuty escalation.</li>
+              <li><strong>Alert volume</strong>: actionable alerts per on-call shift dropped from ~120/day to ~45/day (≈62% reduction) after tuning and inhibition.</li>
+              <li><strong>Automation:</strong> ~18% of incidents were resolved automatically (low-risk fixes), and automation had a 92% success rate.</li>
+              <li><strong>Developer satisfaction:</strong> on-call burnout indicators improved (fewer wake-ups for non-actionable alerts).</li>
+            </ul>
+
+            <h6>Lessons learned & pitfalls</h6>
+            <ul>
+              <li><strong>Start small:</strong> automate only low-risk, well-understood actions first.</li>
+              <li><strong>Label consistently:</strong> routing depends on structured labels. Invest time to standardize labels across teams.</li>
+              <li><strong>Use runbooks:</strong> the single biggest win was having a link to a short, actionable runbook in every alert.</li>
+              <li><strong>Monitor your changes:</strong> every tuning change must be measured — reduce thresholds slowly to avoid missing real incidents.</li>
+              <li><strong>Secure automation:</strong> webhook endpoints must be authenticated and idempotent to avoid repeated destructive actions.</li>
+            </ul>
+
+            <h6>Recommended checklist to reproduce these results</h6>
+            <ol>
+              <li>Inventory current alerts and label usage.</li>
+              <li>Remove duplicate/low-value alerts and add <code>for</code> clauses to transient rules.</li>
+              <li>Add <code>team</code>, <code>service</code>, and <code>runbook</code> labels to all rules.</li>
+              <li>Configure Alertmanager grouping, inhibition, and multi-receiver routing.</li>
+              <li>Create and attach short runbooks to alerts (1–3 steps).</li>
+              <li>Implement a webhook remediation service for a small set of repeatable fixes.</li>
+              <li>Track MTTA/MTTR and alerts per shift; iterate weekly.</li>
+            </ol>
+
+            <h6>Conclusion</h6>
+            <p>Reducing MTTR is not a single technical trick — it’s a program combining signal quality, routing, readable context, and selective automation. Using Prometheus for reliable evaluation and Alertmanager for smart routing gave us the control we needed to send the right alerts to the right people, reduce noise, and automate repetitive fixes. The result: faster detection, faster remediation, and a calmer on-call rotation.</p>
+          </div>
+		</div>
+    </div>
+  </section>
+
+<!-- ======================================================================= -->
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+			</div>
+			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+			</div>
+			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+			</div>
+		</div>
+		<div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+<!-- ======================================================================= -->
+
+<!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+	
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+	
+	<!-- Particles part -->
+	<script src="../../../js/particles.js"></script>
+	<script src="../../../js/app.js"></script>
+	
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+	
+
+<!-- ======================================================================= -->
+  </body>
+
+</html>

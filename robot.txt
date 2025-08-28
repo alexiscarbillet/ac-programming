@@ -1,0 +1,6 @@
+User-agent: *
+Disallow: /vendor/
+Disallow: /js/
+Disallow: /css/
+
+Sitemap: https://ac-programming.com/sitemap.xml

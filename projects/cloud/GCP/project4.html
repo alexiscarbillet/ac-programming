@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
+     crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <title>GCP IAM Guide</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="GCP IAM Guide">
+    <meta name="keywords" content="alexis carbillet, carbillet, cloud, GCP, IAM, identity, access">
+    <meta name="author" content="Alexis Carbillet">
+
+    <!-- Control appearance when share by social media -->
+    <meta property="og:title" content="GCP IAM Guide" />
+    <meta property="og:description" content="Learn about GCP IAM and how to manage roles and permissions." />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/GCP/project3.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+    
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+    <!-- Choice of languages -->
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+  </head>
+
+  <body id="page-top">
+    
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cloud">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container"></div>
+    </header>
+
+    <!-- ======================== ARTICLE SECTION ============================ -->
+    <section id="article">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">GCP IAM Guide</h2>
+          </div>
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+            
+            <!-- Step 0: Install gcloud -->
+            <h6>Step 0: Install Google Cloud SDK (gcloud)</h6>
+            <p>Before managing IAM or other GCP resources, you need to install the <strong>Google Cloud SDK</strong> on your local machine.</p>
+
+            <p><strong>For Windows:</strong></p>
+            <pre><code>1. Download the installer from:
+   https://cloud.google.com/sdk/docs/install
+2. Run the installer and follow the instructions.
+3. Open a new Command Prompt and verify installation:
+   gcloud version</code></pre>
+
+            <p><strong>For macOS:</strong></p>
+            <pre><code># Using Homebrew
+brew install --cask google-cloud-sdk
+
+# Initialize gcloud
+gcloud init
+
+# Verify
+gcloud version</code></pre>
+
+            <p><strong>For Linux:</strong></p>
+            <pre><code># Download the SDK
+curl -O https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-XYZ-linux-x86_64.tar.gz
+
+# Extract
+tar -xf google-cloud-sdk-XYZ-linux-x86_64.tar.gz
+
+# Install
+./google-cloud-sdk/install.sh
+
+# Initialize
+./google-cloud-sdk/bin/gcloud init
+
+# Verify
+gcloud version</code></pre>
+
+            <ul>
+              <li>Run <code>gcloud auth login</code> to log in to your Google account.</li>
+              <li>Set the default project using <code>gcloud config set project PROJECT_ID</code>.</li>
+              <li>You can now use all <code>gcloud</code> commands, including IAM management commands.</li>
+            </ul>
+
+            <!-- IAM Overview -->
+            <h6>Step 1: Understanding IAM in GCP</h6>
+            <p>IAM (Identity and Access Management) lets you control who can access your GCP resources and what they can do. You manage <strong>users, groups, and service accounts</strong> with roles and permissions.</p>
+            <ul>
+              <li><strong>Primitive Roles:</strong> Owner, Editor, Viewer (broad permissions)</li>
+              <li><strong>Predefined Roles:</strong> Specific to services like Compute Admin, Storage Admin, etc.</li>
+              <li><strong>Custom Roles:</strong> You define a set of permissions tailored for a team or application.</li>
+            </ul>
+
+            <!-- Step 2: Example Scenario -->
+            <h6>Step 2: IAM Scenario</h6>
+            <p>Imagine you have a GCP project with three teams:</p>
+            <ul>
+              <li>Dev Team – deploys applications</li>
+              <li>Ops Team – manages infrastructure</li>
+              <li>Audit Team – reviews security logs</li>
+            </ul>
+            <p>You can create roles and assign them carefully:</p>
+            <pre><code># Create a custom role for auditing
+gcloud iam roles create AuditRole \
+  --project=PROJECT_ID \
+  --title="Audit Role" \
+  --description="View logs and monitor security" \
+  --permissions=logging.logEntries.list,logging.logMetrics.list</code></pre>
+            <p>Then assign the role to the Audit Team:</p>
+            <pre><code># Assign role to a user or group
+gcloud projects add-iam-policy-binding PROJECT_ID \
+  --member="user:auditor@example.com" \
+  --role="projects/PROJECT_ID/roles/AuditRole"</code></pre>
+            <p>Similarly, you can assign predefined roles to Dev and Ops teams according to their responsibilities:</p>
+            <ul>
+              <li>Dev Team: roles/editor or specific compute/deployment roles</li>
+              <li>Ops Team: roles/compute.admin, roles/storage.admin, etc.</li>
+            </ul>
+
+            <!-- Step 3: Using Service Accounts -->
+            <h6>Step 3: Service Accounts</h6>
+            <p>Service accounts allow applications to interact with GCP resources securely.</p>
+            <pre><code># Create a service account
+gcloud iam service-accounts create my-app-sa \
+  --description="Service account for app automation" \
+  --display-name="AppServiceAccount"
+
+# Assign roles to service account
+gcloud projects add-iam-policy-binding PROJECT_ID \
+  --member="serviceAccount:my-app-sa@PROJECT_ID.iam.gserviceaccount.com" \
+  --role="roles/storage.objectAdmin"</code></pre>
+
+            <!-- Step 4: Viewing IAM Policy -->
+            <h6>Step 4: View current IAM policy</h6>
+            <pre><code>gcloud projects get-iam-policy PROJECT_ID --format=json</code></pre>
+            <p>This allows you to check all users, groups, service accounts, and assigned roles in the project.</p>
+
+            <!-- Step 5: Best Practices -->
+            <h6>Step 5: IAM Best Practices</h6>
+            <ul>
+              <li>Follow the principle of least privilege: give only the permissions needed.</li>
+              <li>Use groups and service accounts rather than individual users for easier management.</li>
+              <li>Audit roles regularly with <code>gcloud projects get-iam-policy</code>.</li>
+              <li>Use custom roles for very specific use cases instead of broad roles.</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======================================================================= -->
+
+    <!-- ========================== CONTACT SECTION ============================== -->
+    <iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+    <!-- ======================================================================= -->
+
+    <!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+            <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+          </div>
+          <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+          </div>
+          <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+          <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+            <a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+          </div>
+        </div>
+        <div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+    <!-- ======================================================================= -->
+
+    <!-- ======================== JAVASCRIPT SECTION =========================== -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../../js/structure.js"></script>
+    <script src="../../../js/particles.js"></script>
+    <script src="../../../js/app.js"></script>
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      })
+    </script>
+  </body>
+</html>

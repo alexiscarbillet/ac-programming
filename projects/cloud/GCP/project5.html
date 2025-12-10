@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
+     crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <title>GKE Guide – Google Kubernetes Engine</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="GKE Guide – Learn how to build and manage Kubernetes on Google Cloud">
+    <meta name="keywords" content="alexis carbillet, carbillet, cloud, GCP, GKE, kubernetes, containers">
+    <meta name="author" content="Alexis Carbillet">
+
+    <meta property="og:title" content="GKE Guide" />
+    <meta property="og:description" content="Learn how to build and manage Kubernetes clusters using GKE." />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/GCP/project5.html" />
+    <meta property="og:type" content="website" />
+
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link href="../../../css/structure.css" rel="stylesheet">
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+  </head>
+
+  <body id="page-top">
+    
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#article">Article</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../../../index.html#cloud">Main</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead"><div class="container"></div></header>
+
+    <!-- ======================== ARTICLE SECTION ============================ -->
+    <section id="article">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">GKE – Google Kubernetes Engine Guide</h2>
+          </div>
+          <div class="col-lg-12">
+
+<!-- Step 0 -->
+<h6>Step 0: Install Google Cloud SDK (gcloud)</h6>
+<p>To work with GKE, install the <strong>Google Cloud SDK</strong> and Kubernetes CLI (<code>kubectl</code>).</p>
+<pre><code># Install kubectl
+gcloud components install kubectl
+</code></pre>
+
+<ul>
+  <li>Run <code>gcloud auth login</code></li>
+  <li>Select your project: <code>gcloud config set project PROJECT_ID</code></li>
+</ul>
+
+<!-- Step 1 -->
+<h6>Step 1: Enable Required APIs</h6>
+<pre><code>gcloud services enable \
+  container.googleapis.com \
+  compute.googleapis.com
+</code></pre>
+
+<!-- Step 2 -->
+<h6>Step 2: Create a GKE Cluster</h6>
+
+<p><strong>Using the CLI:</strong></p>
+<pre><code>gcloud container clusters create my-cluster \
+  --zone=europe-west1-b \
+  --machine-type=e2-medium \
+  --num-nodes=3
+</code></pre>
+
+<p><strong>Using the Console:</strong></p>
+<ul>
+  <li>Go to Kubernetes Engine → Clusters</li>
+  <li>Click “Create” → Standard</li>
+  <li>Select Compute type, node pool size, autoscaling…</li>
+</ul>
+
+<!-- Step 3 -->
+<h6>Step 3: Connect to the Cluster</h6>
+<pre><code>gcloud container clusters get-credentials my-cluster \
+  --zone=europe-west1-b
+</code></pre>
+
+<p>You can now run Kubernetes commands:</p>
+<pre><code>kubectl get nodes
+kubectl get pods
+</code></pre>
+
+<!-- Step 4 -->
+<h6>Step 4: Deploy Your First App</h6>
+<pre><code>kubectl create deployment hello-app \
+  --image=gcr.io/google-samples/hello-app:1.0
+</code></pre>
+
+<p>Expose it to the internet:</p>
+<pre><code>kubectl expose deployment hello-app \
+  --type=LoadBalancer \
+  --port=80 \
+  --target-port=8080
+</code></pre>
+
+<p>Check the external IP:</p>
+<pre><code>kubectl get service hello-app
+</code></pre>
+
+<!-- Step 5 -->
+<h6>Step 5: Scaling Applications</h6>
+<pre><code>kubectl scale deployment hello-app --replicas=5
+</code></pre>
+
+<!-- Step 6 -->
+<h6>Step 6: Autoscaling Node Pools</h6>
+<pre><code>gcloud container clusters update my-cluster \
+  --enable-autoscaling \
+  --min-nodes=2 \
+  --max-nodes=10 \
+  --zone=europe-west1-b
+</code></pre>
+
+<!-- Step 7 -->
+<h6>Step 7: GKE IAM & RBAC</h6>
+<p>Two layers manage security:</p>
+
+<ul>
+  <li>GCP IAM → Who can access the cluster</li>
+  <li>Kubernetes RBAC → What they can do inside the cluster</li>
+</ul>
+
+<p><strong>Add a user as a GKE admin:</strong></p>
+<pre><code>gcloud projects add-iam-policy-binding PROJECT_ID \
+  --member="user:dev@example.com" \
+  --role="roles/container.admin"
+</code></pre>
+
+<p><strong>Create a Kubernetes RBAC role:</strong></p>
+<pre><code>kubectl create role pod-reader \
+  --verb=get --verb=list --verb=watch \
+  --resource=pods -n default
+</code></pre>
+
+<p><strong>Bind it to a user:</strong></p>
+<pre><code>kubectl create rolebinding read-pods \
+  --role=pod-reader \
+  --user=dev@example.com \
+  -n default
+</code></pre>
+
+<!-- Step 8 -->
+<h6>Step 8: Monitoring & Logging</h6>
+<p>GKE integrates natively with Cloud Monitoring and Cloud Logging.</p>
+<ul>
+  <li>Go to “Kubernetes Engine → Workloads → Logs”</li>
+  <li>Use <code>kubectl logs</code> for pod logs</li>
+  <li>Use Cloud Monitoring dashboards</li>
+</ul>
+
+<!-- Step 9 -->
+<h6>Step 9: Best Practices</h6>
+<ul>
+  <li>Use Autopilot for simplified operations</li>
+  <li>Use Workload Identity → Best for IAM-secure pods</li>
+  <li>Enable auto-upgrades for nodes</li>
+  <li>Use Ingress + Cloud Load Balancing for production services</li>
+  <li>Separate workloads using namespaces</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <iframe id="contact" src="../../../contact.html" frameborder="0" scrolling="no"
+      style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3">
+            <iframe src="../../../copyright.html"
+              frameborder="0" style="max-height: 25px;"></iframe>
+          </div>
+          <div class="col-xs-6 text-center"></div>
+          <div class="col-xs-2">
+            <a href="../../../index.html"><span class="copyright">Blog</span></a>
+          </div>
+        </div>
+        <div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../../js/structure.js"></script>
+    <script src="../../../js/particles.js"></script>
+    <script src="../../../js/app.js"></script>
+    <script>
+      $(function () { $('[data-toggle="tooltip"]').tooltip(); })
+    </script>
+
+  </body>
+</html>

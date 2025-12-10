@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
+     crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <title>Multicloud Kubernetes Deployment: GKE + AKS + EKS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Deploy different applications across GKE, AKS, and EKS in a multicloud Kubernetes setup">
+    <meta name="keywords" content="alexis carbillet, carbillet, cloud, GKE, AKS, EKS, Kubernetes, multicloud">
+    <meta name="author" content="Alexis Carbillet">
+
+    <!-- Social media appearance -->
+    <meta property="og:title" content="Multicloud Kubernetes Deployment: GKE + AKS + EKS" />
+    <meta property="og:description" content="Deploy different applications across GKE, AKS, and EKS in a multicloud Kubernetes setup" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/multicloud/project3.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+    
+    <!-- Custom fonts -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#article">Article</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../../../index.html#cloud">Main</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container"></div>
+    </header>
+
+    <!-- ======================== ARTICLE SECTION ============================ -->
+
+    <section id="article">
+    <div class="container">
+        <div class="row">
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Multicloud Kubernetes Deployment: GKE + AKS + EKS</h2>
+        </div>
+        <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+
+            <h6>Project Overview</h6>
+            <p>In this project, we deploy three separate applications to different cloud Kubernetes clusters:</p>
+            <ul>
+            <li><b>GKE (Google Kubernetes Engine):</b> Flask Web App</li>
+            <li><b>AKS (Azure Kubernetes Service):</b> Node.js API</li>
+            <li><b>EKS (Amazon Elastic Kubernetes Service):</b> Django Web App</li>
+            </ul>
+            <p>Each cloud runs independently, but we can manage all clusters from a single workstation using <code>kubectl</code> with multiple contexts.</p>
+
+            <h6>Step 1: Create Kubernetes Clusters</h6>
+            <p><b>Run these commands locally</b> on your terminal. You need the respective cloud CLIs installed (gcloud, az, aws).</p>
+
+            <p>GKE:</p>
+            <pre><code>gcloud container clusters create gke-blog-cluster \
+    --zone us-central1-a --num-nodes 2</code></pre>
+
+            <p>AKS:</p>
+            <pre><code>az aks create --resource-group aks-rg --name aks-api-cluster \
+    --node-count 2 --generate-ssh-keys</code></pre>
+
+            <p>EKS:</p>
+            <pre><code>aws eks create-cluster --name eks-django-cluster \
+    --role-arn <ROLE_ARN> --resources-vpc-config subnetIds=<SUBNET_IDS>,securityGroupIds=<SG_IDS></code></pre>
+
+            <h6>Step 2: Configure kubectl for Multiple Clusters</h6>
+            <p>After creating the clusters, configure <code>kubectl</code> to access each one:</p>
+
+            <pre><code># GKE
+    gcloud container clusters get-credentials gke-blog-cluster --zone us-central1-a
+
+    # AKS
+    az aks get-credentials --resource-group aks-rg --name aks-api-cluster
+
+    # EKS
+    aws eks --region us-east-1 update-kubeconfig --name eks-django-cluster</code></pre>
+
+            <p>Now your <code>kubectl</code> knows about three clusters. You can see all contexts:</p>
+            <pre><code>kubectl config get-contexts</code></pre>
+
+            <p>Switch between clusters using:</p>
+            <pre><code>kubectl config use-context gke_blog_cluster_context
+    kubectl config use-context aks_api_cluster_context
+    kubectl config use-context eks_django_cluster_context</code></pre>
+
+            <h6>Step 3: Deploy Applications to Each Cluster</h6>
+            <p><b>Important:</b> Switch to the desired context before deploying to each cloud.</p>
+
+            <p>GKE Flask App:</p>
+            <pre><code>kubectl config use-context gke_blog_cluster_context
+    kubectl create deployment flask-app --image=yourusername/flask-blog
+    kubectl expose deployment flask-app --type=LoadBalancer --port 80</code></pre>
+
+            <p>AKS Node.js API:</p>
+            <pre><code>kubectl config use-context aks_api_cluster_context
+    kubectl create deployment node-api --image=yourusername/node-api
+    kubectl expose deployment node-api --type=LoadBalancer --port 3000</code></pre>
+
+            <p>EKS Django App:</p>
+            <pre><code>kubectl config use-context eks_django_cluster_context
+    kubectl create deployment django-app --image=yourusername/django-web
+    kubectl expose deployment django-app --type=LoadBalancer --port 8000</code></pre>
+
+            <h6>Step 4: Connect and Test Applications</h6>
+            <p>Retrieve external IP addresses:</p>
+            <pre><code>kubectl get svc</code></pre>
+            <p>Visit each external IP in your browser to verify the app is running.</p>
+
+            <p>Optional: Use a single DNS provider (Cloudflare or Route53) to map domain names to each application, allowing easy access:</p>
+            <ul>
+            <li>flask-app.example.com → GKE</li>
+            <li>node-api.example.com → AKS</li>
+            <li>django-app.example.com → EKS</li>
+            </ul>
+
+            <h6>Step 5: Optional: Inter-Cluster Communication</h6>
+            <p>If you want the applications to communicate across clouds:</p>
+            <ul>
+            <li>Set up VPNs or VPC Peering between clouds</li>
+            <li>Expose APIs securely using Ingress + TLS</li>
+            <li>Consider using a multicloud service mesh like Istio for service discovery and traffic routing</li>
+            </ul>
+
+            <h6>Benefits of This Approach</h6>
+            <ul>
+            <li>Leverage strengths of each cloud provider</li>
+            <li>Avoid vendor lock-in</li>
+            <li>Compare performance across clouds</li>
+            <li>Provide high availability and redundancy</li>
+            </ul>
+
+        </div>
+        </div>
+    </div>
+    </section>
+
+    <!-- ========================== CONTACT SECTION ============================== -->
+
+    <iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+    <!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+            <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+          </div>
+          <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center"></div>
+          <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+          <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+            <a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+          </div>
+        </div>
+        <div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+    <!-- ======================== JAVASCRIPT SECTION =========================== -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../../js/structure.js"></script>
+    <script src="../../../js/particles.js"></script>
+    <script src="../../../js/app.js"></script>
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+
+  </body>
+</html>

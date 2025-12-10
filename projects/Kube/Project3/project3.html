@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
+     crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <title>Kubernetes Networking Basics</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Learn Kubernetes networking: CNI, Services, DNS, kube-proxy, Network Policies">
+    <meta name="keywords" content="alexis carbillet, carbillet, Kubernetes, networking, CNI, kube-proxy">
+    <meta name="author" content="Alexis Carbillet">
+
+    <!-- Control appearance when shared -->
+    <meta property="og:title" content="Kubernetes Networking Basics" />
+    <meta property="og:description" content="Learn Kubernetes networking: CNI, Services, DNS, kube-proxy, Network Policies" />
+    <meta property="og:url" content="https://www.ac-programming.com/projects/Kube/Project3/project3.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+    
+    <!-- Custom fonts -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet'>
+
+    <!-- Custom styles -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+    <!-- Default language -->
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#sys">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container"></div>
+    </header>
+
+    <!-- ======================== ARTICLE SECTION ============================ -->
+    <section id="article">
+      <div class="container">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2 class="section-heading text-uppercase">Kubernetes Networking Basics</h2>
+          </div>
+
+          <div class="col-12">
+
+            <p>Kubernetes networking can feel complex at first, but understanding how Pods, Services, DNS, and CNI plugins interact is essential for operating any Kubernetes cluster—whether it's on-premises or cloud-based.</p>
+
+            <!-- CNI SECTION -->
+            <h5>1. Pod Networking (CNI)</h5>
+            <p>Kubernetes does not ship with a built-in networking layer. Instead, it relies on <strong>CNI (Container Network Interface)</strong> plugins like:</p>
+            <ul>
+              <li>Calico</li>
+              <li>Flannel</li>
+              <li>Weave Net</li>
+              <li>Cilium</li>
+            </ul>
+            <p>These plugins handle:</p>
+            <ul>
+              <li>Assigning IP addresses to Pods</li>
+              <li>Routing traffic between nodes</li>
+              <li>Network Policy enforcement</li>
+            </ul>
+
+            <p>Example: install Calico (common in kubeadm clusters):</p>
+<pre><code>kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml</code></pre>
+
+            <!-- SERVICE NETWORKING -->
+            <h5>2. Service Networking</h5>
+            <p>Pods are ephemeral, so Kubernetes exposes applications through <strong>Services</strong>. The main service types are:</p>
+
+            <ul>
+              <li><b>ClusterIP</b> – internal access only</li>
+              <li><b>NodePort</b> – exposes a port on every node</li>
+              <li><b>LoadBalancer</b> – external access (requires an external LB)</li>
+            </ul>
+
+            <p>Create a Service:</p>
+<pre><code>kubectl expose deployment nginx --port=80 --type=ClusterIP</code></pre>
+
+            <!-- KUBE PROXY -->
+            <h5>3. kube-proxy</h5>
+            <p><code>kube-proxy</code> runs on each node and ensures that service traffic is routed properly using:</p>
+            <ul>
+              <li>iptables (default)</li>
+              <li>IPVS (faster at high scale)</li>
+            </ul>
+
+            <!-- DNS / COREDNS -->
+            <h5>4. DNS with CoreDNS</h5>
+            <p>Every Kubernetes cluster includes <strong>CoreDNS</strong>, which allows resolving service names like:</p>
+            <p><code>nginx.default.svc.cluster.local</code></p>
+
+            <p>Test DNS resolution:</p>
+<pre><code>kubectl exec -it &lt;pod-name&gt; -- nslookup kubernetes.default</code></pre>
+
+            <!-- NETWORK POLICIES -->
+            <h5>5. Network Policies</h5>
+            <p>Network Policies let you control which Pods can communicate. They work like firewall rules inside the cluster.</p>
+
+            <p>Example: only allow Pods with label <code>app=frontend</code> to access the backend service:</p>
+
+<pre><code>apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-frontend
+spec:
+  podSelector:
+    matchLabels:
+      app: backend
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: frontend
+</code></pre>
+
+            <p>Only CNIs that support policies (Calico, Cilium) will enforce these rules.</p>
+
+            <p>This overview gives you a strong foundation to understand how communication works inside any Kubernetes cluster—from pod routing to service discovery and internal DNS.</p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- ======================================================================= -->
+
+    <!-- CONTACT SECTION -->
+    <iframe id="contact" src="../../../contact.html" frameborder="0" scrolling="no"
+      style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+          </div>
+          <div class="col-6 text-center"></div>
+          <div class="col-1"></div>
+          <div class="col-2">
+            <a href="../../../index.html"><span class="copyright">Blog</span></a>
+          </div>
+        </div>
+        <div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../../js/structure.js"></script>
+    <script src="../../../js/particles.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <script>
+      $(function () {
+        $('[data-toggle="tooltip"]').tooltip();
+      });
+    </script>
+
+  </body>
+</html>

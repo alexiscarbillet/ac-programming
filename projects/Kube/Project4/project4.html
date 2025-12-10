@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
+     crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <title>Kubernetes CNI Comparison</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Comparison of Kubernetes CNI plugins (Calico, Flannel, Weave Net, Cilium)">
+    <meta name="keywords" content="kubernetes, CNI, calico, flannel, cilium, weave, networking">
+    <meta name="author" content="Alexis Carbillet">
+
+    <!-- Social Sharing -->
+    <meta property="og:title" content="Kubernetes CNI Comparison" />
+    <meta property="og:description" content="Learn the differences between Kubernetes CNI plugins, their benefits, drawbacks, and ideal use cases." />
+    <meta property="og:url" content="https://ac-programming.com/projects/Kube/Project4/project4.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+    
+    <!-- Fonts -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet'>
+
+    <!-- Custom styles -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo">
+
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+          <i class="fa fa-bars"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#article">Article</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#contact">Contact</a></li>
+            <li class="nav-item"><a class="nav-link js-scroll-trigger" href="../../../index.html#sys">Main</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container"></div>
+    </header>
+
+    <!-- ARTICLE -->
+    <section id="article">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-12 text-center">
+            <h2 class="section-heading text-uppercase">Kubernetes CNI Comparison</h2>
+          </div>
+
+          <div class="col-12">
+
+            <p>Kubernetes relies on <strong>CNI plugins</strong> (Container Network Interface) to handle Pod networking. They assign IPs, enable Pod-to-Pod communication, enforce network policies, and route traffic across nodes.</p>
+
+            <p>This guide compares the four most widely used CNIs:</p>
+
+            <ul>
+              <li><strong>Calico</strong></li>
+              <li><strong>Cilium</strong></li>
+              <li><strong>Flannel</strong></li>
+              <li><strong>Weave Net</strong></li>
+            </ul>
+
+            <hr>
+
+            <!-- COMPARISON TABLE -->
+            <h4>1. CNI Comparison Table</h4>
+            <div class="table-responsive">
+              <table class="table table-bordered table-striped">
+                <thead class="thead-dark">
+                  <tr>
+                    <th>CNI</th>
+                    <th>Networking Model</th>
+                    <th>Network Policies</th>
+                    <th>Performance</th>
+                    <th>Best Use Case</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Calico</strong></td>
+                    <td>BGP routing / VXLAN</td>
+                    <td>Yes (very strong)</td>
+                    <td>⭐⭐⭐⭐</td>
+                    <td>Production, security-focused clusters</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Cilium</strong></td>
+                    <td>eBPF (high performance)</td>
+                    <td>Yes (L3/L4/L7)</td>
+                    <td>⭐⭐⭐⭐⭐</td>
+                    <td>High performance, zero-overhead networking</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Flannel</strong></td>
+                    <td>VXLAN / host-gw</td>
+                    <td>No</td>
+                    <td>⭐⭐⭐</td>
+                    <td>Simple labs and lightweight clusters</td>
+                  </tr>
+                  <tr>
+                    <td><strong>Weave Net</strong></td>
+                    <td>Encrypted mesh overlay</td>
+                    <td>Yes</td>
+                    <td>⭐⭐⭐</td>
+                    <td>Small/medium clusters needing encryption</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <hr>
+
+            <!-- ADVANTAGES & DISADVANTAGES -->
+            <h4>2. Advantages & Disadvantages</h4>
+
+            <h5>Calico</h5>
+            <ul>
+              <li><strong>Advantages:</strong>
+                <ul>
+                  <li>Best-in-class Network Policy support</li>
+                  <li>High performance with BGP</li>
+                  <li>Can operate without overlays (native routing)</li>
+                </ul>
+              </li>
+              <li><strong>Disadvantages:</strong>
+                <ul>
+                  <li>More complex to configure</li>
+                  <li>BGP troubleshooting may require expertise</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h5>Cilium</h5>
+            <ul>
+              <li><strong>Advantages:</strong>
+                <ul>
+                  <li>Uses eBPF → fastest CNI available</li>
+                  <li>L7 policies & observability</li>
+                  <li>Deep integration with service mesh modes</li>
+                </ul>
+              </li>
+              <li><strong>Disadvantages:</strong>
+                <ul>
+                  <li>Requires modern Linux kernels</li>
+                  <li>More advanced learning curve</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h5>Flannel</h5>
+            <ul>
+              <li><strong>Advantages:</strong>
+                <ul>
+                  <li>Simplest to deploy</li>
+                  <li>Lightweight and stable</li>
+                  <li>Perfect for test or dev clusters</li>
+                </ul>
+              </li>
+              <li><strong>Disadvantages:</strong>
+                <ul>
+                  <li>No Network Policies</li>
+                  <li>Lower performance compared to Cilium/Calico</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h5>Weave Net</h5>
+            <ul>
+              <li><strong>Advantages:</strong>
+                <ul>
+                  <li>Automatic encryption between nodes</li>
+                  <li>Zero-config discovery</li>
+                  <li>Network policies supported</li>
+                </ul>
+              </li>
+              <li><strong>Disadvantages:</strong>
+                <ul>
+                  <li>Weave Net encryption can reduce throughput</li>
+                  <li>Higher resource usage on nodes</li>
+                </ul>
+              </li>
+            </ul>
+
+            <hr>
+
+            <!-- RECOMMENDATIONS -->
+            <h4>3. Which CNI Should You Use?</h4>
+
+            <ul>
+              <li><strong>Use Calico if:</strong> you need strong network policies and scalable routing.</li>
+              <li><strong>Use Cilium if:</strong> you want maximum performance, observability, or service mesh-like features.</li>
+              <li><strong>Use Flannel if:</strong> you're building a simple lab or lightweight cluster.</li>
+              <li><strong>Use Weave Net if:</strong> you want built-in encryption without extra components.</li>
+            </ul>
+
+            <hr>
+
+            <!-- INSTALL EXAMPLES -->
+            <h4>4. Installation Examples</h4>
+
+            <h6>Install Calico</h6>
+<pre><code>kubectl apply -f https://docs.projectcalico.org/manifests/calico.yaml
+</code></pre>
+
+            <h6>Install Cilium</h6>
+<pre><code>curl -L --remote-name https://github.com/cilium/cilium-cli/releases/latest/download/cilium-linux-amd64.tar.gz
+tar xzvf cilium-linux-amd64.tar.gz
+sudo mv cilium /usr/local/bin/
+cilium install
+</code></pre>
+
+            <h6>Install Flannel</h6>
+<pre><code>kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/master/Documentation/kube-flannel.yml
+</code></pre>
+
+            <h6>Install Weave Net</h6>
+<pre><code>kubectl apply -f https://cloud.weave.works/k8s/net?k8s-version=$(kubectl version | base64 | tr -d '\n')
+</code></pre>
+
+            <hr>
+
+            <p>This comparison should help you choose the right CNI depending on your Kubernetes cluster's scale, security requirements, and performance goals.</p>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <iframe id="contact" src="../../../contact.html" frameborder="0" scrolling="no"
+      style="border:none;width:100%;height:140vh;max-height:800px;"></iframe>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <iframe src="../../../copyright.html" frameborder="0" style="padding:0%;max-height:25px;"></iframe>
+          </div>
+          <div class="col-6 text-center"></div>
+          <div class="col-1"></div>
+          <div class="col-2">
+            <a href="../../../index.html"><span class="copyright">Blog</span></a>
+          </div>
+        </div>
+        <div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+    <!-- JS -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <script src="../../../js/structure.js"></script>
+    <script src="../../../js/particles.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <script>
+      $(function () { $('[data-toggle="tooltip"]').tooltip(); })
+    </script>
+
+  </body>
+</html>

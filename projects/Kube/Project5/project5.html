@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
+     crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <title>Helm in Production</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Advanced Helm usage for production Kubernetes deployments">
+    <meta name="keywords" content="helm, kubernetes, devops, cloud, production, argoCD, fluxCD, gitops">
+    <meta name="author" content="Alexis Carbillet">
+
+    <!-- Social -->
+    <meta property="og:title" content="Helm in Production" />
+    <meta property="og:description" content="Learn advanced Helm concepts for secure, scalable, production-ready Kubernetes deployments." />
+    <meta property="og:url" content="https://www.ac-programming.com/projects/Kube/helm-production.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+
+    <!-- Fonts -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
+
+    <!-- Custom CSS -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+  </head>
+
+<body id="page-top">
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+  <div class="container">
+    <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
+      data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+      <i class="fa fa-bars"></i>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav text-uppercase ml-auto">
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link js-scroll-trigger" href="../../../index.html#kube">Main</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Header -->
+<header class="masthead">
+  <div class="container"></div>
+</header>
+
+<!-- ARTICLE SECTION -->
+<section id="article">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-heading text-uppercase">Helm in Production</h2>
+      </div>
+
+      <div class="col-12">
+
+        <p>Helm is the package manager for Kubernetes, but using it in production requires more than running 
+          <code>helm install</code>. This guide covers advanced Helm concepts used in real-world environments: 
+          security, versioning, GitOps, secrets encryption, and best practices for scalable deployments.</p>
+
+        <!-- SECTION 1 -->
+        <h4>1. Helm Architecture in Production</h4>
+        <p>A production-ready Helm setup separates concerns:</p>
+        <ul>
+          <li><b>Chart Repository:</b> Internal OCI registry storing versioned Helm charts</li>
+          <li><b>Git Repository:</b> Stores values files per environment</li>
+          <li><b>CD System:</b> ArgoCD or FluxCD applies Helm releases automatically</li>
+          <li><b>Security Layer:</b> Secrets encrypted with SOPS or Vault</li>
+        </ul>
+
+        <!-- SECTION 2 -->
+        <h4>2. Using Helm with OCI Registries</h4>
+        <p>Production clusters increasingly use OCI registries (Artifact Registry, ACR, ECR, Harbor) instead of HTTP Helm repos.</p>
+
+<pre><code># Authenticate to registry
+helm registry login myregistry.com
+
+# Push a chart
+helm push mychart-1.2.0.tgz oci://myregistry.com/helm/
+
+# Pull and install
+helm pull oci://myregistry.com/helm/mychart --version 1.2.0
+helm install app ./mychart</code></pre>
+
+        <p><b>Benefits:</b> Immutable storage, better access control, compatible with enterprise tools.</p>
+
+        <!-- SECTION 3 -->
+        <h4>3. Managing Secrets Securely (SOPS + Helm)</h4>
+        <p>Never store secrets in plain YAML. Use <b>SOPS</b> with GPG, KMS, or Azure/GCP key management.</p>
+
+<pre><code># Encrypt a YAML file
+sops -e values-prod.yaml > values-prod.enc.yaml
+
+# Decrypt automatically during Helm install
+helm upgrade --install app mychart \
+  -f values-prod.enc.yaml \
+  --decrypt</code></pre>
+
+        <p><b>Why SOPS?</b> Git repositories remain safe, and decryption happens only in CI/CD or at deploy time.</p>
+
+        <!-- SECTION 4 -->
+        <h4>4. GitOps with Helm (ArgoCD & FluxCD)</h4>
+        <p>In production environments, manual <code>helm install</code> is avoided. Instead, a GitOps controller 
+          continuously reconciles the desired state defined in Git.</p>
+
+        <h6>ArgoCD Example</h6>
+<pre><code>apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: myapp
+spec:
+  destination:
+    namespace: prod
+    server: https://kubernetes.default.svc
+  source:
+    repoURL: https://github.com/org/env-config
+    path: charts/myapp
+    helm:
+      valueFiles:
+        - values-prod.yaml
+  syncPolicy:
+    automated: { }</code></pre>
+
+        <h6>FluxCD Example</h6>
+<pre><code>apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: myapp
+spec:
+  chart:
+    spec:
+      chart: myapp
+      sourceRef:
+        kind: HelmRepository
+        name: internal-repo
+  valuesFrom:
+    - kind: ConfigMap
+      name: prod-values</code></pre>
+
+        <p><b>GitOps Advantages:</b> auditability, rollback, immutability, zero manual drift.</p>
+
+        <!-- SECTION 5 -->
+        <h4>5. Helm Chart Versioning Strategy</h4>
+        <p>Good versioning avoids breaking production environments.</p>
+        <ul>
+          <li><b>MAJOR</b> — breaking changes in templates or required values</li>
+          <li><b>MINOR</b> — new features but backward compatible</li>
+          <li><b>PATCH</b> — bug fixes, no template change</li>
+        </ul>
+
+<pre><code># Chart.yaml
+version: 2.3.1
+appVersion: "1.18.4"</code></pre>
+
+        <p>Always bump chart versions when:
+          <ul>
+            <li>template logic changes</li>
+            <li>value keys change</li>
+            <li>dependencies update</li>
+          </ul>
+        </p>
+
+        <!-- SECTION 6 -->
+        <h4>6. Rollbacks & Disaster Recovery</h4>
+        <p>Helm keeps release history, allowing instant rollbacks:</p>
+
+<pre><code>helm rollback app 3
+helm history app</code></pre>
+
+        <p>In GitOps: rollback = <b>git revert</b> + automated sync.</p>
+
+        <!-- SECTION 7 -->
+        <h4>7. Helm Best Practices for Production</h4>
+        <ul>
+          <li>Use <b>values files per environment</b>: dev, staging, prod</li>
+          <li>Never override values using <code>--set</code> in production</li>
+          <li>Always store rendered manifests for audit: <code>helm template</code></li>
+          <li>Use <b>health checks</b> in templates (readiness & liveness)</li>
+          <li>Enable <b>PodDisruptionBudgets</b> and <b>autoscaling</b> via Helm</li>
+          <li>Validate using <b>helm lint</b> + <b>kubeconform</b></li>
+        </ul>
+
+        <h4>Conclusion</h4>
+        <p>Helm in production is far more than a deployment tool. With OCI registries, GitOps automation, 
+          encrypted secrets, strict versioning, and disaster recovery strategies, Helm becomes a reliable 
+          component of a modern Kubernetes platform.</p>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<iframe id="contact" src="../../../contact.html" frameborder="0" scrolling="no" 
+  style="border: none; width: 100%; height: 140vh; max-height: 800px;">
+</iframe>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-3">
+        <iframe src="../../../copyright.html" frameborder="0"
+          style="padding: 0%; max-height: 25px;"></iframe>
+      </div>
+      <div class="col-6 text-center"></div>
+      <div class="col-1"></div>
+      <div class="col-2">
+        <a href="../../../index.html"><span class="copyright"
+          style="margin-right: 2%;">Blog</span></a>
+      </div>
+    </div>
+    <div id="particles-js" style="height:50px;"></div>
+  </div>
+</footer>
+
+<!-- SCRIPTS -->
+<script src="../../../vendor/jquery/jquery.min.js"></script>
+<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../../../js/structure.js"></script>
+<script src="../../../js/particles.js"></script>
+<script src="../../../js/app.js"></script>
+
+<script>
+  $(function () {
+    $('[data-toggle="tooltip"]').tooltip();
+  })
+</script>
+
+</body>
+</html>

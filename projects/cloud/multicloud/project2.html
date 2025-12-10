@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
+     crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <title>Multicloud Data Pipeline: AWS → GCP → Azure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Build a multicloud data pipeline using AWS S3, GCP BigQuery, and Azure Synapse">
+    <meta name="keywords" content="alexis carbillet, carbillet, cloud, AWS, GCP, Azure, multicloud, data pipeline">
+    <meta name="author" content="Alexis Carbillet ">
+ 
+    <!-- Control appearance when shared on social media -->
+    <meta property="og:title" content="Multicloud Data Pipeline: AWS → GCP → Azure" />
+    <meta property="og:description" content="Build a multicloud data pipeline using AWS S3, GCP BigQuery, and Azure Synapse" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/multicloud/project2.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Icon -->
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+    
+    <!-- Custom fonts for this template -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="../../../css/structure.css" rel="stylesheet">
+
+    <!-- Choice of languages -->
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+
+  </head>
+
+  <body id="page-top">
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cloud">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container"></div>
+    </header>
+
+    <!-- ======================== ARTICLE SECTION ============================ -->
+
+    <section id="article">
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Multicloud Data Pipeline: AWS → GCP → Azure</h2>
+          </div>
+          <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12">
+            
+            <h6>Project Overview</h6>
+            <p>This project demonstrates a multicloud data pipeline that ingests data into AWS S3, processes it in GCP BigQuery, and stores final analytics in Azure Synapse Analytics.</p>
+
+            <h6>Architecture</h6>
+            <ul>
+              <li><b>AWS S3:</b> Raw data storage, CSV or JSON files</li>
+              <li><b>GCP BigQuery:</b> Data processing, transformations, aggregation</li>
+              <li><b>Azure Synapse:</b> Centralized analytics warehouse for reporting</li>
+              <li><b>ETL Automation:</b> Using Python scripts or Apache Airflow</li>
+            </ul>
+
+            <h6>Step 1: Prepare AWS S3 Bucket</h6>
+            <pre><code>aws s3 mb s3://multicloud-raw-data
+aws s3 cp local-data.csv s3://multicloud-raw-data/</code></pre>
+
+            <h6>Step 2: Set up GCP BigQuery Dataset</h6>
+            <pre><code>gcloud datasets create multicloud_dataset
+bq mk -t multicloud_dataset.raw_data raw_data_schema.json
+bq load --source_format=CSV multicloud_dataset.raw_data gs://bucket-name/local-data.csv</code></pre>
+
+            <h6>Step 3: Transform Data in BigQuery</h6>
+            <pre><code>-- Example SQL Transformation
+CREATE TABLE multicloud_dataset.processed_data AS
+SELECT id, name, COUNT(*) AS event_count
+FROM multicloud_dataset.raw_data
+GROUP BY id, name;</code></pre>
+
+            <h6>Step 4: Export Data to Azure Blob Storage</h6>
+            <pre><code>-- Export BigQuery processed data to CSV
+bq extract --destination_format CSV multicloud_dataset.processed_data gs://gcp-export-bucket/processed_data.csv
+
+-- Then upload to Azure Blob
+az storage blob upload --container-name analytics --file processed_data.csv --name processed_data.csv</code></pre>
+
+            <h6>Step 5: Load Data into Azure Synapse</h6>
+            <pre><code>-- Using Synapse COPY command
+COPY INTO analytics_table
+FROM 'https://<storage-account>.blob.core.windows.net/analytics/processed_data.csv'
+WITH (FILE_TYPE = 'CSV');</code></pre>
+
+            <h6>Step 6: Automate the Pipeline</h6>
+            <ul>
+              <li>Use **Apache Airflow** to schedule ETL tasks:</li>
+              <pre><code>from airflow import DAG
+from airflow.providers.amazon.aws.operators.s3 import S3CreateBucketOperator
+from airflow.providers.google.cloud.operators.bigquery import BigQueryInsertJobOperator
+from airflow.providers.microsoft.azure.operators.synapse import SynapseCopyOperator
+from datetime import datetime
+
+with DAG('multicloud_pipeline', start_date=datetime(2025, 1, 1), schedule_interval='@daily') as dag:
+    create_bucket = S3CreateBucketOperator(bucket_name='multicloud-raw-data')
+    bigquery_job = BigQueryInsertJobOperator(configuration={...})
+    synapse_load = SynapseCopyOperator(task_id='load_to_synapse', ...)  
+
+    create_bucket >> bigquery_job >> synapse_load</code></pre>
+              <li>Automate daily ingestion and transformations</li>
+            </ul>
+
+            <h6>Benefits of Multicloud Approach</h6>
+            <ul>
+              <li>Avoid vendor lock-in</li>
+              <li>Leverage best-of-breed services from each provider</li>
+              <li>Global redundancy and failover</li>
+              <li>Flexible scaling depending on workload</li>
+            </ul>
+
+            <h6>Next Steps / Enhancements</h6>
+            <ul>
+              <li>Integrate data quality checks</li>
+              <li>Add monitoring and alerting (CloudWatch, Stackdriver, Azure Monitor)</li>
+              <li>Use Terraform or Pulumi for IaC multicloud deployments</li>
+            </ul>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ======================================================================= -->
+
+    <!-- ========================== CONTACT SECTION ============================== -->
+
+    <iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+    <!-- ======================================================================= -->
+
+    <!-- ======================= FOOTER SECTION ================================ -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+            <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+          </div>
+          <div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+          </div>
+          <div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+          <div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+            <a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+          </div>
+        </div>
+        <div id="particles-js" style="height:50px;"></div>
+      </div>
+    </footer>
+
+    <!-- ======================================================================= -->
+
+    <!-- ======================== JAVASCRIPT SECTION =========================== -->
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../vendor/jquery/jquery.min.js"></script>
+    <script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Custom scripts for this template -->
+    <script src="../../../js/structure.js"></script>
+
+    <!-- Particles part -->
+    <script src="../../../js/particles.js"></script>
+    <script src="../../../js/app.js"></script>
+
+    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
+    <script>
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip();
+    })
+    </script>
+
+  </body>
+</html>

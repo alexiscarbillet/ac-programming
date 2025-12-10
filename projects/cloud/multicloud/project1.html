@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
+     crossorigin="anonymous"></script>
+
+    <meta charset="utf-8">
+    <title>Multicloud Blog Platform – AWS + GCP + Azure</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Build a Multicloud Blog Application Across AWS, GCP & Azure">
+    <meta name="keywords" content="multicloud, AWS, GCP, Azure, architecture, cloud">
+    <meta name="author" content="Alexis Carbillet">
+
+    <!-- Social Share -->
+    <meta property="og:title" content="Multicloud Blog Platform – AWS + GCP + Azure" />
+    <meta property="og:description" content="Build a Multicloud Blog Application Across AWS, GCP & Azure" />
+    <meta property='og:url' content="https://www.ac-programming.com/projects/cloud/multicloud/project1.html" />
+    <meta property="og:type" content="website" />
+
+    <!-- Bootstrap -->
+    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../../img/logo/logo.png" />
+
+    <!-- Fonts -->
+    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
+
+    <link href="../../../css/structure.css" rel="stylesheet">
+    <link rel="alternate" hreflang="x-default" href="https://www.ac-programming.com/" />
+  </head>
+
+  <body id="page-top">
+
+
+
+    <!-- Navigation --> 
+    <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
+      <div class="container">
+        <img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" 
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" 
+                aria-expanded="false" aria-label="Toggle navigation">
+          <i class="fa fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav text-uppercase ml-auto">
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="../../../index.html#cloud">Main</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+
+    <!-- Header -->
+    <header class="masthead">
+      <div class="container">
+      </div>
+    </header>
+
+
+
+<!-- ======================== ARTICLE SECTION ============================ -->
+
+<section id="article">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading text-uppercase">Multicloud Blog Platform – AWS + GCP + Azure</h2>
+      </div>
+
+      <div class="col-lg-12">
+
+        <h6>Overview</h6>
+        <p>This project demonstrates how to build a scalable, resilient blog application deployed across 
+        <strong>AWS, GCP, and Azure simultaneously</strong>.  
+        Each cloud provider hosts a different part of the architecture to maximize availability and avoid vendor lock-in.</p>
+
+        <h6>Multicloud Architecture</h6>
+        <p>Main components:</p>
+        <ul>
+          <li><strong>Frontend (GCP):</strong> Cloud Run serving the web app container</li>
+          <li><strong>Database (AWS):</strong> Amazon RDS PostgreSQL for structured blog data</li>
+          <li><strong>Media Storage (Azure):</strong> Blob Storage for post images and uploads</li>
+          <li><strong>Global CDN:</strong> Cloudflare or CloudFront to unify multi-cloud endpoints</li>
+        </ul>
+
+        <pre><code>
+                    +------------------+
+                    |   Cloudflare     |
+                    | Global CDN & DNS |
+                    +--------+---------+
+                             |
+             --------------------------------------------------
+             |                       |                        |
+     +-------v-------+       +-------v-------+        +-------v-------+
+     |     GCP       |       |      AWS       |       |     Azure     |
+     | Cloud Run     |       | RDS PostgreSQL |       | Blob Storage  |
+     | Frontend API  |<----->| Main Database  |<----->| Media Files   |
+     +---------------+       +---------------+        +---------------+
+        </code></pre>
+
+
+        <h6>Why Multicloud?</h6>
+        <ul>
+          <li>High resilience — if one provider fails, others stay online</li>
+          <li>Avoid vendor lock-in</li>
+          <li>Use the best tool from each cloud</li>
+          <li>Latency optimization with global routing</li>
+        </ul>
+
+        <!--========================= GCP SECTION =========================-->
+
+        <h4>1. Deploy the Frontend to GCP Cloud Run</h4>
+
+        <h6>Enable required services</h6>
+        <pre><code>gcloud services enable run cloudbuild.googleapis.com artifactregistry.googleapis.com</code></pre>
+
+        <h6>Dockerfile</h6>
+        <pre><code>FROM python:3.10
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["gunicorn", "-b", ":8080", "app:app"]</code></pre>
+
+        <h6>Build & Deploy</h6>
+        <pre><code>gcloud builds submit --tag gcr.io/multicloud-proj/frontend
+gcloud run deploy blog-frontend \
+  --image gcr.io/multicloud-proj/frontend \
+  --allow-unauthenticated \
+  --region us-central1 \
+  --set-env-vars DB_HOST=&lt;AWS_RDS_HOST&gt;,AZURE_CONTAINER_URL=&lt;URL&gt;</code></pre>
+
+
+        <!--========================= AWS SECTION =========================-->
+
+        <h4>2. Set Up the Database on AWS RDS (PostgreSQL)</h4>
+
+        <h6>Create RDS Instance</h6>
+        <pre><code>aws rds create-db-instance \
+  --db-instance-identifier blogdb \
+  --db-instance-class db.t3.micro \
+  --engine postgres \
+  --master-username admin \
+  --master-user-password MySecurePass123 \
+  --allocated-storage 20</code></pre>
+
+        <p>After a few minutes, retrieve the RDS endpoint:</p>
+        <pre><code>aws rds describe-db-instances --query "DBInstances[*].Endpoint.Address"</code></pre>
+
+
+        <!--========================= AZURE SECTION =========================-->
+
+        <h4>3. Create the Media Bucket on Azure Blob Storage</h4>
+
+        <h6>Create Resource Group</h6>
+        <pre><code>az group create -n blog-multicloud -l westeurope</code></pre>
+
+        <h6>Create Storage Account</h6>
+        <pre><code>az storage account create \
+  -n blogstorage123 \
+  -g blog-multicloud \
+  -l westeurope \
+  --sku Standard_LRS</code></pre>
+
+        <h6>Create Container</h6>
+        <pre><code>az storage container create \
+  -n images \
+  --account-name blogstorage123</code></pre>
+
+        <!--===================== APP CONFIG ==========================-->
+
+        <h4>4. Application Configuration</h4>
+
+        <p>The Flask backend running on Cloud Run uses:</p>
+
+        <pre><code>DB_HOST=&lt;aws-rds-endpoint&gt;
+AZURE_CONTAINER_URL=https://blogstorage123.blob.core.windows.net/images
+</code></pre>
+
+        <h6>Flask Example</h6>
+        <pre><code>
+image_url = f"{os.getenv('AZURE_CONTAINER_URL')}/{filename}"
+
+conn_string = f"postgresql://admin:MySecurePass123@{os.getenv('DB_HOST')}:5432/blogdb"
+        </code></pre>
+
+
+        <!--===================== GLOBAL CDN ==========================-->
+
+        <h4>5. Integrate a Global Load Balancer</h4>
+
+        <p>Recommended options:</p>
+        <ul>
+          <li><strong>Cloudflare</strong> – easiest to configure and cloud-agnostic</li>
+          <li>AWS CloudFront → origin GCP Cloud Run</li>
+        </ul>
+
+        <pre><code>Cloudflare
+  DNS → CNAME → Cloud Run URL
+  Page Rule → Cache static assets
+  Security → WAF + DDoS protection</code></pre>
+
+
+        <!--===================== CI/CD ==========================-->
+
+        <h4>6. CI/CD Across Clouds</h4>
+
+        <p>Use GitHub Actions as the unified CI/CD orchestrator.</p>
+
+        <h6>Example GitHub Workflow</h6>
+        <pre><code>name: Multicloud Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Deploy to GCP Cloud Run
+      run: |
+        gcloud builds submit --tag gcr.io/$PROJECT/frontend
+        gcloud run deploy blog-frontend --image gcr.io/$PROJECT/frontend
+
+    - name: Sync Media to Azure
+      run: |
+        az storage blob upload-batch -d images -s static/
+</code></pre>
+
+
+        <!--===================== ADVANTAGES ==========================-->
+
+        <h4>Advantages & Disadvantages of Multicloud</h4>
+
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th>Advantages</th>
+              <th>Disadvantages</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>High availability and improved resilience</td>
+              <td>More complex to configure and maintain</td>
+            </tr>
+            <tr>
+              <td>Avoid vendor lock-in</td>
+              <td>Networking between clouds introduces latency</td>
+            </tr>
+            <tr>
+              <td>Use the best service from each provider</td>
+              <td>Costs harder to predict</td>
+            </tr>
+            <tr>
+              <td>Better global performance with multi-region options</td>
+              <td>Security policies must be synchronized everywhere</td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ======================================================================= -->
+
+
+<!-- ========================== CONTACT SECTION ============================== -->
+
+<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
+
+<!-- ======================================================================= -->
+
+
+<footer>
+  <div class="container">
+    <div class="row">
+        <div class="col-3">
+            <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
+        </div>
+        <div class="col-6 text-center"></div>
+        <div class="col-1"></div>
+        <div class="col-2">
+            <a href="../../../index.html"><span class="copyright">Blog</span></a>
+        </div>
+    </div>
+    <div id="particles-js" style="height:50px;"></div>
+  </div>
+</footer>
+
+<!-- JS -->
+<script src="../../../vendor/jquery/jquery.min.js"></script>
+<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+<script src="../../../js/structure.js"></script>
+<script src="../../../js/particles.js"></script>
+<script src="../../../js/app.js"></script>
+
+<script>
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</script>
+
+</body>
+</html>

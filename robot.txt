@@ -3,4 +3,4 @@ Disallow: /vendor/
 Disallow: /js/
 Disallow: /css/
 
-Sitemap: https://ac-programming.com/sitemap.xml
+Sitemap: https://coding.alexis-carbillet.com/sitemap.xml

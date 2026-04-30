@@ -1175,7 +1175,7 @@ function beginDraggingPiece(source, piece, x, y) {
   captureSquareOffsets();
 
   // create the dragged piece
-  draggedPieceEl.attr('src', buildPieceImgSrc(piece))
+  draggedPieceEl.prop('src', buildPieceImgSrc(piece))
     .css({
       display: '',
       position: 'absolute',

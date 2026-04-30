@@ -1478,7 +1478,7 @@ var Chess = function(fen) {
           : false;
 
       function mask(str) {
-        return str.replace(/\\/g, '\\');
+        return str.replace(/\\/g, '\\\\');
       }
 
       function has_keys(object) {

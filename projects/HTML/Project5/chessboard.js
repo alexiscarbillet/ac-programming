@@ -1175,13 +1175,13 @@ function beginDraggingPiece(source, piece, x, y) {
   captureSquareOffsets();
 
   // create the dragged piece
-  draggedPieceEl.prop('src', buildPieceImgSrc(piece))
-    .css({
-      display: '',
-      position: 'absolute',
-      left: x - (SQUARE_SIZE / 2),
-      top: y - (SQUARE_SIZE / 2)
-    });
+  draggedPieceEl[0].src = buildPieceImgSrc(piece);
+  draggedPieceEl.css({
+    display: '',
+    position: 'absolute',
+    left: x - (SQUARE_SIZE / 2),
+    top: y - (SQUARE_SIZE / 2)
+  });
 
   if (source !== 'spare') {
     // highlight the source square and hide the piece

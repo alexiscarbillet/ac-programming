@@ -1175,7 +1175,10 @@ function beginDraggingPiece(source, piece, x, y) {
   captureSquareOffsets();
 
   // create the dragged piece
-  draggedPieceEl[0].src = buildPieceImgSrc(piece);
+  // validate piece is in valid format [bw][KQRNBP]
+  if (typeof piece === 'string' && /^[bw][KQRNBP]$/.test(piece)) {
+    draggedPieceEl[0].src = buildPieceImgSrc(piece);
+  }
   draggedPieceEl.css({
     display: '',
     position: 'absolute',

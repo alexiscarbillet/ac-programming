@@ -1,150 +1,115 @@
 <!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
-     crossorigin="anonymous"></script>
-
-    
-
-    
-
-    
-
-
-    <meta charset="utf-8">
-    <title>Smart Contracts Without Ethereum: The Idea Behind Programmable Money</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Smart Contracts Without Ethereum: The Idea Behind Programmable Money">
-    <meta name="keywords" content="alexis carbillet, carbillet, blockchain, go">
-    <meta name="author" content="Alexis Carbillet ">
- 
-    <!-- Control appearance when share by social media -->
-    <meta property="og:title" content="Alexis Carbillet" />
-    <meta property="og:description" content="Smart Contracts Without Ethereum: The Idea Behind Programmable Money" />
-    <meta property='og:url' content="https://coding.alexis-carbillet.com/content/blockchain/articles/article5.html" />
-    <meta property="og:type" content="website" />
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-	<!-- Icon -->
-	<link rel="shortcut icon" href="../../img/logo/logo.png" />
-	
-    <!-- Custom fonts for this template -->
-    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
-    <link href="../../../css/structure.css" rel="stylesheet">
-
-	<!-- Choice of languages -->
-	<link rel="alternate" hreflang="x-default" href="https://coding.alexis-carbillet.com/" />
-
-
-  </head>
-
-  <body id="page-top">
-    
-
-    
-
-
-
-
-
-
-    <!-- Navigation --> 
-    <nav class="navbar navbar-expand-lg fixed-top bg-white" id="mainNav">
-      <div class="container">
-		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="logo website">
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-			<li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
-            </li>
-			<li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#go">Go Example</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-			<li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../../../index.html#cyber">Main</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-
-
-    <!-- Header -->
-    <header class="masthead">
-	  <div class="container">		
-		  
-	  </div>
-    </header>
-	
+<head>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"></script>
+<meta charset="utf-8">
+<title>Smart Contracts Without Ethereum: The Idea Behind Programmable Money</title>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+<meta content="Smart Contracts Without Ethereum: The Idea Behind Programmable Money" name="description">
+<meta content="alexis carbillet, carbillet, blockchain, go" name="keywords">
+<meta content="Alexis Carbillet " name="author">
+<!-- Control appearance when share by social media -->
+<meta content="Alexis Carbillet" property="og:title">
+<meta content="Smart Contracts Without Ethereum: The Idea Behind Programmable Money" property="og:description">
+<meta content="https://coding.alexis-carbillet.com/content/blockchain/articles/article5.html" property="og:url">
+<meta content="website" property="og:type">
+<!-- Bootstrap core CSS -->
+<link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Icon -->
+<link href="../../img/logo/logo.png" rel="shortcut icon">
+<!-- Custom fonts for this template -->
+<link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
+<!-- Custom styles for this template -->
+<link href="../../../css/structure.css" rel="stylesheet">
+<!-- Choice of languages -->
+<link href="https://coding.alexis-carbillet.com/" hreflang="x-default" rel="alternate">
+</head>
+<body id="page-top">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg fixed-top bg-white" id="mainNav">
+<div class="container">
+<img alt="logo website" src="../../../img/logo/logo.png" style="margin-right: 2%;" width="5%">
+<button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right" data-bs-target="#navbarResponsive" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarResponsive">
+<ul class="navbar-nav text-uppercase ml-auto">
+<li class="nav-item">
+<a class="nav-link js-scroll-trigger" href="#article">Article</a>
+</li>
+<li class="nav-item">
+<a class="nav-link js-scroll-trigger" href="#go">Go Example</a>
+</li>
+<li class="nav-item">
+<a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+</li>
+<li class="nav-item">
+<a class="nav-link js-scroll-trigger" href="../../../index.html#cyber">Main</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Header -->
+<header class="masthead">
+<div class="container">
+</div>
+</header>
 <!-- ======================== ARTICLE SECTION ============================ -->
-
-	<section id="article">
-      <div class="container">
-        <div class="row">
-		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h2 class="section-heading text-uppercase">Smart Contracts Without Ethereum: The Idea Behind Programmable Money</h2>
-		  </div>
-		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-		  <p>When we think of smart contracts, we often think of Ethereum. But the core idea — code that runs on a blockchain — isn't limited to Ethereum at all.</p>
-		  <p>In this article, we'll:</p>
-      <ul>
-        <li>Demystify what smart contracts are</li>
-        <li>Show how the idea can work even in a simple blockchain</li>
-        <li>Implement a basic programmable transaction system in Go</li>
-      </ul>
-		  <p>Let’s dive into what makes a contract "smart" — and how we can simulate one without needing Solidity or the Ethereum Virtual Machine.</p>
-      <h6>What Is a Smart Contract?</h6>
-		  <p>At its core, a smart contract is a self-executing program stored on the blockchain that runs when certain conditions are met.</p>
-		  <p>Think of it as:</p>
-      <ul>
-        <li>Code + Rules + Money</li>
-        <li>“If this happens, then do that — automatically and immutably.”</li>
-      </ul>
-		  <p>Examples:</p>
-      <ul>
-        <li>Escrow: Funds are released only if both parties approve.</li>
-        <li>Crowdfunding: If a funding goal is met, transfer money; if not, refund.</li>
-      </ul>
-      <h6>Our Goal: Simple Smart Contracts in Go</h6>
-		  <p>Instead of deploying to Ethereum, we’ll:</p>
-      <ul>
-        <li>Simulate a blockchain that holds "accounts" with balances.</li>
-        <li>Let users define transactions with embedded rules (our mini-contracts).</li>
-        <li>Execute and verify those rules before applying changes.</li>
-      </ul>
-		  <p>This is enough to grasp the essence of smart contracts: programmable, verifiable conditions on transactions.</p>
-		  </div>
-		</div>
-      </div>
-    </section>
-
+<section id="article">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+<h2 class="section-heading text-uppercase">Smart Contracts Without Ethereum: The Idea Behind Programmable Money</h2>
+</div>
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+<p>When we think of smart contracts, we often think of Ethereum. But the core idea &mdash; code that runs on a blockchain &mdash; isn't limited to Ethereum at all.</p>
+<p>In this article, we'll:</p>
+<ul>
+<li>Demystify what smart contracts are</li>
+<li>Show how the idea can work even in a simple blockchain</li>
+<li>Implement a basic programmable transaction system in Go</li>
+</ul>
+<p>Let&rsquo;s dive into what makes a contract "smart" &mdash; and how we can simulate one without needing Solidity or the Ethereum Virtual Machine.</p>
+<h6>What Is a Smart Contract?</h6>
+<p>At its core, a smart contract is a self-executing program stored on the blockchain that runs when certain conditions are met.</p>
+<p>Think of it as:</p>
+<ul>
+<li>Code + Rules + Money</li>
+<li>&ldquo;If this happens, then do that &mdash; automatically and immutably.&rdquo;</li>
+</ul>
+<p>Examples:</p>
+<ul>
+<li>Escrow: Funds are released only if both parties approve.</li>
+<li>Crowdfunding: If a funding goal is met, transfer money; if not, refund.</li>
+</ul>
+<h6>Our Goal: Simple Smart Contracts in Go</h6>
+<p>Instead of deploying to Ethereum, we&rsquo;ll:</p>
+<ul>
+<li>Simulate a blockchain that holds "accounts" with balances.</li>
+<li>Let users define transactions with embedded rules (our mini-contracts).</li>
+<li>Execute and verify those rules before applying changes.</li>
+</ul>
+<p>This is enough to grasp the essence of smart contracts: programmable, verifiable conditions on transactions.</p>
+</div>
+</div>
+</div>
+</section>
 <!-- ======================================================================= -->
-
 <!-- ======================== GO SECTION ============================ -->
-
-	<section class="bg-light" id="go">
-      <div class="container">
-        <div class="row">
-		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h2 class="section-heading text-uppercase">Go example</h2>
-		  </div>
-		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-			<pre><code>package main
+<section class="bg-light" id="go">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+<h2 class="section-heading text-uppercase">Go example</h2>
+</div>
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+<pre><code>package main
 
 import (
   "fmt"
@@ -169,7 +134,7 @@ func ExecuteTransaction(tx Transaction, state *State) bool {
     fmt.Println("❌ Rule rejected the transaction.")
     return false
   }
-  if state.Balances[tx.From] < tx.Amount {
+  if state.Balances[tx.From] &lt; tx.Amount {
     fmt.Println("❌ Insufficient balance.")
     return false
   }
@@ -193,7 +158,7 @@ func main() {
 
   // Simple rule: Only execute if Alice has at least 80 coins
   rule := func(state *State) bool {
-    return state.Balances["Alice"] >= 80
+    return state.Balances["Alice"] &gt;= 80
   }
 
   tx := Transaction{
@@ -209,7 +174,7 @@ func main() {
 
   // Another rule: Only send money to Carol if Bob has more than 100
   rule2 := func(state *State) bool {
-    return state.Balances["Bob"] > 100
+    return state.Balances["Bob"] &gt; 100
   }
 
   tx2 := Transaction{
@@ -222,75 +187,56 @@ func main() {
   ExecuteTransaction(tx2, state)
   fmt.Println("Balances after tx 2:", state.Balances)
 }</code></pre>
-			<p>Even without Ethereum, we just created:</p>
-			<ul>
-        <li>Conditional transactions</li>
-        <li>Verifiable, code-defined rules</li>
-        <li>A simple but powerful idea: money that moves when logic says so</li>
-      </ul>
-			<p></p>
-		  </div>
-		</div>
-      </div>
-    </section>
-
+<p>Even without Ethereum, we just created:</p>
+<ul>
+<li>Conditional transactions</li>
+<li>Verifiable, code-defined rules</li>
+<li>A simple but powerful idea: money that moves when logic says so</li>
+</ul>
+<p></p>
+</div>
+</div>
+</div>
+</section>
 <!-- ======================================================================= -->
-
 <!-- ========================== CONTACT SECTION ============================== -->
-
-<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
-
+<iframe frameborder="0" id="contact" scrolling="no" src="../../../contact.html" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
 <!-- ======================================================================= -->
-
-
 <!-- ======================= FOOTER SECTION ================================ -->
-    <footer>
-      <div class="container">
-        <div class="row">
-			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
-        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
-			</div>
-			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
-			</div>
-			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
-			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
-			</div>
-		</div>
-		<div id="particles-js" style="height:50px;"></div>
-      </div>
-    </footer>
-
+<footer>
+<div class="container">
+<div class="row">
+<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+<iframe frameborder="0" src="../../../copyright.html" style="padding: 0%; max-height: 25px;"></iframe>
+</div>
+<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+</div>
+<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+</div>
+</div>
+<div id="particles-js" style="height:50px;"></div>
+</div>
+</footer>
 <!-- ======================================================================= -->
-
 <!-- ======================== JAVASCRIPT SECTION =========================== -->
-
-
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../../vendor/jquery/jquery.min.js"></script>
-	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
-	
-    <!-- Custom scripts for this template -->
-    <script src="../../../js/structure.js"></script>
-	
-	<!-- Particles part -->
-	<script src="../../../js/particles.js"></script>
-	<script src="../../../js/app.js"></script>
-	
-    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-    <script>
+<!-- Bootstrap core JavaScript -->
+<script src="../../../vendor/jquery/jquery.min.js"></script>
+<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Custom scripts for this template -->
+<script src="../../../js/structure.js"></script>
+<!-- Particles part -->
+<script src="../../../js/particles.js"></script>
+<script src="../../../js/app.js"></script>
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
     $(function () {
-      $('[data-toggle="tooltip"]').tooltip();
+      $('[data-bs-toggle="tooltip"]').tooltip();
     })
     </script>
-	
-
 <!-- ======================================================================= -->
-  </body>
-
+</body>
 </html>
-

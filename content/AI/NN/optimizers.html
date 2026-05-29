@@ -1,129 +1,94 @@
 <!DOCTYPE html>
+
 <html lang="en">
-  <head>
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"
-     crossorigin="anonymous"></script>
-
-    
-
-    
-
-    
-
-
-    <meta charset="utf-8">
-    <title>Neural Network Optimizers</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="What are neural network optimizers? How to implement them in python?">
-    <meta name="keywords" content="alexis carbillet, carbillet, artificial intelligence, python, neural network, optimizers">
-    <meta name="author" content="Alexis Carbillet ">
- 
-    <!-- Control appearance when share by social media -->
-    <meta property="og:title" content="What are neural network optimizers? How to implement them in python?" />
-    <meta property="og:description" content="What are neural network optimizers? How to implement them in python?" />
-    <meta property='og:url' content="https://coding.alexis-carbillet.com/content/NN/optimizers.html" />
-    <meta property="og:type" content="website" />
-
-    <!-- Bootstrap core CSS -->
-    <link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-	<!-- Icon -->
-	<link rel="shortcut icon" href="../../../img/logo/logo.png" />
-	
-    <!-- Custom fonts for this template -->
-    <link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link href='https://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
-
-    <!-- Custom styles for this template -->
-    <link href="../../../css/structure.css" rel="stylesheet">
-
-	<!-- Choice of languages -->
-	<link rel="alternate" hreflang="x-default" href="https://coding.alexis-carbillet.com/" />
-
-
-  </head>
-
-  <body id="page-top">
-    
-
-    
-
-
-
-
-
-
-    <!-- Navigation --> 
-    <nav class="navbar navbar-expand-lg fixed-top bg-white" id="mainNav">
-      <div class="container">
-		<img src="../../../img/logo/logo.png" width="5%" style="margin-right: 2%;" alt="">
-		<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-			<li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#article">Article</a>
-            </li>
-			<li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#python">Comparison</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
-            </li>
-			<li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="../../../index.html#advanced">Main</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-
-
-
-    <!-- Header -->
-    <header class="masthead">
-	  <div class="container">		
-		  
-	  </div>
-    </header>
-	
+<head>
+<script async crossorigin="anonymous" src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9364684337389377"></script>
+<meta charset="utf-8">
+<title>Neural Network Optimizers</title>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+<meta content="What are neural network optimizers? How to implement them in python?" name="description">
+<meta content="alexis carbillet, carbillet, artificial intelligence, python, neural network, optimizers" name="keywords">
+<meta content="Alexis Carbillet " name="author">
+<!-- Control appearance when share by social media -->
+<meta content="What are neural network optimizers? How to implement them in python?" property="og:title">
+<meta content="What are neural network optimizers? How to implement them in python?" property="og:description">
+<meta content="https://coding.alexis-carbillet.com/content/NN/optimizers.html" property="og:url">
+<meta content="website" property="og:type">
+<!-- Bootstrap core CSS -->
+<link href="../../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<!-- Icon -->
+<link href="../../../img/logo/logo.png" rel="shortcut icon">
+<!-- Custom fonts for this template -->
+<link href="../../../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Kaushan+Script" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css">
+<!-- Custom styles for this template -->
+<link href="../../../css/structure.css" rel="stylesheet">
+<!-- Choice of languages -->
+<link href="https://coding.alexis-carbillet.com/" hreflang="x-default" rel="alternate">
+</head>
+<body id="page-top">
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg fixed-top bg-white" id="mainNav">
+<div class="container">
+<img alt src="../../../img/logo/logo.png" style="margin-right: 2%;" width="5%">
+<button aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler navbar-toggler-right" data-bs-target="#navbarResponsive" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarResponsive">
+<ul class="navbar-nav text-uppercase ml-auto">
+<li class="nav-item">
+<a class="nav-link js-scroll-trigger" href="#article">Article</a>
+</li>
+<li class="nav-item">
+<a class="nav-link js-scroll-trigger" href="#python">Comparison</a>
+</li>
+<li class="nav-item">
+<a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+</li>
+<li class="nav-item">
+<a class="nav-link js-scroll-trigger" href="../../../index.html#advanced">Main</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+<!-- Header -->
+<header class="masthead">
+<div class="container">
+</div>
+</header>
 <!-- ======================== ARTICLE SECTION ============================ -->
-
-	<section id="article">
-      <div class="container">
-        <div class="row">
-		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h2 class="section-heading text-uppercase">Neural Network Optimizers</h2>
-		  </div>
-		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-		  <p>In the context of neural networks, optimizers are algorithms that help improve the performance of the network by adjusting its internal parameters.</p>
-		  <p>Think of a neural network as a complex mathematical model with many adjustable knobs and switches. These knobs and switches, called parameters, determine how the network behaves and make predictions. The goal of the optimizer is to find the best values for these parameters, so that the network can accurately predict the desired outputs.</p>
-		  <p>To understand how optimizers work, let's imagine a scenario where you're trying to find the lowest point in a hilly landscape. You're blindfolded and can only take small steps. An optimizer is like your guide that tells you which direction to step in order to reach the lowest point.</p>
-		  <p>Similarly, in a neural network, an optimizer helps the network adjust its parameters in a way that reduces the difference between the predicted outputs and the actual outputs. It does this by calculating the gradients, which represent the direction and magnitude of the steepest descent in the prediction error. The optimizer then updates the parameters based on these gradients, nudging them closer to the values that minimize the error.</p>
-		  <p>There are different types of optimizers, each with its own strategy for adjusting the parameters. Some optimizers take larger steps when the gradients are steep, while others take smaller steps to be more cautious. The choice of optimizer depends on the specific problem and the characteristics of the data.</p>
-		  <p>In simple terms, optimizers are like helpful guides that assist neural networks in finding the best values for their parameters, allowing them to make more accurate predictions.</p>
-		  </div>
-		</div>
-      </div>
-    </section>
-
+<section id="article">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+<h2 class="section-heading text-uppercase">Neural Network Optimizers</h2>
+</div>
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+<p>In the context of neural networks, optimizers are algorithms that help improve the performance of the network by adjusting its internal parameters.</p>
+<p>Think of a neural network as a complex mathematical model with many adjustable knobs and switches. These knobs and switches, called parameters, determine how the network behaves and make predictions. The goal of the optimizer is to find the best values for these parameters, so that the network can accurately predict the desired outputs.</p>
+<p>To understand how optimizers work, let's imagine a scenario where you're trying to find the lowest point in a hilly landscape. You're blindfolded and can only take small steps. An optimizer is like your guide that tells you which direction to step in order to reach the lowest point.</p>
+<p>Similarly, in a neural network, an optimizer helps the network adjust its parameters in a way that reduces the difference between the predicted outputs and the actual outputs. It does this by calculating the gradients, which represent the direction and magnitude of the steepest descent in the prediction error. The optimizer then updates the parameters based on these gradients, nudging them closer to the values that minimize the error.</p>
+<p>There are different types of optimizers, each with its own strategy for adjusting the parameters. Some optimizers take larger steps when the gradients are steep, while others take smaller steps to be more cautious. The choice of optimizer depends on the specific problem and the characteristics of the data.</p>
+<p>In simple terms, optimizers are like helpful guides that assist neural networks in finding the best values for their parameters, allowing them to make more accurate predictions.</p>
+</div>
+</div>
+</div>
+</section>
 <!-- ======================================================================= -->
-
 <!-- ======================== PYTHON SECTION ============================ -->
-
-	<section class="bg-light" id="python">
-      <div class="container">
-        <div class="row">
-		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
-			<h2 class="section-heading text-uppercase">Activations Comparison</h2>
-		  </div>
-		  <div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
-			<p>Let's compare some commonly used optimizers functions in neural networks:</p>
-			<pre><p>
+<section class="bg-light" id="python">
+<div class="container">
+<div class="row">
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-center">
+<h2 class="section-heading text-uppercase">Activations Comparison</h2>
+</div>
+<div class="col-xs-12 col-md-12 col-sm-12 col-lg-12 text-left">
+<p>Let's compare some commonly used optimizers functions in neural networks:</p>
+<pre><p>
 			Stochastic Gradient Descent (SGD):
 				Simple and widely used optimizer.
 				Updates the parameters in the direction of the negative gradient of the loss function.
@@ -160,69 +125,50 @@
 				Less frequently used compared to Adam.
 
 			</p></pre>
-			<p>It's important to note that the performance of optimizers can vary depending on the specific problem and the dataset. Experimentation is often necessary to find the optimizer that works best for your particular neural network architecture and training data.</p>
-		  </div>
-		</div>
-      </div>
-    </section>
-
+<p>It's important to note that the performance of optimizers can vary depending on the specific problem and the dataset. Experimentation is often necessary to find the optimizer that works best for your particular neural network architecture and training data.</p>
+</div>
+</div>
+</div>
+</section>
 <!-- ======================================================================= -->
-
 <!-- ========================== CONTACT SECTION ============================== -->
-
-<iframe id="contact" src="../../../contact.html"  frameborder="0" scrolling="no" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
-
+<iframe frameborder="0" id="contact" scrolling="no" src="../../../contact.html" style="border: none; width: 100%; height: 140vh; max-height: 800px;"></iframe>
 <!-- ======================================================================= -->
-
-
 <!-- ======================= FOOTER SECTION ================================ -->
-    <footer>
-      <div class="container">
-        <div class="row">
-			<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
-        <iframe src="../../../copyright.html" frameborder="0" style="padding: 0%; max-height: 25px;"></iframe>
-			</div>
-			<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
-			</div>
-			<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
-			<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
-			<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
-			</div>
-		</div>
-		<div id="particles-js" style="height:50px;"></div>
-      </div>
-    </footer>
-
+<footer>
+<div class="container">
+<div class="row">
+<div class="col-xs-3 col-md-3 col-sm-3 col-lg-3">
+<iframe frameborder="0" src="../../../copyright.html" style="padding: 0%; max-height: 25px;"></iframe>
+</div>
+<div class="col-xs-6 col-md-6 col-sm-6 col-lg-6 text-center">
+</div>
+<div class="col-xs-1 col-md-1 col-sm-1 col-lg-1"></div>
+<div class="col-xs-2 col-md-2 col-sm-2 col-lg-2">
+<a href="../../../index.html"><span class="copyright" style="margin-right: 2%;">Blog</span></a>
+</div>
+</div>
+<div id="particles-js" style="height:50px;"></div>
+</div>
+</footer>
 <!-- ======================================================================= -->
-
 <!-- ======================== JAVASCRIPT SECTION =========================== -->
-
-
-
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../../vendor/jquery/jquery.min.js"></script>
-	<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Plugin JavaScript -->
-    <script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
-	
-    <!-- Custom scripts for this template -->
-    <script src="../../../js/structure.js"></script>
-	
-	<!-- Particles part -->
-	<script src="../../../js/particles.js"></script>
-	<script src="../../../js/app.js"></script>
-	
-    <!-- Activate the bootstrap tooltip, must be after jQuery load -->
-    <script>
+<!-- Bootstrap core JavaScript -->
+<script src="../../../vendor/jquery/jquery.min.js"></script>
+<script src="../../../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- Plugin JavaScript -->
+<script src="../../../vendor/jquery-easing/jquery.easing.min.js"></script>
+<!-- Custom scripts for this template -->
+<script src="../../../js/structure.js"></script>
+<!-- Particles part -->
+<script src="../../../js/particles.js"></script>
+<script src="../../../js/app.js"></script>
+<!-- Activate the bootstrap tooltip, must be after jQuery load -->
+<script>
     $(function () {
-      $('[data-toggle="tooltip"]').tooltip();
+      $('[data-bs-toggle="tooltip"]').tooltip();
     })
     </script>
-	
-
 <!-- ======================================================================= -->
-  </body>
-
+</body>
 </html>
-
